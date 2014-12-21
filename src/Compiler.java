@@ -24,9 +24,18 @@ public class Compiler {
             return t;
         }
     };
+    
+    static void showTypes(CeriumAST t, TokenRewriteStream tokens) {
+    	if ((t.evalType != null) && (t.getType() != CeriumParser.EXPR)) {
+    		System.out.printf("%-17s", tokens.toString(t.getTokenStartIndex(), t.getTokenStopIndex()));
+    		
+    		String ts = t.evalType.toString();
+    		System.out.printf(" type %-8s\n", ts);
+    	}
+    }
 
     public static void main(String[] args) throws Exception {
-		String filePath = new String("source-code\\AB.cymbol");
+		String filePath = new String("source-code\\forward.cerium");
 		Reader reader = null;
 
 		try {
@@ -39,21 +48,40 @@ public class Compiler {
     	
 		CharStream input = new ANTLRReaderStream(reader);
 
+		// create parser and built the AST
         CeriumLexer lex = new CeriumLexer(input);
-        CommonTokenStream tokens = new CommonTokenStream(lex);
+        final TokenRewriteStream tokens = new TokenRewriteStream(lex);
         CeriumParser p = new CeriumParser(tokens);
         p.setTreeAdaptor(ceriumAdaptor);
         RuleReturnScope r = p.compilationUnit();   // launch parser by calling start rule
         CommonTree t = (CommonTree)r.getTree();    // get tree result
 
+        // create the tree note stream for tree parsers
         CommonTreeNodeStream nodes = new CommonTreeNodeStream(ceriumAdaptor, t);
         nodes.setTokenStream(tokens);
+        nodes.setTreeAdaptor(ceriumAdaptor);
         SymbolTable symtab = new SymbolTable(); // init symbol table
-        Def def = new Def(nodes, symtab);       // create Def phase
-        def.downup(t);                          // Do pass 1
-        System.out.println("globals: "+symtab.globals);
+
+        // define symbols
+        Def def = new Def(nodes, symtab);       // pass symbol table to the walker
+        def.downup(t);                          // trigger define actions upon certain subtrees
+
+        // resolve symbols and compute expression types
         nodes.reset(); // rewind AST node stream to root
-        Ref ref = new Ref(nodes);               // create Ref phase
-        ref.downup(t);                          // Do pass 2
+        Types typeComp = new Types(nodes, symtab);               // create Ref phase
+        typeComp.downup(t);                          // trigger resolve/type computation actions
+        
+        // walk tree to dump subtree types
+        TreeVisitor visitor = new TreeVisitor(new CommonTreeAdaptor());
+        TreeVisitorAction actions = new TreeVisitorAction() {
+        	public Object pre(Object t) {
+        		return t;
+        	}
+        	
+        	public Object post(Object t) {
+        		showTypes((CeriumAST)t, tokens);
+        		return t;
+        	}
+        };
     }
 }

@@ -9,6 +9,7 @@ options {
 @members {
     SymbolTable symtab;
     Scope currentScope;
+    MethodSymbol currentMethod;
     public Def(TreeNodeStream input, SymbolTable symtab) {
         this(input);
         this.symtab = symtab;
@@ -22,6 +23,7 @@ topdown
     |   enterMethod
     |   enterClass
     |   varDeclaration
+    |	ret
     |   atoms
     ;
 
@@ -70,10 +72,9 @@ exitClass
     ;
 
 enterMethod
-    :   ^(METHOD_DECL type=. ID .*) // match method subtree with 0-or-more args
+    :   ^(METHOD_DECL type ID .*) // match method subtree with 0-or-more args
         {
         System.out.println("line "+$ID.getLine()+": def method "+$ID.text);
-        $type.scope = currentScope;
         MethodSymbol ms = new MethodSymbol($ID.text,null,currentScope);
         ms.def = $ID;            // track AST location of def's ID
         $ID.symbol = ms;         // track in AST
@@ -81,6 +82,7 @@ enterMethod
         currentScope = ms;       // set current scope to method scope
         }
     ;
+    
 exitMethod
     :   METHOD_DECL
         {
@@ -88,6 +90,11 @@ exitMethod
         currentScope = currentScope.getEnclosingScope();    // pop arg scope
         }
     ;
+
+/** Track method associated with this return. */
+ret	:	
+		^('return' .) {$ret.start.symbol = currentMethod;}
+	;
 
 // START: atoms
 /** Set scope for any identifiers in expressions or assignments */
@@ -100,10 +107,9 @@ atoms
 
 // START: var
 varDeclaration // global, parameter, or local variable
-    :   ^((FIELD_DECL|VAR_DECL|ARG_DECL) type=. ID .?)
+    :   ^((FIELD_DECL|VAR_DECL|ARG_DECL) type ID .?)
         {
         System.out.println("line "+$ID.getLine()+": def "+$ID.text);
-        $type.scope = currentScope;
         VariableSymbol vs = new VariableSymbol($ID.text,null);
         vs.def = $ID;            // track AST location of def's ID
         $ID.symbol = vs;         // track in AST
@@ -111,3 +117,26 @@ varDeclaration // global, parameter, or local variable
         }
     ;
 // END: field
+
+/** Not included in tree pattern matching directly.  Needed by declarations */
+type returns [Type type]
+	:	^('[]' typeElement)	{$type = new ArrayType($typeElement.type);}
+	|	typeElement 	    {$type = $typeElement.type;}
+	;
+
+typeElement returns [Type type]
+@init {CeriumAST t = (CeriumAST)input.LT(1);}
+@after {
+    t.symbol = currentScope.resolve(t.getText()); // return Type
+    t.scope = currentScope;
+    $type = (Type)t.symbol;
+}
+    :   
+    	'float'
+    |   'int'
+    |   'char'
+    |   'boolean'
+    |   'void'
+    |   ID // struct name
+    ;
+

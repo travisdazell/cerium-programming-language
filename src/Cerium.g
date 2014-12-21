@@ -18,18 +18,22 @@ tokens {
   EXPR; 	   // root of an expression
   ASSIGN='=';
   EXTENDS;
+  UNARY_MINUS;
+  UNARY_NOT;
+  INDEX;
 }
 
+// each source file consists of one or more class definitions
 compilationUnit
-    :   
-    	( classDefinition | varDeclaration | methodDeclaration )+ EOF
+    :
+    	(classDefinition)+ EOF
     ;
 
 // START: class
 classDefinition
     :   
-    	'class' ID superClass? '{' classMember+ '}' ';'
-        -> ^('class' ID superClass? ^(MEMBERS classMember+))
+    	'class' ID superClass? '{' classMember+ '}' ';'			// a class without a defined super class
+        -> ^('class' ID superClass? ^(MEMBERS classMember+))	// a class with a super class
     ;
 
 superClass
@@ -38,11 +42,11 @@ superClass
 	;
 // END: class
 
+// a class member can be either a variable or method that's declared
 classMember
 	:	
-		type ID ('=' expression)? ';' -> ^(FIELD_DECL type ID expression?)
+		varDeclaration
 	|	methodDeclaration
-	|	'public' ':' -> // throw away; just making input valid C++
 	;
 	
 // START: method
@@ -55,14 +59,22 @@ methodDeclaration
 
 formalParameters
     :   
-    	type ID (',' type ID)* -> ^(ARG_DECL type ID)+
+    	parameter (',' parameter)* -> parameter+
     ;
+    
+parameter
+	:	
+		type ID		 -> ^(ARG_DECL type ID)
+	|	type ID '[]' -> ^(ARG_DECL ^('[]' type) ID)		// array type parameter
+	;    
 
+// a type can be any primitive type or a user-defined class type
 type:   
 		'float'
     |   'int'
     |	'void'
     |	'char'
+    |	'boolean'
     |	ID // class type name
     ;
 
@@ -76,16 +88,21 @@ block
 // START: var
 varDeclaration
     :
-    	type ID ('=' expression)? ';' -> ^(VAR_DECL type ID expression?)
+    	type ID ('=' expression)? ';' -> ^(VAR_DECL type ID expression?)		// a variable declaration, optionally followed by an initial value
+   	|	type ID '[]' ('=' expression)? ';' -> ^(VAR_DECL ^('[]' type) ID expression?)	// an array type with optional initial values
     ;
 // END: var
 
 statement
+options {backtrack=true;} // hard to distinguish struct from var from left
     :   
     	block
     |	varDeclaration
+    |	'if' '(' expression ')' s=statement ('else' e=statement)?
+    	-> ^('if' expression $s $e?)
     |   'return' expression? ';' -> ^('return' expression?)
-    |   postfixExpression // handles function calls like f(i);
+    |	lhs '=' expression ';' -> ^('=' lhs expression)
+    |   a=postfixExpression // handles function calls like f(i);
         (   '=' expression -> ^('=' postfixExpression expression)
         |   -> ^(EXPR postfixExpression)
         )
@@ -93,21 +110,60 @@ statement
     |	';' -> // empty statement      
     ;
 
+lhs :	
+		postfixExpression -> ^(EXPR postfixExpression)
+	;
+
 expressionList
     :
-    	expression (',' expression)* -> ^(ELIST expression+)
+    	expr (',' expr)* -> ^(ELIST expr+)
     |   -> ELIST
     ;
 
 expression
     :   
-    	addExpression -> ^(EXPR addExpression)
+    	expr -> ^(EXPR expr)
     ;
     
-addExpression
+expr:
+		equalityExpression
+	;    
+    
+equalityExpression
 	:	
-		postfixExpression ('+'^ postfixExpression)*
+		relationalExpression (('!='^ | '=='^) relationalExpression)*
 	;
+
+relationalExpression
+	:	
+		additiveExpression
+		(	(	(	'<'^
+				|	'>'^
+				|	'<='^
+				|	'>='^
+				)
+				additiveExpression
+			)*
+		)
+	;
+
+additiveExpression
+	:	
+		multiplicativeExpression (('+'^ | '-'^) multiplicativeExpression)*
+	;
+
+multiplicativeExpression
+	:	
+		unaryExpression (('*'^ | '/'^) unaryExpression)*
+	;
+
+unaryExpression
+	:	
+		op='-' unaryExpression -> ^(UNARY_MINUS[$op] unaryExpression)
+	|	op='!' unaryExpression -> ^(UNARY_NOT[$op] unaryExpression)
+	|	postfixExpression
+	;
+
 
 // START: call
 postfixExpression
@@ -134,6 +190,10 @@ primary
     |	'super'
     |	ID
     |   INT
+    |	FLOAT
+    |	CHAR
+    |	'true'
+    |	'false'
     |   '(' expression ')' -> expression
     ;
 
@@ -148,9 +208,17 @@ LETTER  :
 			('a'..'z' | 'A'..'Z')
     	;
 
+CHAR:	'\'' . '\'' ;
+
 INT :   
 		'0'..'9'+
     ;
+
+FLOAT
+	:	
+		INT '.' INT*
+	|	'.' INT+
+	;
 
 WS  :   
 		(' '|'\r'|'\t'|'\n') {$channel=HIDDEN;}
