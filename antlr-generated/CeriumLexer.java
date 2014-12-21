@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g 2014-12-20 22:14:14
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g 2014-12-21 09:04:34
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -14,10 +14,11 @@ public class CeriumLexer extends Lexer {
     public static final int LETTER=22;
     public static final int ARG_DECL=5;
     public static final int CHAR=21;
-    public static final int VAR_DECL=8;
     public static final int METHOD_DECL=4;
+    public static final int VAR_DECL=8;
     public static final int FLOAT=20;
     public static final int ID=18;
+    public static final int T__60=60;
     public static final int EOF=-1;
     public static final int T__55=55;
     public static final int T__56=56;
@@ -30,6 +31,7 @@ public class CeriumLexer extends Lexer {
     public static final int T__53=53;
     public static final int T__54=54;
     public static final int ELIST=11;
+    public static final int T__59=59;
     public static final int UNARY_NOT=16;
     public static final int T__50=50;
     public static final int T__42=42;
@@ -42,8 +44,8 @@ public class CeriumLexer extends Lexer {
     public static final int T__45=45;
     public static final int T__48=48;
     public static final int T__49=49;
-    public static final int MEMBERS=7;
     public static final int FIELD_DECL=9;
+    public static final int MEMBERS=7;
     public static final int UNARY_MINUS=15;
     public static final int INT=19;
     public static final int T__30=30;
@@ -696,10 +698,10 @@ public class CeriumLexer extends Lexer {
         try {
             int _type = T__54;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:37:7: ( '.' )
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:37:9: '.'
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:37:7: ( '[' )
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:37:9: '['
             {
-            match('.'); 
+            match('['); 
 
             }
 
@@ -716,11 +718,10 @@ public class CeriumLexer extends Lexer {
         try {
             int _type = T__55;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:38:7: ( 'this' )
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:38:9: 'this'
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:38:7: ( ']' )
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:38:9: ']'
             {
-            match("this"); 
-
+            match(']'); 
 
             }
 
@@ -737,11 +738,10 @@ public class CeriumLexer extends Lexer {
         try {
             int _type = T__56;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:39:7: ( 'super' )
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:39:9: 'super'
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:39:7: ( '.' )
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:39:9: '.'
             {
-            match("super"); 
-
+            match('.'); 
 
             }
 
@@ -758,10 +758,10 @@ public class CeriumLexer extends Lexer {
         try {
             int _type = T__57;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:40:7: ( 'true' )
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:40:9: 'true'
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:40:7: ( 'this' )
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:40:9: 'this'
             {
-            match("true"); 
+            match("this"); 
 
 
             }
@@ -779,8 +779,50 @@ public class CeriumLexer extends Lexer {
         try {
             int _type = T__58;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:41:7: ( 'false' )
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:41:9: 'false'
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:41:7: ( 'super' )
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:41:9: 'super'
+            {
+            match("super"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__58"
+
+    // $ANTLR start "T__59"
+    public final void mT__59() throws RecognitionException {
+        try {
+            int _type = T__59;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:42:7: ( 'true' )
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:42:9: 'true'
+            {
+            match("true"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__59"
+
+    // $ANTLR start "T__60"
+    public final void mT__60() throws RecognitionException {
+        try {
+            int _type = T__60;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:43:7: ( 'false' )
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:43:9: 'false'
             {
             match("false"); 
 
@@ -793,7 +835,7 @@ public class CeriumLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "T__58"
+    // $ANTLR end "T__60"
 
     // $ANTLR start "ID"
     public final void mID() throws RecognitionException {
@@ -1149,8 +1191,8 @@ public class CeriumLexer extends Lexer {
     // $ANTLR end "SL_COMMENT"
 
     public void mTokens() throws RecognitionException {
-        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:1:8: ( ASSIGN | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | ID | CHAR | INT | FLOAT | WS | SL_COMMENT )
-        int alt8=41;
+        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:1:8: ( ASSIGN | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | ID | CHAR | INT | FLOAT | WS | SL_COMMENT )
+        int alt8=43;
         alt8 = dfa8.predict(input);
         switch (alt8) {
             case 1 :
@@ -1399,42 +1441,56 @@ public class CeriumLexer extends Lexer {
                 }
                 break;
             case 36 :
-                // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:1:221: ID
+                // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:1:221: T__59
+                {
+                mT__59(); 
+
+                }
+                break;
+            case 37 :
+                // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:1:227: T__60
+                {
+                mT__60(); 
+
+                }
+                break;
+            case 38 :
+                // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:1:233: ID
                 {
                 mID(); 
 
                 }
                 break;
-            case 37 :
-                // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:1:224: CHAR
+            case 39 :
+                // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:1:236: CHAR
                 {
                 mCHAR(); 
 
                 }
                 break;
-            case 38 :
-                // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:1:229: INT
+            case 40 :
+                // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:1:241: INT
                 {
                 mINT(); 
 
                 }
                 break;
-            case 39 :
-                // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:1:233: FLOAT
+            case 41 :
+                // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:1:245: FLOAT
                 {
                 mFLOAT(); 
 
                 }
                 break;
-            case 40 :
-                // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:1:239: WS
+            case 42 :
+                // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:1:251: WS
                 {
                 mWS(); 
 
                 }
                 break;
-            case 41 :
-                // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:1:242: SL_COMMENT
+            case 43 :
+                // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:1:254: SL_COMMENT
                 {
                 mSL_COMMENT(); 
 
@@ -1448,153 +1504,157 @@ public class CeriumLexer extends Lexer {
 
     protected DFA8 dfa8 = new DFA8(this);
     static final String DFA8_eotS =
-        "\1\uffff\1\41\1\34\4\uffff\1\34\4\uffff\6\34\1\56\1\60\1\62\3\uffff"+
-        "\1\64\1\66\2\34\2\uffff\1\72\3\uffff\6\34\1\101\4\34\12\uffff\3"+
-        "\34\1\uffff\5\34\1\116\1\uffff\10\34\1\127\3\34\1\uffff\1\133\1"+
-        "\34\1\135\1\34\1\137\1\140\1\34\1\142\1\uffff\1\34\1\144\1\145\1"+
-        "\uffff\1\34\1\uffff\1\34\2\uffff\1\150\1\uffff\1\151\2\uffff\1\34"+
-        "\1\153\2\uffff\1\154\2\uffff";
+        "\1\uffff\1\42\1\35\4\uffff\1\35\3\uffff\1\47\6\35\1\61\1\63\1\65"+
+        "\3\uffff\1\67\1\uffff\1\71\2\35\2\uffff\1\75\3\uffff\3\35\2\uffff"+
+        "\3\35\1\104\4\35\12\uffff\3\35\1\uffff\5\35\1\121\1\uffff\10\35"+
+        "\1\132\3\35\1\uffff\1\136\1\35\1\140\1\35\1\142\1\143\1\35\1\145"+
+        "\1\uffff\1\35\1\147\1\150\1\uffff\1\35\1\uffff\1\35\2\uffff\1\153"+
+        "\1\uffff\1\154\2\uffff\1\35\1\156\2\uffff\1\157\2\uffff";
     static final String DFA8_eofS =
-        "\155\uffff";
+        "\160\uffff";
     static final String DFA8_minS =
-        "\1\11\1\75\1\150\4\uffff\1\165\4\uffff\1\141\1\146\2\157\1\154"+
-        "\1\145\3\75\3\uffff\1\57\1\60\1\150\1\165\2\uffff\1\56\3\uffff\2"+
-        "\141\1\142\1\157\1\154\1\164\1\60\1\151\1\157\1\163\1\164\12\uffff"+
-        "\1\151\1\165\1\160\1\uffff\1\163\1\162\1\154\1\141\1\163\1\60\1"+
-        "\uffff\1\144\1\154\1\145\1\165\1\163\2\145\1\163\1\60\1\151\1\164"+
-        "\1\145\1\uffff\1\60\1\145\1\60\1\162\2\60\1\162\1\60\1\uffff\1\143"+
-        "\2\60\1\uffff\1\141\1\uffff\1\156\2\uffff\1\60\1\uffff\1\60\2\uffff"+
-        "\1\156\1\60\2\uffff\1\60\2\uffff";
+        "\1\11\1\75\1\150\4\uffff\1\165\3\uffff\1\135\1\141\1\146\2\157"+
+        "\1\154\1\145\3\75\3\uffff\1\57\1\uffff\1\60\1\150\1\165\2\uffff"+
+        "\1\56\3\uffff\2\141\1\142\2\uffff\1\157\1\154\1\164\1\60\1\151\1"+
+        "\157\1\163\1\164\12\uffff\1\151\1\165\1\160\1\uffff\1\163\1\162"+
+        "\1\154\1\141\1\163\1\60\1\uffff\1\144\1\154\1\145\1\165\1\163\2"+
+        "\145\1\163\1\60\1\151\1\164\1\145\1\uffff\1\60\1\145\1\60\1\162"+
+        "\2\60\1\162\1\60\1\uffff\1\143\2\60\1\uffff\1\141\1\uffff\1\156"+
+        "\2\uffff\1\60\1\uffff\1\60\2\uffff\1\156\1\60\2\uffff\1\60\2\uffff";
     static final String DFA8_maxS =
-        "\1\175\1\75\1\154\4\uffff\1\165\4\uffff\1\154\1\156\2\157\1\154"+
-        "\1\145\3\75\3\uffff\1\57\1\71\1\162\1\165\2\uffff\1\71\3\uffff\2"+
-        "\141\1\142\1\157\1\154\1\164\1\172\1\151\1\157\1\163\1\164\12\uffff"+
-        "\1\151\1\165\1\160\1\uffff\1\163\1\162\1\154\1\141\1\163\1\172\1"+
-        "\uffff\1\144\1\154\1\145\1\165\1\163\2\145\1\163\1\172\1\151\1\164"+
-        "\1\145\1\uffff\1\172\1\145\1\172\1\162\2\172\1\162\1\172\1\uffff"+
-        "\1\143\2\172\1\uffff\1\141\1\uffff\1\156\2\uffff\1\172\1\uffff\1"+
-        "\172\2\uffff\1\156\1\172\2\uffff\1\172\2\uffff";
+        "\1\175\1\75\1\154\4\uffff\1\165\3\uffff\1\135\1\154\1\156\2\157"+
+        "\1\154\1\145\3\75\3\uffff\1\57\1\uffff\1\71\1\162\1\165\2\uffff"+
+        "\1\71\3\uffff\2\141\1\142\2\uffff\1\157\1\154\1\164\1\172\1\151"+
+        "\1\157\1\163\1\164\12\uffff\1\151\1\165\1\160\1\uffff\1\163\1\162"+
+        "\1\154\1\141\1\163\1\172\1\uffff\1\144\1\154\1\145\1\165\1\163\2"+
+        "\145\1\163\1\172\1\151\1\164\1\145\1\uffff\1\172\1\145\1\172\1\162"+
+        "\2\172\1\162\1\172\1\uffff\1\143\2\172\1\uffff\1\141\1\uffff\1\156"+
+        "\2\uffff\1\172\1\uffff\1\172\2\uffff\1\156\1\172\2\uffff\1\172\2"+
+        "\uffff";
     static final String DFA8_acceptS =
-        "\3\uffff\1\3\1\4\1\5\1\6\1\uffff\1\10\1\11\1\12\1\13\11\uffff\1"+
-        "\32\1\33\1\34\4\uffff\1\44\1\45\1\uffff\1\50\1\25\1\1\13\uffff\1"+
-        "\24\1\36\1\30\1\26\1\31\1\27\1\51\1\35\1\47\1\37\3\uffff\1\46\6"+
-        "\uffff\1\21\14\uffff\1\15\10\uffff\1\17\3\uffff\1\16\1\uffff\1\22"+
-        "\1\uffff\1\40\1\42\1\uffff\1\2\1\uffff\1\14\1\43\2\uffff\1\41\1"+
-        "\7\1\uffff\1\23\1\20";
+        "\3\uffff\1\3\1\4\1\5\1\6\1\uffff\1\10\1\11\1\12\12\uffff\1\32\1"+
+        "\33\1\34\1\uffff\1\40\3\uffff\1\46\1\47\1\uffff\1\52\1\25\1\1\3"+
+        "\uffff\1\13\1\37\10\uffff\1\24\1\36\1\30\1\26\1\31\1\27\1\53\1\35"+
+        "\1\51\1\41\3\uffff\1\50\6\uffff\1\21\14\uffff\1\15\10\uffff\1\17"+
+        "\3\uffff\1\16\1\uffff\1\22\1\uffff\1\42\1\44\1\uffff\1\2\1\uffff"+
+        "\1\14\1\45\2\uffff\1\43\1\7\1\uffff\1\23\1\20";
     static final String DFA8_specialS =
-        "\155\uffff}>";
+        "\160\uffff}>";
     static final String[] DFA8_transitionS = {
-            "\2\37\2\uffff\1\37\22\uffff\1\37\1\22\5\uffff\1\35\1\10\1\11"+
-            "\1\27\1\25\1\12\1\26\1\31\1\30\12\36\1\6\1\5\1\23\1\1\1\24\2"+
-            "\uffff\32\34\1\13\5\uffff\1\34\1\17\1\2\1\34\1\20\1\14\2\34"+
-            "\1\15\6\34\1\7\1\34\1\21\1\33\1\32\1\34\1\16\4\34\1\3\1\uffff"+
-            "\1\4",
-            "\1\40",
-            "\1\43\3\uffff\1\42",
+            "\2\40\2\uffff\1\40\22\uffff\1\40\1\22\5\uffff\1\36\1\10\1\11"+
+            "\1\27\1\25\1\12\1\26\1\32\1\30\12\37\1\6\1\5\1\23\1\1\1\24\2"+
+            "\uffff\32\35\1\13\1\uffff\1\31\3\uffff\1\35\1\17\1\2\1\35\1"+
+            "\20\1\14\2\35\1\15\6\35\1\7\1\35\1\21\1\34\1\33\1\35\1\16\4"+
+            "\35\1\3\1\uffff\1\4",
+            "\1\41",
+            "\1\44\3\uffff\1\43",
             "",
             "",
             "",
             "",
-            "\1\44",
+            "\1\45",
             "",
             "",
             "",
-            "",
-            "\1\46\12\uffff\1\45",
-            "\1\50\7\uffff\1\47",
-            "\1\51",
-            "\1\52",
-            "\1\53",
+            "\1\46",
+            "\1\51\12\uffff\1\50",
+            "\1\53\7\uffff\1\52",
             "\1\54",
             "\1\55",
+            "\1\56",
             "\1\57",
-            "\1\61",
+            "\1\60",
+            "\1\62",
+            "\1\64",
             "",
             "",
             "",
-            "\1\63",
-            "\12\65",
-            "\1\67\11\uffff\1\70",
-            "\1\71",
+            "\1\66",
             "",
-            "",
-            "\1\65\1\uffff\12\36",
-            "",
-            "",
-            "",
-            "\1\73",
+            "\12\70",
+            "\1\72\11\uffff\1\73",
             "\1\74",
-            "\1\75",
+            "",
+            "",
+            "\1\70\1\uffff\12\37",
+            "",
+            "",
+            "",
             "\1\76",
             "\1\77",
             "\1\100",
-            "\12\34\7\uffff\32\34\6\uffff\32\34",
+            "",
+            "",
+            "\1\101",
             "\1\102",
             "\1\103",
-            "\1\104",
+            "\12\35\7\uffff\32\35\6\uffff\32\35",
             "\1\105",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
             "\1\106",
             "\1\107",
             "\1\110",
             "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\111",
             "\1\112",
             "\1\113",
+            "",
             "\1\114",
             "\1\115",
-            "\12\34\7\uffff\32\34\6\uffff\32\34",
-            "",
+            "\1\116",
             "\1\117",
             "\1\120",
-            "\1\121",
+            "\12\35\7\uffff\32\35\6\uffff\32\35",
+            "",
             "\1\122",
             "\1\123",
             "\1\124",
             "\1\125",
             "\1\126",
-            "\12\34\7\uffff\32\34\6\uffff\32\34",
+            "\1\127",
             "\1\130",
             "\1\131",
-            "\1\132",
-            "",
-            "\12\34\7\uffff\32\34\6\uffff\32\34",
+            "\12\35\7\uffff\32\35\6\uffff\32\35",
+            "\1\133",
             "\1\134",
-            "\12\34\7\uffff\32\34\6\uffff\32\34",
-            "\1\136",
-            "\12\34\7\uffff\32\34\6\uffff\32\34",
-            "\12\34\7\uffff\32\34\6\uffff\32\34",
-            "\1\141",
-            "\12\34\7\uffff\32\34\6\uffff\32\34",
+            "\1\135",
             "",
-            "\1\143",
-            "\12\34\7\uffff\32\34\6\uffff\32\34",
-            "\12\34\7\uffff\32\34\6\uffff\32\34",
+            "\12\35\7\uffff\32\35\6\uffff\32\35",
+            "\1\137",
+            "\12\35\7\uffff\32\35\6\uffff\32\35",
+            "\1\141",
+            "\12\35\7\uffff\32\35\6\uffff\32\35",
+            "\12\35\7\uffff\32\35\6\uffff\32\35",
+            "\1\144",
+            "\12\35\7\uffff\32\35\6\uffff\32\35",
             "",
             "\1\146",
+            "\12\35\7\uffff\32\35\6\uffff\32\35",
+            "\12\35\7\uffff\32\35\6\uffff\32\35",
             "",
-            "\1\147",
-            "",
-            "",
-            "\12\34\7\uffff\32\34\6\uffff\32\34",
-            "",
-            "\12\34\7\uffff\32\34\6\uffff\32\34",
-            "",
+            "\1\151",
             "",
             "\1\152",
-            "\12\34\7\uffff\32\34\6\uffff\32\34",
             "",
             "",
-            "\12\34\7\uffff\32\34\6\uffff\32\34",
+            "\12\35\7\uffff\32\35\6\uffff\32\35",
+            "",
+            "\12\35\7\uffff\32\35\6\uffff\32\35",
+            "",
+            "",
+            "\1\155",
+            "\12\35\7\uffff\32\35\6\uffff\32\35",
+            "",
+            "",
+            "\12\35\7\uffff\32\35\6\uffff\32\35",
             "",
             ""
     };
@@ -1629,7 +1689,7 @@ public class CeriumLexer extends Lexer {
             this.transition = DFA8_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( ASSIGN | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | ID | CHAR | INT | FLOAT | WS | SL_COMMENT );";
+            return "1:1: Tokens : ( ASSIGN | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | ID | CHAR | INT | FLOAT | WS | SL_COMMENT );";
         }
     }
  

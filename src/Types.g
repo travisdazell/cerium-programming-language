@@ -1,10 +1,12 @@
 // START: header
 tree grammar Types;
+
 options {
   tokenVocab = Cerium;
   ASTLabelType = CeriumAST;
   filter = true;
 }
+
 @members {
     SymbolTable symtab;
     public Types(TreeNodeStream input, SymbolTable symtab) {
@@ -18,7 +20,36 @@ options {
 bottomup // match subexpressions innermost to outermost
     :   
     	exprRoot // only match the start of expressions (root EXPR)
+    |   decl
+    |   ret
+    |   assignment    	
     ;
+    
+// START: datatransfer
+decl
+	:   
+		^(VAR_DECL . ID (init=.)?) // call declinit if we have init expr
+        {
+        	if ($init!=null && $init.evalType!=null)
+        		symtab.declinit($ID, $init);
+        }
+    ;
+
+ret 
+	: 
+		^('return' v=.)
+		{
+			symtab.ret((MethodSymbol)$start.symbol, $v);
+		}
+	;
+
+assignment // don't walk exprs, just examine types; '.' is wildcard
+    :
+    	^('=' lhs=. rhs=.)
+    	{
+    		symtab.assign($lhs, $rhs);
+    	}
+    ;    
 
 exprRoot // invoke type computation rule after matching EXPR
     :   

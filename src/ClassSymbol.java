@@ -1,5 +1,3 @@
-
-
 import java.util.*;
 
 
@@ -8,8 +6,13 @@ public class ClassSymbol extends ScopedSymbol implements Scope, Type {
      *  the enclosing scope so we can push in and pop out of class defs.
      */
     ClassSymbol superClass;
+    
     /** List of all fields and methods */
     public Map<String,Symbol> members=new LinkedHashMap<String,Symbol>();
+    
+    public int getTypeIndex() {
+    	return 0;
+    }
 
     public ClassSymbol(String name, Scope enclosingScope, ClassSymbol superClass) {
         super(name, enclosingScope);

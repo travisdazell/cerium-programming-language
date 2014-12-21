@@ -167,13 +167,13 @@ unaryExpression
 
 // START: call
 postfixExpression
-    :   
-    	(primary->primary)
-    	(	options {backtrack=true;}
-		:	'.' ID '(' expressionList ')' -> ^(CALL ^('.' $postfixExpression ID))
-		|	'.' ID						  -> ^('.' $postfixExpression ID)
-		|	'(' expressionList ')'        -> ^(CALL $postfixExpression)
-		)*
+    :   primary
+    	(
+    		(	r='('^ expressionList ')'!	{$r.setType(CALL);}
+	    	|	r='['^ expr ']'!			{$r.setType(INDEX);}
+    		|	r='.'^ ID
+    		)
+    	)*
     ;
 // END: call
 

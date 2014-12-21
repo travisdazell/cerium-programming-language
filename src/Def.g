@@ -36,10 +36,13 @@ bottomup
 // S C O P E S
 
 enterBlock
-    :   BLOCK {currentScope = new LocalScope(currentScope);} // push scope
+    :
+    	BLOCK {currentScope = new LocalScope(currentScope);} // push scope
     ;
+
 exitBlock
-    :   BLOCK
+    :   
+    	BLOCK
         {
         System.out.println("locals: "+currentScope);
         currentScope = currentScope.getEnclosingScope();    // pop scope
@@ -48,12 +51,13 @@ exitBlock
 
 // START: class
 enterClass
-    :   ^('class' name=ID (^(EXTENDS sup=ID))? .)
+    :   
+    	^('class' name=ID (^(EXTENDS sup=ID))? .)
         { // def class but leave superclass blank until ref phase
         System.out.println("line "+$name.getLine()+
                            ": def class "+$name.text);
         // record scope in AST for next pass
-        if ( $sup!=null ) $sup.scope = currentScope; 
+        if ( $sup!=null ) $sup.scope = currentScope;
         ClassSymbol cs = new ClassSymbol($name.text,currentScope,null);
         cs.def = $name;           // point from symbol table into AST
         $name.symbol = cs;        // point from AST into symbol table

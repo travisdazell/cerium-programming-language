@@ -1,3 +1,4 @@
+// START: header
 tree grammar Ref;
 
 options {
@@ -77,7 +78,6 @@ type returns [Type tsym]
 }
     :   'float'
     |   'int'
-    |	'char'
     |   'void'
     |   ID // struct name
     ;
@@ -125,4 +125,3 @@ member returns [Type type]
         }
     ;
 // END: member
-
