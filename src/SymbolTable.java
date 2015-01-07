@@ -1,5 +1,7 @@
 import java.util.List;
 
+import org.antlr.runtime.TokenStream;
+
 
 public class SymbolTable {
     GlobalScope globals = new GlobalScope();
@@ -73,29 +75,52 @@ public class SymbolTable {
     	{null, null, null, null, null},			// float
     	{null, null, null, null, null}			// void
     };
+    
+    TokenStream tokens;
 
-    public SymbolTable() {
+    public SymbolTable(TokenStream tokens) {
+    	this.tokens = tokens;
     	initTypeSystem();
     }
 
     protected void initTypeSystem() {
         for (Type t : indexToType) {
-            if ( t!=null ) globals.define((BuiltInTypeSymbol)t);
+            if (t != null) {
+            	globals.define((BuiltInTypeSymbol)t);
+            }
         }
     }
     
     public Type member(CeriumAST expr, CeriumAST field) {
-        ClassSymbol scope=(ClassSymbol)expr.evalType;// get scope of left
+        Type type = expr.evalType;
+        if ( type.getClass() != ClassSymbol.class ) {
+            System.err.println(text(expr) + " must have class type in " + text((CeriumAST)expr.getParent()));
+
+            return _void;
+        }    	
+    	
+        ClassSymbol scope = (ClassSymbol)expr.evalType;// get scope of left
         Symbol s = scope.resolveMember(field.getText());// resolve ID in scope
         field.symbol = s;
         return s.type;           // return ID's type
     }    
     
+    /**
+     * An initialization operation
+     * Example: int x=3;
+     * @param id The identifier/variable name
+     * @param init The value for which the identifier is being initialized
+     */
     public void declinit(CeriumAST id, CeriumAST init) {
     	int te = init.evalType.getTypeIndex(); 		// do we need to promote expr to decl type?
     	int tdecl = id.symbol.type.getTypeIndex();
     	
     	init.promoteToType = promoteFromTo[te][tdecl];
+    	
+    	// print an error if the identifier cannot be assigned the value because they are different types
+    	if (!canAssignTo(init.evalType, id.symbol.type, init.promoteToType)) {
+    		System.err.println(text(id) + " and " + text(init) + " have incompatible types in " + text((CeriumAST) id.getParent()));
+    	}
     }
     
     public void ret(MethodSymbol ms, CeriumAST expr) {
@@ -106,13 +131,30 @@ public class SymbolTable {
     	int tret = retType.getTypeIndex();
     	
     	expr.promoteToType = promoteFromTo[texpr][tret];
+    	
+    	// check that the return type is compatible with the declared return type of the method signature
+    	if (!canAssignTo(exprType, retType, expr.promoteToType)) {
+    		System.err.println(text(expr) + ", " + ms.name + "():<" + ms.type + "> have incompatible types in " + text((CeriumAST)expr.getParent()));
+    	}
     }
     
+    /**
+     * Assignment operation
+     * Example: x=y;
+     * This method will print an error if the type for the left hand side of the operation is not compatible
+     * with the type for the right hand side of the operation
+     * @param lhs the left hand side of the assignment
+     * @param rhs the right hand side of the assignment
+     */
     public void assign(CeriumAST lhs, CeriumAST rhs) {
     	int tlhs = lhs.evalType.getTypeIndex(); // do we need to promote from right to left?
     	int trhs = rhs.evalType.getTypeIndex();
     	
     	rhs.promoteToType = promoteFromTo[trhs][tlhs];
+    	
+        if ( !canAssignTo(rhs.evalType, lhs.evalType, rhs.promoteToType) ) {
+            System.err.println(text(lhs) + ", " + text(rhs) + " have incompatible types in " + text((CeriumAST)lhs.getParent()));
+        }    	
     }
 
     public Type getResultType(Type[][] typeTable, CeriumAST a, CeriumAST b) {
@@ -121,18 +163,23 @@ public class SymbolTable {
     	
     	Type result = typeTable[ta][tb];	// lookup the result type of the operation
     	
-    	// check if we need to promote the left operand to the type of the right operand, or vice versa
-    	a.promoteToType = promoteFromTo[ta][result.getTypeIndex()];
-    	b.promoteToType = promoteFromTo[tb][result.getTypeIndex()];
-    	
+    	// if the operation on these two operands is illegal, throw an error
+    	if (result == _void) {
+    		System.err.println(text(a) + " and " + text(b) + " have incompatible types in " + text((CeriumAST) a.getParent()));
+    	}
+    	else {
+	    	// check if we need to promote the left operand to the type of the right operand, or vice versa
+	    	a.promoteToType = promoteFromTo[ta][result.getTypeIndex()];
+	    	b.promoteToType = promoteFromTo[tb][result.getTypeIndex()];
+    	}
+
     	return result;
     }
 
     public static Symbol resolveID(CeriumAST idAST) {
         Symbol s = idAST.scope.resolve(idAST.getText());
         
-        System.out.println("line "+idAST.getLine()+": resolve "+
-                           idAST.getText()+" to "+s);
+        System.out.println("line " + idAST.getLine() + ": resolve " + idAST.getText() + " to " + s);
         
         if (s.def==null) {
         	return s; // must be predefined symbol
@@ -164,23 +211,51 @@ public class SymbolTable {
     }
     
     public Type relop(CeriumAST a, CeriumAST b) {
-    	return getResultType(comparisonResultType, a, b);
+    	// check for incompatible types that are being compared
+    	getResultType(comparisonResultType, a, b);
+    	
+    	// we always return a boolean type for the comparison operator
+    	return _boolean;
     }
     
     public Type eqop(CeriumAST a, CeriumAST b)  {
-    	return getResultType(equalityResultType, a, b);
+    	// check for incompatible types that are being used in an equality operator
+    	getResultType(equalityResultType, a, b);
+    	
+    	// we always return a boolean type for the equality operator
+    	return _boolean;
     }    
     
     public Type uminus(CeriumAST a) {
+    	if ( !((a.evalType == _int) || (a.evalType == _float)) ) {
+    		System.err.println(text(a) + " must have int or float type in " + text((CeriumAST)a.getParent()));
+    		
+    		return _void;
+    	}
+    	
     	return a.evalType;
     }
     
     public Type unot(CeriumAST a) {
-    	return _boolean;
+    	if (a.evalType != _boolean) {
+    		System.err.println(text(a) + " must have boolean type in " + text((CeriumAST)a.getParent()));
+    	
+    		return _boolean;
+    	}
+    	
+    	return a.evalType;
     }
     
     public Type call(CeriumAST id, List args) {
         Symbol s = id.scope.resolve(id.getText());
+
+        // here we're checking to make sure that we're calling an actual method 'type'
+        if (s.getClass() != MethodSymbol.class) {
+        	System.err.println(text(id) + " must be a method in " + text((CeriumAST)id.getParent()));
+        	
+        	return _void;
+        }
+        
         MethodSymbol ms = (MethodSymbol)s;
         id.symbol = ms;
         
@@ -197,6 +272,10 @@ public class SymbolTable {
         	
         	// check if we need to promote the argument type to the defined type
         	argAST.promoteToType = promoteFromTo[targ][tformal];
+        	
+        	if (!canAssignTo(actualArgType, formalArgType, argAST.promoteToType)) {
+        		System.err.println(text(argAST) + " argument " + a.name + ":<" + a.type + "> of " + ms.name + "() have incompatible types in " + text((CeriumAST)id.getParent()));
+        	}
         }
         
         return ms.type;
@@ -204,15 +283,48 @@ public class SymbolTable {
 
     public Type arrayIndex(CeriumAST id, CeriumAST index) {
         Symbol s = id.scope.resolve(id.getText());	// resolve the variable
+        id.symbol = s;	// annotate the AST
+
+        // here we're checking to make sure that the type is actually an array
+        if ((s.getClass() != VariableSymbol.class) || (s.type.getClass() != ArrayType.class)) {
+        	System.err.println(text(id) + " must be an array variable in " + text((CeriumAST)id.getParent()));
+        	
+        	return _void;
+        }
+        
         VariableSymbol vs = (VariableSymbol) s;
         
-        id.symbol = vs;	 // annotate the AST
         Type t = ((ArrayType)vs.type).elementType; // get element type
         int texpr = index.evalType.getTypeIndex();
         
         index.promoteToType = promoteFromTo[texpr][tINT];	// check if we need to promote the index
+        
+        if (!canAssignTo(index.evalType, _int, index.promoteToType)) {
+        	System.err.println(text(index) + " index must have integer type in " + text((CeriumAST)id.getParent()));
+        }
 
         return t;
+    }
+    
+    /**
+     * A type compatibility checker
+     * Returns true if the types are the same or can be promoted to the same type
+     * @param valueType
+     * @param destType
+     * @param promotion
+     * @return
+     */
+    public boolean canAssignTo(Type valueType, Type destType, Type promotion) {
+    	return ((valueType == destType) || (promotion == destType));
+    }
+    
+    public String text(CeriumAST t) {
+        String ts = "";
+        if (t.evalType != null) {
+        	ts = ":<"+t.evalType+">";
+        }
+        
+        return tokens.toString(t.getTokenStartIndex(), t.getTokenStopIndex()) + ts;
     }    
     
     public String toString() {

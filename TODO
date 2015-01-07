@@ -1,7 +1,13 @@
 TODO list:
 
+Documentation:
+- Finish the CeriumReferenceManual.pdf
+	- This is somewhat dependent on the code generator being completed
+- Add documentation for each class and its methods
+	- JavaDoc is one step
+	- Adding a Developer Manual is another important piece, so that we can quickly see which class is responsible for what (lexing, parsing, semantics, etc.)
+
 Semantic Analysis:
-- add static type safety
 - add polymorphic type safety
 
 Code Generation:
@@ -9,8 +15,9 @@ Code Generation:
   - I'll use Jasmin or some other utility to generate JVM bytecodes
   
 Additional Language Features:
+- add conditionals (if-then-else) and loops
 - add access modifiers (private, protected, public)
 - add ability to reference/include classes defined in other files
 - console I/O and file I/O
-	- need to decide if I'm going to have a runtime library for things like file I/O and console I/O, etc. or if I'll just generate bytecodes for all of it
+	- need to decide if I'm going to have a runtime library for things like file I/O and console I/O or if I'll just generate bytecodes for all of it (so we won't need to carry around a runtime library)
  

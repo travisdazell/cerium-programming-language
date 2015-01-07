@@ -86,7 +86,7 @@ public class Compiler {
         CommonTreeNodeStream nodes = new CommonTreeNodeStream(ceriumAdaptor, t);
         nodes.setTokenStream(tokens);
         nodes.setTreeAdaptor(ceriumAdaptor);
-        SymbolTable symtab = new SymbolTable(); // init symbol table
+        SymbolTable symtab = new SymbolTable(tokens); // init symbol table
 
         /************************************************************************************
          * FIRST PASS OVER THE AST
