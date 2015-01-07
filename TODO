@@ -8,6 +8,7 @@ Documentation:
 	- Adding a Developer Manual is another important piece, so that we can quickly see which class is responsible for what (lexing, parsing, semantics, etc.)
 
 Semantic Analysis:
+- finish testing (i'm getting an error when running AB.cerium that there are incompatible types on the line 12 assignment, but the types are actually compatible)
 - add polymorphic type safety
 
 Code Generation:
@@ -15,7 +16,7 @@ Code Generation:
   - I'll use Jasmin or some other utility to generate JVM bytecodes
   
 Additional Language Features:
-- add conditionals (if-then-else) and loops
+- add loops
 - add access modifiers (private, protected, public)
 - add ability to reference/include classes defined in other files
 - console I/O and file I/O
