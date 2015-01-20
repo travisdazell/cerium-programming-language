@@ -10,12 +10,11 @@ public class SymbolTable {
     // these type indexes are used for automatic type promotion
     // for example, (1 + 2.5) would yield a float and ('a' + 6) would yield an int
     // the types are defined in order from the narrowest type to the widest type
-    public static final int tUSER = 0; // user-defined type
-    public static final int tBOOLEAN = 1;
-    public static final int tCHAR = 2;
-    public static final int tINT = 3;
-    public static final int tFLOAT = 4;
-    public static final int tVOID = 5;
+    public static final int tBOOLEAN = 0;
+    public static final int tCHAR = 1;
+    public static final int tINT = 2;
+    public static final int tFLOAT = 3;
+    public static final int tVOID = 4;
 
     public static final BuiltInTypeSymbol _boolean = new BuiltInTypeSymbol("boolean", tBOOLEAN);
     public static final BuiltInTypeSymbol _char = new BuiltInTypeSymbol("char", tCHAR);

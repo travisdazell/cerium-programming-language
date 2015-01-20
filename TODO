@@ -8,7 +8,6 @@ Documentation:
 	- Adding a Developer Manual is another important piece, so that we can quickly see which class is responsible for what (lexing, parsing, semantics, etc.)
 
 Semantic Analysis:
-- finish testing (i'm getting an error when running AB.cerium that there are incompatible types on the line 12 assignment, but the types are actually compatible)
 - add polymorphic type safety
 
 Code Generation:
