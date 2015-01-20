@@ -98,8 +98,14 @@ options {backtrack=true;} // hard to distinguish struct from var from left
     :   
     	block
     |	varDeclaration
-    |	'if' '(' expression ')' s=statement ('else' e=statement)?
-    	-> ^('if' expression $s $e?)
+    |	'if' '(' expression ')' t=block ('else' f=block)?
+    	-> ^('if' expression $t $f?)
+    |   'loop' n=INT 'times' block	// loop a fixed number of times using a hard-coded integer value
+    	-> ^('loop' $n block)
+    |   'loop' i=ID 'times' block		// loop a fixed number of times using a variable that's defined
+    	-> ^('loop' $i block)
+    |	'while' '(' expression ')' block
+    	-> ^('while' expression block)
     |   'return' expression? ';' -> ^('return' expression?)
     |	lhs '=' expression ';' -> ^('=' lhs expression)
     |   a=postfixExpression // handles function calls like f(i);
