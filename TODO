@@ -1,5 +1,8 @@
 TODO list:
 
+Bugs:
+	- (x + y) + 3 never finds the "3" when walking the types
+
 Documentation:
 - Finish the CeriumReferenceManual.pdf
 	- This is somewhat dependent on the code generator being completed
@@ -9,15 +12,15 @@ Documentation:
 
 Semantic Analysis:
 - more testing
-- make sure that in "loop x times" x is an int type
-- make sure that the expression in an IF statement evaluates to a boolean value
-- make sure that the expression in a while loop evaluates to a boolean value
 
 Code Generation:
 - Build the code generator
-  - I'll use Jasmin or some other utility to generate JVM bytecodes
+  - I'll use StringTemplate and Jasmin to generate JVM bytecodes
   
 Additional Language Features:
+- add strings as a type
+- add a for loop
+- do we need a "this" and "super" ?
 - add access modifiers (private, protected, public)
 - add ability to reference/include classes defined in other files
 - console I/O and file I/O

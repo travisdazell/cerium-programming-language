@@ -18,11 +18,13 @@ options {
 
 // START: root
 bottomup // match subexpressions innermost to outermost
-    :   
+    :
     	exprRoot // only match the start of expressions (root EXPR)
     |   decl
     |   ret
     |   assignment    	
+    |	whilestat
+    |	ifstat
     ;
     
 // START: datatransfer
@@ -120,6 +122,14 @@ member returns [Type type]
         }
     ;
 // END: member
+
+ifstat	:
+			^('if' cond=. s=. e=.?) {symtab.ifstat($cond);}
+		;
+
+whilestat	:
+				^('while' cond=. b=.) {symtab.whilestat($cond);}
+			;
 
 bop :   '+' | '-' | '*' | '/' ;
 

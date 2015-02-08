@@ -155,6 +155,18 @@ public class SymbolTable {
             System.err.println(text(lhs) + ", " + text(rhs) + " have incompatible types in " + text((CeriumAST)lhs.getParent()));
         }    	
     }
+    
+    public void ifstat(CeriumAST cond) {
+    	if (cond.evalType != _boolean) {
+    		System.err.println("if condition " + text(cond) + " must have boolean type in " + text((CeriumAST)cond.getParent()));
+    	}
+    }
+    
+    public void whilestat(CeriumAST cond) {
+    	if (cond.evalType != _boolean) {
+    		System.err.println("while loop condition " + text(cond) + " must have boolean type in " + text((CeriumAST)cond.getParent()));
+    	}
+    }
 
     public Type getResultType(Type[][] typeTable, CeriumAST a, CeriumAST b) {
     	int ta = a.evalType.getTypeIndex();	// type index of the left operand

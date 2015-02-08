@@ -9,6 +9,9 @@ class B : public A {		// <callout id="co.class-symtab-AB-B"/>
  int y;
  void foo()					// <callout id="co.class-symtab-AB-B-foo"/>
  {                          // <callout id="co.class-symtab-AB-B-foo1"/>
-   int z = x + y;
+   int z = x + y + 3;
+   while (z > 10) {
+   	x = x + 5;
+   }
  }
 };

@@ -100,10 +100,6 @@ options {backtrack=true;} // hard to distinguish struct from var from left
     |	varDeclaration
     |	'if' '(' expression ')' t=block ('else' f=block)?
     	-> ^('if' expression $t $f?)
-    |   'loop' n=INT 'times' block	// loop a fixed number of times using a hard-coded integer value
-    	-> ^('loop' $n block)
-    |   'loop' i=ID 'times' block		// loop a fixed number of times using a variable that's defined
-    	-> ^('loop' $i block)
     |	'while' '(' expression ')' block
     	-> ^('while' expression block)
     |   'return' expression? ';' -> ^('return' expression?)
@@ -192,15 +188,13 @@ options {backtrack=true;}
 	
 primary
     :   
-    	'this'
-    |	'super'
-    |	ID
+    	ID
     |   INT
     |	FLOAT
     |	CHAR
     |	'true'
     |	'false'
-    |   '(' expression ')' -> expression
+    |	'(' expression ')'
     ;
 
 // LEXER RULES
