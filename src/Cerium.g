@@ -94,7 +94,7 @@ varDeclaration
 // END: var
 
 statement
-options {backtrack=true;} // hard to distinguish struct from var from left
+options {backtrack=true;}
     :   
     	block
     |	varDeclaration

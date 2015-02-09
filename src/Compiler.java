@@ -121,25 +121,32 @@ public class Compiler {
         typeComp.downup(t);                          // trigger resolve/type computation actions
 
         
-        /************************************************************************************
-         * ??? PASS OVER THE AST
+        /*********************************************************************************************************
+         * PASS OVER THE AST
          * 
-         * this is where we'll eventually put the code generation steps
+         * this is where the code generation occurs OR you can run a TreeVisitor to see AST node information
          * right now, i'm just writing information about the AST to the console, as i add features to the language
-         * **********************************************************************************
+         * *******************************************************************************************************
          */
-        TreeVisitor visitor = new TreeVisitor(new CommonTreeAdaptor());
-        TreeVisitorAction actions = new TreeVisitorAction() {
-        	public Object pre(Object t) {
-        		return t;
-        	}
-        	
-        	public Object post(Object t) {
-        		showTypesAndPromotions((CeriumAST)t, tokens);
-        		return t;
-        	}
-        };
+        final boolean disableCodeGeneratorAndRunTreeVisitor = true;
         
-        visitor.visit(t, actions); // walk in postorder, showing types
+        if (disableCodeGeneratorAndRunTreeVisitor) {
+	        TreeVisitor visitor = new TreeVisitor(new CommonTreeAdaptor());
+	        TreeVisitorAction actions = new TreeVisitorAction() {
+	        	public Object pre(Object t) {
+	        		return t;
+	        	}
+	        	
+	        	public Object post(Object t) {
+	        		showTypesAndPromotions((CeriumAST)t, tokens);
+	        		return t;
+	        	}
+	        };
+	        
+	        visitor.visit(t, actions); // walk in postorder, showing types
+        }
+        else {
+        	// run the code generator using StringTemplate(s) to output the code to a Jasmin file
+        }
     }
 }
