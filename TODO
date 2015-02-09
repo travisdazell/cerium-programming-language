@@ -1,7 +1,8 @@
 TODO list:
 
 Bugs:
-	- (x + y) + 3 never finds the "3" when walking the types
+	- arrays don't work. i never really did anything with them, so i need to go back starting from Cerium.g and make sure it's all defined correctly
+	- when calling a method on an object "a.foo()" i'm not checking that foo() exists
 
 Documentation:
 - Finish the CeriumReferenceManual.pdf

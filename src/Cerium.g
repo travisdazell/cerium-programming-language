@@ -104,15 +104,11 @@ options {backtrack=true;} // hard to distinguish struct from var from left
     	-> ^('while' expression block)
     |   'return' expression? ';' -> ^('return' expression?)
     |	lhs '=' expression ';' -> ^('=' lhs expression)
-    |   a=postfixExpression // handles function calls like f(i);
-        (   '=' expression -> ^('=' postfixExpression expression)
-        |   -> ^(EXPR postfixExpression)
-        )
-        ';' 
-    |	';' -> // empty statement      
+    |   a=postfixExpression ';' -> ^(EXPR postfixExpression) // handles function calls like f(i);
+    |	';' -> // empty statement
     ;
 
-lhs :	
+lhs :
 		postfixExpression -> ^(EXPR postfixExpression)
 	;
 
@@ -123,7 +119,7 @@ expressionList
     ;
 
 expression
-    :   
+    :
     	expr -> ^(EXPR expr)
     ;
     
@@ -138,15 +134,7 @@ equalityExpression
 
 relationalExpression
 	:	
-		additiveExpression
-		(	(	(	'<'^
-				|	'>'^
-				|	'<='^
-				|	'>='^
-				)
-				additiveExpression
-			)*
-		)
+		additiveExpression ( ('<'^ | '>'^ |	'<='^ |	'>='^)	additiveExpression )*
 	;
 
 additiveExpression
@@ -166,7 +154,6 @@ unaryExpression
 	|	postfixExpression
 	;
 
-
 // START: call
 postfixExpression
     :   primary
@@ -179,22 +166,14 @@ postfixExpression
     ;
 // END: call
 
-suffix[CommonTree expr]
-options {backtrack=true;}
-	:	'.' ID '(' expressionList ')' -> ^(CALL ^('.' {$expr} ID))
-	|	'.' ID						  -> ^('.' {$expr} ID)
-	|	'(' expressionList ')'        -> ^(CALL {$expr})
-	;
-	
 primary
-    :   
-    	ID
+    :	ID
     |   INT
     |	FLOAT
     |	CHAR
     |	'true'
     |	'false'
-    |	'(' expression ')'
+    | 	'(' expr ')' -> expr
     ;
 
 // LEXER RULES
