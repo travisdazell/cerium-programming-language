@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g 2014-12-21 09:04:35
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g 2015-02-08 00:08:11
 
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.*;import java.util.Stack;
@@ -8,11 +8,13 @@ import java.util.Map;
 import java.util.HashMap;
 public class Ref extends TreeFilter {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "METHOD_DECL", "ARG_DECL", "BLOCK", "MEMBERS", "VAR_DECL", "FIELD_DECL", "CALL", "ELIST", "EXPR", "ASSIGN", "EXTENDS", "UNARY_MINUS", "UNARY_NOT", "INDEX", "ID", "INT", "FLOAT", "CHAR", "LETTER", "WS", "SL_COMMENT", "'class'", "'{'", "'}'", "';'", "':'", "'public'", "'('", "')'", "','", "'[]'", "'float'", "'int'", "'void'", "'char'", "'boolean'", "'if'", "'else'", "'return'", "'!='", "'=='", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'*'", "'/'", "'!'", "'['", "']'", "'.'", "'this'", "'super'", "'true'", "'false'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "METHOD_DECL", "ARG_DECL", "BLOCK", "MEMBERS", "VAR_DECL", "FIELD_DECL", "CALL", "ELIST", "EXPR", "ASSIGN", "EXTENDS", "UNARY_MINUS", "UNARY_NOT", "INDEX", "ID", "INT", "FLOAT", "CHAR", "LETTER", "WS", "SL_COMMENT", "'class'", "'{'", "'}'", "';'", "':'", "'public'", "'('", "')'", "','", "'[]'", "'float'", "'int'", "'void'", "'char'", "'boolean'", "'if'", "'else'", "'loop'", "'times'", "'while'", "'return'", "'!='", "'=='", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'*'", "'/'", "'!'", "'['", "']'", "'.'", "'this'", "'super'", "'true'", "'false'"
     };
     public static final int T__29=29;
     public static final int T__28=28;
     public static final int T__27=27;
+    public static final int T__62=62;
+    public static final int T__63=63;
     public static final int T__26=26;
     public static final int T__25=25;
     public static final int LETTER=22;
@@ -21,12 +23,13 @@ public class Ref extends TreeFilter {
     public static final int METHOD_DECL=4;
     public static final int VAR_DECL=8;
     public static final int FLOAT=20;
+    public static final int T__61=61;
     public static final int ID=18;
     public static final int T__60=60;
     public static final int EOF=-1;
     public static final int T__55=55;
-    public static final int T__56=56;
     public static final int INDEX=17;
+    public static final int T__56=56;
     public static final int T__57=57;
     public static final int T__58=58;
     public static final int EXPR=12;
@@ -48,8 +51,8 @@ public class Ref extends TreeFilter {
     public static final int T__45=45;
     public static final int T__48=48;
     public static final int T__49=49;
-    public static final int FIELD_DECL=9;
     public static final int MEMBERS=7;
+    public static final int FIELD_DECL=9;
     public static final int UNARY_MINUS=15;
     public static final int INT=19;
     public static final int T__30=30;
@@ -254,7 +257,7 @@ public class Ref extends TreeFilter {
                     int alt3=2;
                     int LA3_0 = input.LA(1);
 
-                    if ( ((LA3_0>=METHOD_DECL && LA3_0<=60)) ) {
+                    if ( ((LA3_0>=METHOD_DECL && LA3_0<=63)) ) {
                         alt3=1;
                     }
                     else if ( (LA3_0==UP) ) {
@@ -337,7 +340,7 @@ public class Ref extends TreeFilter {
                 int alt4=2;
                 int LA4_0 = input.LA(1);
 
-                if ( ((LA4_0>=METHOD_DECL && LA4_0<=60)) ) {
+                if ( ((LA4_0>=METHOD_DECL && LA4_0<=63)) ) {
                     alt4=1;
                 }
                 else if ( (LA4_0==UP) ) {
@@ -415,7 +418,7 @@ public class Ref extends TreeFilter {
             int alt5=2;
             int LA5_0 = input.LA(1);
 
-            if ( ((LA5_0>=METHOD_DECL && LA5_0<=60)) ) {
+            if ( ((LA5_0>=METHOD_DECL && LA5_0<=63)) ) {
                 alt5=1;
             }
             switch (alt5) {
@@ -582,7 +585,7 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:95:5: ( member | ^( CALL expr ) | ^( '+' expr expr ) | id | INT )
             int alt6=5;
             switch ( input.LA(1) ) {
-            case 56:
+            case 59:
                 {
                 alt6=1;
                 }
@@ -592,13 +595,13 @@ public class Ref extends TreeFilter {
                 alt6=2;
                 }
                 break;
-            case 49:
+            case 52:
                 {
                 alt6=3;
                 }
                 break;
             case ID:
-            case 57:
+            case 60:
                 {
                 alt6=4;
                 }
@@ -650,7 +653,7 @@ public class Ref extends TreeFilter {
                 case 3 :
                     // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:97:9: ^( '+' expr expr )
                     {
-                    match(input,49,FOLLOW_49_in_expr394); if (state.failed) return retval;
+                    match(input,52,FOLLOW_52_in_expr394); if (state.failed) return retval;
 
                     match(input, Token.DOWN, null); if (state.failed) return retval;
                     pushFollow(FOLLOW_expr_in_expr396);
@@ -719,7 +722,7 @@ public class Ref extends TreeFilter {
             if ( (LA7_0==ID) ) {
                 alt7=1;
             }
-            else if ( (LA7_0==57) ) {
+            else if ( (LA7_0==60) ) {
                 alt7=2;
             }
             else {
@@ -747,7 +750,7 @@ public class Ref extends TreeFilter {
                 case 2 :
                     // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:111:9: t= 'this'
                     {
-                    t=(CeriumAST)match(input,57,FOLLOW_57_in_id477); if (state.failed) return type;
+                    t=(CeriumAST)match(input,60,FOLLOW_60_in_id477); if (state.failed) return type;
                     if ( state.backtracking==1 ) {
                       type = SymbolTable.getEnclosingClass(t.scope);
                     }
@@ -781,7 +784,7 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:117:5: ( ^( '.' m= expr ID ) )
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:117:9: ^( '.' m= expr ID )
             {
-            match(input,56,FOLLOW_56_in_member506); if (state.failed) return type;
+            match(input,59,FOLLOW_59_in_member506); if (state.failed) return type;
 
             match(input, Token.DOWN, null); if (state.failed) return type;
             pushFollow(FOLLOW_expr_in_member510);
@@ -835,27 +838,27 @@ public class Ref extends TreeFilter {
     public static final BitSet FOLLOW_MEMBERS_in_enterClass141 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_METHOD_DECL_in_enterMethod177 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_type_in_enterMethod179 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_ID_in_enterMethod181 = new BitSet(new long[]{0x1FFFFFFFFFFFFFF8L});
+    public static final BitSet FOLLOW_ID_in_enterMethod181 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF8L});
     public static final BitSet FOLLOW_set_in_varDeclaration220 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_type_in_varDeclaration228 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_ID_in_varDeclaration230 = new BitSet(new long[]{0x1FFFFFFFFFFFFFF8L});
+    public static final BitSet FOLLOW_ID_in_varDeclaration230 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF8L});
     public static final BitSet FOLLOW_set_in_type0 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ASSIGN_in_assignment323 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_assignment325 = new BitSet(new long[]{0x03020000000C0400L});
+    public static final BitSet FOLLOW_expr_in_assignment325 = new BitSet(new long[]{0x18100000000C0400L});
     public static final BitSet FOLLOW_expr_in_assignment327 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_EXPR_in_resolveExpr339 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_expr_in_resolveExpr341 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_member_in_expr366 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_CALL_in_expr380 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_expr_in_expr382 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_49_in_expr394 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr396 = new BitSet(new long[]{0x03020000000C0400L});
+    public static final BitSet FOLLOW_52_in_expr394 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr396 = new BitSet(new long[]{0x18100000000C0400L});
     public static final BitSet FOLLOW_expr_in_expr398 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_id_in_expr409 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_INT_in_expr430 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ID_in_id455 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_id477 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_member506 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_60_in_id477 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_59_in_member506 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_expr_in_member510 = new BitSet(new long[]{0x0000000000040000L});
     public static final BitSet FOLLOW_ID_in_member512 = new BitSet(new long[]{0x0000000000000008L});
 

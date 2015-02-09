@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g 2014-12-21 09:04:33
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g 2015-02-08 19:23:12
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -11,7 +11,7 @@ import org.antlr.runtime.tree.*;
 
 public class CeriumParser extends Parser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "METHOD_DECL", "ARG_DECL", "BLOCK", "MEMBERS", "VAR_DECL", "FIELD_DECL", "CALL", "ELIST", "EXPR", "ASSIGN", "EXTENDS", "UNARY_MINUS", "UNARY_NOT", "INDEX", "ID", "INT", "FLOAT", "CHAR", "LETTER", "WS", "SL_COMMENT", "'class'", "'{'", "'}'", "';'", "':'", "'public'", "'('", "')'", "','", "'[]'", "'float'", "'int'", "'void'", "'char'", "'boolean'", "'if'", "'else'", "'return'", "'!='", "'=='", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'*'", "'/'", "'!'", "'['", "']'", "'.'", "'this'", "'super'", "'true'", "'false'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "METHOD_DECL", "ARG_DECL", "BLOCK", "MEMBERS", "VAR_DECL", "FIELD_DECL", "CALL", "ELIST", "EXPR", "ASSIGN", "EXTENDS", "UNARY_MINUS", "UNARY_NOT", "INDEX", "ID", "INT", "FLOAT", "CHAR", "LETTER", "WS", "SL_COMMENT", "'class'", "'{'", "'}'", "';'", "':'", "'public'", "'('", "')'", "','", "'[]'", "'float'", "'int'", "'void'", "'char'", "'boolean'", "'if'", "'else'", "'while'", "'return'", "'!='", "'=='", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'*'", "'/'", "'!'", "'['", "']'", "'.'", "'true'", "'false'"
     };
     public static final int T__29=29;
     public static final int T__28=28;
@@ -21,12 +21,11 @@ public class CeriumParser extends Parser {
     public static final int LETTER=22;
     public static final int ARG_DECL=5;
     public static final int CHAR=21;
-    public static final int VAR_DECL=8;
     public static final int METHOD_DECL=4;
+    public static final int VAR_DECL=8;
     public static final int FLOAT=20;
     public static final int ID=18;
     public static final int EOF=-1;
-    public static final int T__60=60;
     public static final int T__55=55;
     public static final int INDEX=17;
     public static final int T__56=56;
@@ -302,7 +301,7 @@ public class CeriumParser extends Parser {
 
 
             // AST REWRITE
-            // elements: ID, superClass, 25, classMember
+            // elements: 25, superClass, classMember, ID
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -490,11 +489,11 @@ public class CeriumParser extends Parser {
                 if ( (LA4_1==ID) ) {
                     int LA4_2 = input.LA(3);
 
-                    if ( (LA4_2==31) ) {
-                        alt4=2;
-                    }
-                    else if ( (LA4_2==ASSIGN||LA4_2==28||LA4_2==34) ) {
+                    if ( (LA4_2==ASSIGN||LA4_2==28||LA4_2==34) ) {
                         alt4=1;
+                    }
+                    else if ( (LA4_2==31) ) {
+                        alt4=2;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
@@ -653,7 +652,7 @@ public class CeriumParser extends Parser {
 
 
             // AST REWRITE
-            // elements: ID, type, block, formalParameters
+            // elements: block, formalParameters, type, ID
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -954,7 +953,7 @@ public class CeriumParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: 34, type, ID
+                    // elements: type, 34, ID
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -1107,7 +1106,7 @@ public class CeriumParser extends Parser {
                 int alt8=2;
                 int LA8_0 = input.LA(1);
 
-                if ( ((LA8_0>=ID && LA8_0<=CHAR)||LA8_0==26||LA8_0==28||LA8_0==31||(LA8_0>=35 && LA8_0<=40)||LA8_0==42||(LA8_0>=57 && LA8_0<=60)) ) {
+                if ( ((LA8_0>=ID && LA8_0<=CHAR)||LA8_0==26||LA8_0==28||LA8_0==31||(LA8_0>=35 && LA8_0<=40)||(LA8_0>=42 && LA8_0<=43)||(LA8_0>=58 && LA8_0<=59)) ) {
                     alt8=1;
                 }
 
@@ -1317,7 +1316,7 @@ public class CeriumParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: ID, expression, type
+                    // elements: expression, type, ID
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -1399,7 +1398,7 @@ public class CeriumParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: 34, expression, ID, type
+                    // elements: type, 34, expression, ID
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -1470,7 +1469,7 @@ public class CeriumParser extends Parser {
     };
 
     // $ANTLR start "statement"
-    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:96:1: statement options {backtrack=true; } : ( block | varDeclaration | 'if' '(' expression ')' s= statement ( 'else' e= statement )? -> ^( 'if' expression $s ( $e)? ) | 'return' ( expression )? ';' -> ^( 'return' ( expression )? ) | lhs '=' expression ';' -> ^( '=' lhs expression ) | a= postfixExpression ( '=' expression -> ^( '=' postfixExpression expression ) | -> ^( EXPR postfixExpression ) ) ';' | ';' ->);
+    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:96:1: statement options {backtrack=true; } : ( block | varDeclaration | 'if' '(' expression ')' t= block ( 'else' f= block )? -> ^( 'if' expression $t ( $f)? ) | 'while' '(' expression ')' block -> ^( 'while' expression block ) | 'return' ( expression )? ';' -> ^( 'return' ( expression )? ) | lhs '=' expression ';' -> ^( '=' lhs expression ) | a= postfixExpression ';' -> ^( EXPR postfixExpression ) | ';' ->);
     public final CeriumParser.statement_return statement() throws RecognitionException {
         CeriumParser.statement_return retval = new CeriumParser.statement_return();
         retval.start = input.LT(1);
@@ -1482,15 +1481,17 @@ public class CeriumParser extends Parser {
         Token char_literal49=null;
         Token string_literal50=null;
         Token string_literal51=null;
-        Token char_literal53=null;
-        Token char_literal55=null;
-        Token char_literal57=null;
+        Token char_literal52=null;
+        Token char_literal54=null;
+        Token string_literal56=null;
         Token char_literal58=null;
         Token char_literal60=null;
-        Token char_literal61=null;
-        CeriumParser.statement_return s = null;
+        Token char_literal62=null;
+        Token char_literal63=null;
+        Token char_literal64=null;
+        CeriumParser.block_return t = null;
 
-        CeriumParser.statement_return e = null;
+        CeriumParser.block_return f = null;
 
         CeriumParser.postfixExpression_return a = null;
 
@@ -1500,13 +1501,15 @@ public class CeriumParser extends Parser {
 
         CeriumParser.expression_return expression48 = null;
 
-        CeriumParser.expression_return expression52 = null;
+        CeriumParser.expression_return expression53 = null;
 
-        CeriumParser.lhs_return lhs54 = null;
+        CeriumParser.block_return block55 = null;
 
-        CeriumParser.expression_return expression56 = null;
+        CeriumParser.expression_return expression57 = null;
 
-        CeriumParser.expression_return expression59 = null;
+        CeriumParser.lhs_return lhs59 = null;
+
+        CeriumParser.expression_return expression61 = null;
 
 
         CeriumAST string_literal46_tree=null;
@@ -1514,12 +1517,15 @@ public class CeriumParser extends Parser {
         CeriumAST char_literal49_tree=null;
         CeriumAST string_literal50_tree=null;
         CeriumAST string_literal51_tree=null;
-        CeriumAST char_literal53_tree=null;
-        CeriumAST char_literal55_tree=null;
-        CeriumAST char_literal57_tree=null;
+        CeriumAST char_literal52_tree=null;
+        CeriumAST char_literal54_tree=null;
+        CeriumAST string_literal56_tree=null;
         CeriumAST char_literal58_tree=null;
         CeriumAST char_literal60_tree=null;
-        CeriumAST char_literal61_tree=null;
+        CeriumAST char_literal62_tree=null;
+        CeriumAST char_literal63_tree=null;
+        CeriumAST char_literal64_tree=null;
+        RewriteRuleTokenStream stream_43=new RewriteRuleTokenStream(adaptor,"token 43");
         RewriteRuleTokenStream stream_42=new RewriteRuleTokenStream(adaptor,"token 42");
         RewriteRuleTokenStream stream_32=new RewriteRuleTokenStream(adaptor,"token 32");
         RewriteRuleTokenStream stream_41=new RewriteRuleTokenStream(adaptor,"token 41");
@@ -1528,20 +1534,20 @@ public class CeriumParser extends Parser {
         RewriteRuleTokenStream stream_28=new RewriteRuleTokenStream(adaptor,"token 28");
         RewriteRuleTokenStream stream_ASSIGN=new RewriteRuleTokenStream(adaptor,"token ASSIGN");
         RewriteRuleSubtreeStream stream_expression=new RewriteRuleSubtreeStream(adaptor,"rule expression");
-        RewriteRuleSubtreeStream stream_statement=new RewriteRuleSubtreeStream(adaptor,"rule statement");
+        RewriteRuleSubtreeStream stream_block=new RewriteRuleSubtreeStream(adaptor,"rule block");
         RewriteRuleSubtreeStream stream_postfixExpression=new RewriteRuleSubtreeStream(adaptor,"rule postfixExpression");
         RewriteRuleSubtreeStream stream_lhs=new RewriteRuleSubtreeStream(adaptor,"rule lhs");
         try {
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:98:5: ( block | varDeclaration | 'if' '(' expression ')' s= statement ( 'else' e= statement )? -> ^( 'if' expression $s ( $e)? ) | 'return' ( expression )? ';' -> ^( 'return' ( expression )? ) | lhs '=' expression ';' -> ^( '=' lhs expression ) | a= postfixExpression ( '=' expression -> ^( '=' postfixExpression expression ) | -> ^( EXPR postfixExpression ) ) ';' | ';' ->)
-            int alt15=7;
-            alt15 = dfa15.predict(input);
-            switch (alt15) {
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:98:5: ( block | varDeclaration | 'if' '(' expression ')' t= block ( 'else' f= block )? -> ^( 'if' expression $t ( $f)? ) | 'while' '(' expression ')' block -> ^( 'while' expression block ) | 'return' ( expression )? ';' -> ^( 'return' ( expression )? ) | lhs '=' expression ';' -> ^( '=' lhs expression ) | a= postfixExpression ';' -> ^( EXPR postfixExpression ) | ';' ->)
+            int alt14=8;
+            alt14 = dfa14.predict(input);
+            switch (alt14) {
                 case 1 :
                     // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:99:6: block
                     {
                     root_0 = (CeriumAST)adaptor.nil();
 
-                    pushFollow(FOLLOW_block_in_statement654);
+                    pushFollow(FOLLOW_block_in_statement653);
                     block44=block();
 
                     state._fsp--;
@@ -1555,7 +1561,7 @@ public class CeriumParser extends Parser {
                     {
                     root_0 = (CeriumAST)adaptor.nil();
 
-                    pushFollow(FOLLOW_varDeclaration_in_statement662);
+                    pushFollow(FOLLOW_varDeclaration_in_statement661);
                     varDeclaration45=varDeclaration();
 
                     state._fsp--;
@@ -1565,30 +1571,30 @@ public class CeriumParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:101:7: 'if' '(' expression ')' s= statement ( 'else' e= statement )?
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:101:7: 'if' '(' expression ')' t= block ( 'else' f= block )?
                     {
-                    string_literal46=(Token)match(input,40,FOLLOW_40_in_statement670); if (state.failed) return retval; 
+                    string_literal46=(Token)match(input,40,FOLLOW_40_in_statement669); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_40.add(string_literal46);
 
-                    char_literal47=(Token)match(input,31,FOLLOW_31_in_statement672); if (state.failed) return retval; 
+                    char_literal47=(Token)match(input,31,FOLLOW_31_in_statement671); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_31.add(char_literal47);
 
-                    pushFollow(FOLLOW_expression_in_statement674);
+                    pushFollow(FOLLOW_expression_in_statement673);
                     expression48=expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_expression.add(expression48.getTree());
-                    char_literal49=(Token)match(input,32,FOLLOW_32_in_statement676); if (state.failed) return retval; 
+                    char_literal49=(Token)match(input,32,FOLLOW_32_in_statement675); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_32.add(char_literal49);
 
-                    pushFollow(FOLLOW_statement_in_statement680);
-                    s=statement();
+                    pushFollow(FOLLOW_block_in_statement679);
+                    t=block();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_statement.add(s.getTree());
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:101:43: ( 'else' e= statement )?
+                    if ( state.backtracking==0 ) stream_block.add(t.getTree());
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:101:39: ( 'else' f= block )?
                     int alt12=2;
                     int LA12_0 = input.LA(1);
 
@@ -1597,17 +1603,17 @@ public class CeriumParser extends Parser {
                     }
                     switch (alt12) {
                         case 1 :
-                            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:101:44: 'else' e= statement
+                            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:101:40: 'else' f= block
                             {
-                            string_literal50=(Token)match(input,41,FOLLOW_41_in_statement683); if (state.failed) return retval; 
+                            string_literal50=(Token)match(input,41,FOLLOW_41_in_statement682); if (state.failed) return retval; 
                             if ( state.backtracking==0 ) stream_41.add(string_literal50);
 
-                            pushFollow(FOLLOW_statement_in_statement687);
-                            e=statement();
+                            pushFollow(FOLLOW_block_in_statement686);
+                            f=block();
 
                             state._fsp--;
                             if (state.failed) return retval;
-                            if ( state.backtracking==0 ) stream_statement.add(e.getTree());
+                            if ( state.backtracking==0 ) stream_block.add(f.getTree());
 
                             }
                             break;
@@ -1617,34 +1623,34 @@ public class CeriumParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: expression, e, s, 40
+                    // elements: 40, t, f, expression
                     // token labels: 
-                    // rule labels: retval, e, s
+                    // rule labels: f, retval, t
                     // token list labels: 
                     // rule list labels: 
                     // wildcard labels: 
                     if ( state.backtracking==0 ) {
                     retval.tree = root_0;
+                    RewriteRuleSubtreeStream stream_f=new RewriteRuleSubtreeStream(adaptor,"rule f",f!=null?f.tree:null);
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
-                    RewriteRuleSubtreeStream stream_e=new RewriteRuleSubtreeStream(adaptor,"rule e",e!=null?e.tree:null);
-                    RewriteRuleSubtreeStream stream_s=new RewriteRuleSubtreeStream(adaptor,"rule s",s!=null?s.tree:null);
+                    RewriteRuleSubtreeStream stream_t=new RewriteRuleSubtreeStream(adaptor,"rule t",t!=null?t.tree:null);
 
                     root_0 = (CeriumAST)adaptor.nil();
-                    // 102:6: -> ^( 'if' expression $s ( $e)? )
+                    // 102:6: -> ^( 'if' expression $t ( $f)? )
                     {
-                        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:102:9: ^( 'if' expression $s ( $e)? )
+                        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:102:9: ^( 'if' expression $t ( $f)? )
                         {
                         CeriumAST root_1 = (CeriumAST)adaptor.nil();
                         root_1 = (CeriumAST)adaptor.becomeRoot(stream_40.nextNode(), root_1);
 
                         adaptor.addChild(root_1, stream_expression.nextTree());
-                        adaptor.addChild(root_1, stream_s.nextTree());
-                        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:102:30: ( $e)?
-                        if ( stream_e.hasNext() ) {
-                            adaptor.addChild(root_1, stream_e.nextTree());
+                        adaptor.addChild(root_1, stream_t.nextTree());
+                        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:102:30: ( $f)?
+                        if ( stream_f.hasNext() ) {
+                            adaptor.addChild(root_1, stream_f.nextTree());
 
                         }
-                        stream_e.reset();
+                        stream_f.reset();
 
                         adaptor.addChild(root_0, root_1);
                         }
@@ -1655,41 +1661,33 @@ public class CeriumParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:103:9: 'return' ( expression )? ';'
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:103:7: 'while' '(' expression ')' block
                     {
-                    string_literal51=(Token)match(input,42,FOLLOW_42_in_statement719); if (state.failed) return retval; 
+                    string_literal51=(Token)match(input,42,FOLLOW_42_in_statement716); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_42.add(string_literal51);
 
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:103:18: ( expression )?
-                    int alt13=2;
-                    int LA13_0 = input.LA(1);
+                    char_literal52=(Token)match(input,31,FOLLOW_31_in_statement718); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_31.add(char_literal52);
 
-                    if ( ((LA13_0>=ID && LA13_0<=CHAR)||LA13_0==31||LA13_0==50||LA13_0==53||(LA13_0>=57 && LA13_0<=60)) ) {
-                        alt13=1;
-                    }
-                    switch (alt13) {
-                        case 1 :
-                            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:103:18: expression
-                            {
-                            pushFollow(FOLLOW_expression_in_statement721);
-                            expression52=expression();
+                    pushFollow(FOLLOW_expression_in_statement720);
+                    expression53=expression();
 
-                            state._fsp--;
-                            if (state.failed) return retval;
-                            if ( state.backtracking==0 ) stream_expression.add(expression52.getTree());
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) stream_expression.add(expression53.getTree());
+                    char_literal54=(Token)match(input,32,FOLLOW_32_in_statement722); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_32.add(char_literal54);
 
-                            }
-                            break;
+                    pushFollow(FOLLOW_block_in_statement724);
+                    block55=block();
 
-                    }
-
-                    char_literal53=(Token)match(input,28,FOLLOW_28_in_statement724); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_28.add(char_literal53);
-
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) stream_block.add(block55.getTree());
 
 
                     // AST REWRITE
-                    // elements: expression, 42
+                    // elements: block, expression, 42
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -1700,14 +1698,78 @@ public class CeriumParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CeriumAST)adaptor.nil();
-                    // 103:34: -> ^( 'return' ( expression )? )
+                    // 104:6: -> ^( 'while' expression block )
                     {
-                        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:103:37: ^( 'return' ( expression )? )
+                        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:104:9: ^( 'while' expression block )
                         {
                         CeriumAST root_1 = (CeriumAST)adaptor.nil();
                         root_1 = (CeriumAST)adaptor.becomeRoot(stream_42.nextNode(), root_1);
 
-                        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:103:48: ( expression )?
+                        adaptor.addChild(root_1, stream_expression.nextTree());
+                        adaptor.addChild(root_1, stream_block.nextTree());
+
+                        adaptor.addChild(root_0, root_1);
+                        }
+
+                    }
+
+                    retval.tree = root_0;}
+                    }
+                    break;
+                case 5 :
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:105:9: 'return' ( expression )? ';'
+                    {
+                    string_literal56=(Token)match(input,43,FOLLOW_43_in_statement749); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_43.add(string_literal56);
+
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:105:18: ( expression )?
+                    int alt13=2;
+                    int LA13_0 = input.LA(1);
+
+                    if ( ((LA13_0>=ID && LA13_0<=CHAR)||LA13_0==31||LA13_0==51||LA13_0==54||(LA13_0>=58 && LA13_0<=59)) ) {
+                        alt13=1;
+                    }
+                    switch (alt13) {
+                        case 1 :
+                            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:105:18: expression
+                            {
+                            pushFollow(FOLLOW_expression_in_statement751);
+                            expression57=expression();
+
+                            state._fsp--;
+                            if (state.failed) return retval;
+                            if ( state.backtracking==0 ) stream_expression.add(expression57.getTree());
+
+                            }
+                            break;
+
+                    }
+
+                    char_literal58=(Token)match(input,28,FOLLOW_28_in_statement754); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_28.add(char_literal58);
+
+
+
+                    // AST REWRITE
+                    // elements: 43, expression
+                    // token labels: 
+                    // rule labels: retval
+                    // token list labels: 
+                    // rule list labels: 
+                    // wildcard labels: 
+                    if ( state.backtracking==0 ) {
+                    retval.tree = root_0;
+                    RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+
+                    root_0 = (CeriumAST)adaptor.nil();
+                    // 105:34: -> ^( 'return' ( expression )? )
+                    {
+                        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:105:37: ^( 'return' ( expression )? )
+                        {
+                        CeriumAST root_1 = (CeriumAST)adaptor.nil();
+                        root_1 = (CeriumAST)adaptor.becomeRoot(stream_43.nextNode(), root_1);
+
+                        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:105:48: ( expression )?
                         if ( stream_expression.hasNext() ) {
                             adaptor.addChild(root_1, stream_expression.nextTree());
 
@@ -1722,31 +1784,31 @@ public class CeriumParser extends Parser {
                     retval.tree = root_0;}
                     }
                     break;
-                case 5 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:104:7: lhs '=' expression ';'
+                case 6 :
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:106:7: lhs '=' expression ';'
                     {
-                    pushFollow(FOLLOW_lhs_in_statement741);
-                    lhs54=lhs();
+                    pushFollow(FOLLOW_lhs_in_statement771);
+                    lhs59=lhs();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_lhs.add(lhs54.getTree());
-                    char_literal55=(Token)match(input,ASSIGN,FOLLOW_ASSIGN_in_statement743); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_ASSIGN.add(char_literal55);
+                    if ( state.backtracking==0 ) stream_lhs.add(lhs59.getTree());
+                    char_literal60=(Token)match(input,ASSIGN,FOLLOW_ASSIGN_in_statement773); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_ASSIGN.add(char_literal60);
 
-                    pushFollow(FOLLOW_expression_in_statement745);
-                    expression56=expression();
+                    pushFollow(FOLLOW_expression_in_statement775);
+                    expression61=expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_expression.add(expression56.getTree());
-                    char_literal57=(Token)match(input,28,FOLLOW_28_in_statement747); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_28.add(char_literal57);
+                    if ( state.backtracking==0 ) stream_expression.add(expression61.getTree());
+                    char_literal62=(Token)match(input,28,FOLLOW_28_in_statement777); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_28.add(char_literal62);
 
 
 
                     // AST REWRITE
-                    // elements: ASSIGN, lhs, expression
+                    // elements: lhs, ASSIGN, expression
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -1757,9 +1819,9 @@ public class CeriumParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CeriumAST)adaptor.nil();
-                    // 104:30: -> ^( '=' lhs expression )
+                    // 106:30: -> ^( '=' lhs expression )
                     {
-                        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:104:33: ^( '=' lhs expression )
+                        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:106:33: ^( '=' lhs expression )
                         {
                         CeriumAST root_1 = (CeriumAST)adaptor.nil();
                         root_1 = (CeriumAST)adaptor.becomeRoot(stream_ASSIGN.nextNode(), root_1);
@@ -1775,124 +1837,54 @@ public class CeriumParser extends Parser {
                     retval.tree = root_0;}
                     }
                     break;
-                case 6 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:105:9: a= postfixExpression ( '=' expression -> ^( '=' postfixExpression expression ) | -> ^( EXPR postfixExpression ) ) ';'
+                case 7 :
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:107:9: a= postfixExpression ';'
                     {
-                    pushFollow(FOLLOW_postfixExpression_in_statement769);
+                    pushFollow(FOLLOW_postfixExpression_in_statement799);
                     a=postfixExpression();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_postfixExpression.add(a.getTree());
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:106:9: ( '=' expression -> ^( '=' postfixExpression expression ) | -> ^( EXPR postfixExpression ) )
-                    int alt14=2;
-                    int LA14_0 = input.LA(1);
-
-                    if ( (LA14_0==ASSIGN) ) {
-                        alt14=1;
-                    }
-                    else if ( (LA14_0==28) ) {
-                        alt14=2;
-                    }
-                    else {
-                        if (state.backtracking>0) {state.failed=true; return retval;}
-                        NoViableAltException nvae =
-                            new NoViableAltException("", 14, 0, input);
-
-                        throw nvae;
-                    }
-                    switch (alt14) {
-                        case 1 :
-                            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:106:13: '=' expression
-                            {
-                            char_literal58=(Token)match(input,ASSIGN,FOLLOW_ASSIGN_in_statement784); if (state.failed) return retval; 
-                            if ( state.backtracking==0 ) stream_ASSIGN.add(char_literal58);
-
-                            pushFollow(FOLLOW_expression_in_statement786);
-                            expression59=expression();
-
-                            state._fsp--;
-                            if (state.failed) return retval;
-                            if ( state.backtracking==0 ) stream_expression.add(expression59.getTree());
+                    char_literal63=(Token)match(input,28,FOLLOW_28_in_statement801); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_28.add(char_literal63);
 
 
-                            // AST REWRITE
-                            // elements: ASSIGN, expression, postfixExpression
-                            // token labels: 
-                            // rule labels: retval
-                            // token list labels: 
-                            // rule list labels: 
-                            // wildcard labels: 
-                            if ( state.backtracking==0 ) {
-                            retval.tree = root_0;
-                            RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
-                            root_0 = (CeriumAST)adaptor.nil();
-                            // 106:28: -> ^( '=' postfixExpression expression )
-                            {
-                                // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:106:31: ^( '=' postfixExpression expression )
-                                {
-                                CeriumAST root_1 = (CeriumAST)adaptor.nil();
-                                root_1 = (CeriumAST)adaptor.becomeRoot(stream_ASSIGN.nextNode(), root_1);
+                    // AST REWRITE
+                    // elements: postfixExpression
+                    // token labels: 
+                    // rule labels: retval
+                    // token list labels: 
+                    // rule list labels: 
+                    // wildcard labels: 
+                    if ( state.backtracking==0 ) {
+                    retval.tree = root_0;
+                    RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
-                                adaptor.addChild(root_1, stream_postfixExpression.nextTree());
-                                adaptor.addChild(root_1, stream_expression.nextTree());
+                    root_0 = (CeriumAST)adaptor.nil();
+                    // 107:33: -> ^( EXPR postfixExpression )
+                    {
+                        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:107:36: ^( EXPR postfixExpression )
+                        {
+                        CeriumAST root_1 = (CeriumAST)adaptor.nil();
+                        root_1 = (CeriumAST)adaptor.becomeRoot((CeriumAST)adaptor.create(EXPR, "EXPR"), root_1);
 
-                                adaptor.addChild(root_0, root_1);
-                                }
+                        adaptor.addChild(root_1, stream_postfixExpression.nextTree());
 
-                            }
-
-                            retval.tree = root_0;}
-                            }
-                            break;
-                        case 2 :
-                            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:107:13: 
-                            {
-
-                            // AST REWRITE
-                            // elements: postfixExpression
-                            // token labels: 
-                            // rule labels: retval
-                            // token list labels: 
-                            // rule list labels: 
-                            // wildcard labels: 
-                            if ( state.backtracking==0 ) {
-                            retval.tree = root_0;
-                            RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
-
-                            root_0 = (CeriumAST)adaptor.nil();
-                            // 107:13: -> ^( EXPR postfixExpression )
-                            {
-                                // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:107:16: ^( EXPR postfixExpression )
-                                {
-                                CeriumAST root_1 = (CeriumAST)adaptor.nil();
-                                root_1 = (CeriumAST)adaptor.becomeRoot((CeriumAST)adaptor.create(EXPR, "EXPR"), root_1);
-
-                                adaptor.addChild(root_1, stream_postfixExpression.nextTree());
-
-                                adaptor.addChild(root_0, root_1);
-                                }
-
-                            }
-
-                            retval.tree = root_0;}
-                            }
-                            break;
+                        adaptor.addChild(root_0, root_1);
+                        }
 
                     }
 
-                    char_literal60=(Token)match(input,28,FOLLOW_28_in_statement836); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_28.add(char_literal60);
-
-
+                    retval.tree = root_0;}
                     }
                     break;
-                case 7 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:110:7: ';'
+                case 8 :
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:108:7: ';'
                     {
-                    char_literal61=(Token)match(input,28,FOLLOW_28_in_statement845); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_28.add(char_literal61);
+                    char_literal64=(Token)match(input,28,FOLLOW_28_in_statement818); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_28.add(char_literal64);
 
 
 
@@ -1908,7 +1900,7 @@ public class CeriumParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CeriumAST)adaptor.nil();
-                    // 110:11: ->
+                    // 108:11: ->
                     {
                         root_0 = null;
                     }
@@ -1944,27 +1936,27 @@ public class CeriumParser extends Parser {
     };
 
     // $ANTLR start "lhs"
-    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:113:1: lhs : postfixExpression -> ^( EXPR postfixExpression ) ;
+    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:111:1: lhs : postfixExpression -> ^( EXPR postfixExpression ) ;
     public final CeriumParser.lhs_return lhs() throws RecognitionException {
         CeriumParser.lhs_return retval = new CeriumParser.lhs_return();
         retval.start = input.LT(1);
 
         CeriumAST root_0 = null;
 
-        CeriumParser.postfixExpression_return postfixExpression62 = null;
+        CeriumParser.postfixExpression_return postfixExpression65 = null;
 
 
         RewriteRuleSubtreeStream stream_postfixExpression=new RewriteRuleSubtreeStream(adaptor,"rule postfixExpression");
         try {
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:113:5: ( postfixExpression -> ^( EXPR postfixExpression ) )
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:114:3: postfixExpression
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:111:5: ( postfixExpression -> ^( EXPR postfixExpression ) )
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:112:3: postfixExpression
             {
-            pushFollow(FOLLOW_postfixExpression_in_lhs864);
-            postfixExpression62=postfixExpression();
+            pushFollow(FOLLOW_postfixExpression_in_lhs836);
+            postfixExpression65=postfixExpression();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) stream_postfixExpression.add(postfixExpression62.getTree());
+            if ( state.backtracking==0 ) stream_postfixExpression.add(postfixExpression65.getTree());
 
 
             // AST REWRITE
@@ -1979,9 +1971,9 @@ public class CeriumParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CeriumAST)adaptor.nil();
-            // 114:21: -> ^( EXPR postfixExpression )
+            // 112:21: -> ^( EXPR postfixExpression )
             {
-                // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:114:24: ^( EXPR postfixExpression )
+                // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:112:24: ^( EXPR postfixExpression )
                 {
                 CeriumAST root_1 = (CeriumAST)adaptor.nil();
                 root_1 = (CeriumAST)adaptor.becomeRoot((CeriumAST)adaptor.create(EXPR, "EXPR"), root_1);
@@ -2022,80 +2014,80 @@ public class CeriumParser extends Parser {
     };
 
     // $ANTLR start "expressionList"
-    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:117:1: expressionList : ( expr ( ',' expr )* -> ^( ELIST ( expr )+ ) | -> ELIST );
+    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:115:1: expressionList : ( expr ( ',' expr )* -> ^( ELIST ( expr )+ ) | -> ELIST );
     public final CeriumParser.expressionList_return expressionList() throws RecognitionException {
         CeriumParser.expressionList_return retval = new CeriumParser.expressionList_return();
         retval.start = input.LT(1);
 
         CeriumAST root_0 = null;
 
-        Token char_literal64=null;
-        CeriumParser.expr_return expr63 = null;
+        Token char_literal67=null;
+        CeriumParser.expr_return expr66 = null;
 
-        CeriumParser.expr_return expr65 = null;
+        CeriumParser.expr_return expr68 = null;
 
 
-        CeriumAST char_literal64_tree=null;
+        CeriumAST char_literal67_tree=null;
         RewriteRuleTokenStream stream_33=new RewriteRuleTokenStream(adaptor,"token 33");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:118:5: ( expr ( ',' expr )* -> ^( ELIST ( expr )+ ) | -> ELIST )
-            int alt17=2;
-            int LA17_0 = input.LA(1);
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:116:5: ( expr ( ',' expr )* -> ^( ELIST ( expr )+ ) | -> ELIST )
+            int alt16=2;
+            int LA16_0 = input.LA(1);
 
-            if ( ((LA17_0>=ID && LA17_0<=CHAR)||LA17_0==31||LA17_0==50||LA17_0==53||(LA17_0>=57 && LA17_0<=60)) ) {
-                alt17=1;
+            if ( ((LA16_0>=ID && LA16_0<=CHAR)||LA16_0==31||LA16_0==51||LA16_0==54||(LA16_0>=58 && LA16_0<=59)) ) {
+                alt16=1;
             }
-            else if ( (LA17_0==32) ) {
-                alt17=2;
+            else if ( (LA16_0==32) ) {
+                alt16=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 17, 0, input);
+                    new NoViableAltException("", 16, 0, input);
 
                 throw nvae;
             }
-            switch (alt17) {
+            switch (alt16) {
                 case 1 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:119:6: expr ( ',' expr )*
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:117:6: expr ( ',' expr )*
                     {
-                    pushFollow(FOLLOW_expr_in_expressionList891);
-                    expr63=expr();
+                    pushFollow(FOLLOW_expr_in_expressionList863);
+                    expr66=expr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_expr.add(expr63.getTree());
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:119:11: ( ',' expr )*
-                    loop16:
+                    if ( state.backtracking==0 ) stream_expr.add(expr66.getTree());
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:117:11: ( ',' expr )*
+                    loop15:
                     do {
-                        int alt16=2;
-                        int LA16_0 = input.LA(1);
+                        int alt15=2;
+                        int LA15_0 = input.LA(1);
 
-                        if ( (LA16_0==33) ) {
-                            alt16=1;
+                        if ( (LA15_0==33) ) {
+                            alt15=1;
                         }
 
 
-                        switch (alt16) {
+                        switch (alt15) {
                     	case 1 :
-                    	    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:119:12: ',' expr
+                    	    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:117:12: ',' expr
                     	    {
-                    	    char_literal64=(Token)match(input,33,FOLLOW_33_in_expressionList894); if (state.failed) return retval; 
-                    	    if ( state.backtracking==0 ) stream_33.add(char_literal64);
+                    	    char_literal67=(Token)match(input,33,FOLLOW_33_in_expressionList866); if (state.failed) return retval; 
+                    	    if ( state.backtracking==0 ) stream_33.add(char_literal67);
 
-                    	    pushFollow(FOLLOW_expr_in_expressionList896);
-                    	    expr65=expr();
+                    	    pushFollow(FOLLOW_expr_in_expressionList868);
+                    	    expr68=expr();
 
                     	    state._fsp--;
                     	    if (state.failed) return retval;
-                    	    if ( state.backtracking==0 ) stream_expr.add(expr65.getTree());
+                    	    if ( state.backtracking==0 ) stream_expr.add(expr68.getTree());
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop16;
+                    	    break loop15;
                         }
                     } while (true);
 
@@ -2113,9 +2105,9 @@ public class CeriumParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CeriumAST)adaptor.nil();
-                    // 119:23: -> ^( ELIST ( expr )+ )
+                    // 117:23: -> ^( ELIST ( expr )+ )
                     {
-                        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:119:26: ^( ELIST ( expr )+ )
+                        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:117:26: ^( ELIST ( expr )+ )
                         {
                         CeriumAST root_1 = (CeriumAST)adaptor.nil();
                         root_1 = (CeriumAST)adaptor.becomeRoot((CeriumAST)adaptor.create(ELIST, "ELIST"), root_1);
@@ -2138,7 +2130,7 @@ public class CeriumParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:120:9: 
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:118:9: 
                     {
 
                     // AST REWRITE
@@ -2153,7 +2145,7 @@ public class CeriumParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CeriumAST)adaptor.nil();
-                    // 120:9: -> ELIST
+                    // 118:9: -> ELIST
                     {
                         adaptor.addChild(root_0, (CeriumAST)adaptor.create(ELIST, "ELIST"));
 
@@ -2190,27 +2182,27 @@ public class CeriumParser extends Parser {
     };
 
     // $ANTLR start "expression"
-    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:123:1: expression : expr -> ^( EXPR expr ) ;
+    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:121:1: expression : expr -> ^( EXPR expr ) ;
     public final CeriumParser.expression_return expression() throws RecognitionException {
         CeriumParser.expression_return retval = new CeriumParser.expression_return();
         retval.start = input.LT(1);
 
         CeriumAST root_0 = null;
 
-        CeriumParser.expr_return expr66 = null;
+        CeriumParser.expr_return expr69 = null;
 
 
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:124:5: ( expr -> ^( EXPR expr ) )
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:125:6: expr
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:122:5: ( expr -> ^( EXPR expr ) )
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:123:6: expr
             {
-            pushFollow(FOLLOW_expr_in_expression944);
-            expr66=expr();
+            pushFollow(FOLLOW_expr_in_expression913);
+            expr69=expr();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) stream_expr.add(expr66.getTree());
+            if ( state.backtracking==0 ) stream_expr.add(expr69.getTree());
 
 
             // AST REWRITE
@@ -2225,9 +2217,9 @@ public class CeriumParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CeriumAST)adaptor.nil();
-            // 125:11: -> ^( EXPR expr )
+            // 123:11: -> ^( EXPR expr )
             {
-                // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:125:14: ^( EXPR expr )
+                // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:123:14: ^( EXPR expr )
                 {
                 CeriumAST root_1 = (CeriumAST)adaptor.nil();
                 root_1 = (CeriumAST)adaptor.becomeRoot((CeriumAST)adaptor.create(EXPR, "EXPR"), root_1);
@@ -2268,29 +2260,29 @@ public class CeriumParser extends Parser {
     };
 
     // $ANTLR start "expr"
-    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:128:1: expr : equalityExpression ;
+    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:126:1: expr : equalityExpression ;
     public final CeriumParser.expr_return expr() throws RecognitionException {
         CeriumParser.expr_return retval = new CeriumParser.expr_return();
         retval.start = input.LT(1);
 
         CeriumAST root_0 = null;
 
-        CeriumParser.equalityExpression_return equalityExpression67 = null;
+        CeriumParser.equalityExpression_return equalityExpression70 = null;
 
 
 
         try {
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:128:5: ( equalityExpression )
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:129:3: equalityExpression
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:126:5: ( equalityExpression )
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:127:3: equalityExpression
             {
             root_0 = (CeriumAST)adaptor.nil();
 
-            pushFollow(FOLLOW_equalityExpression_in_expr970);
-            equalityExpression67=equalityExpression();
+            pushFollow(FOLLOW_equalityExpression_in_expr939);
+            equalityExpression70=equalityExpression();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, equalityExpression67.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, equalityExpression70.getTree());
 
             }
 
@@ -2320,86 +2312,86 @@ public class CeriumParser extends Parser {
     };
 
     // $ANTLR start "equalityExpression"
-    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:132:1: equalityExpression : relationalExpression ( ( '!=' | '==' ) relationalExpression )* ;
+    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:130:1: equalityExpression : relationalExpression ( ( '!=' | '==' ) relationalExpression )* ;
     public final CeriumParser.equalityExpression_return equalityExpression() throws RecognitionException {
         CeriumParser.equalityExpression_return retval = new CeriumParser.equalityExpression_return();
         retval.start = input.LT(1);
 
         CeriumAST root_0 = null;
 
-        Token string_literal69=null;
-        Token string_literal70=null;
-        CeriumParser.relationalExpression_return relationalExpression68 = null;
-
+        Token string_literal72=null;
+        Token string_literal73=null;
         CeriumParser.relationalExpression_return relationalExpression71 = null;
 
+        CeriumParser.relationalExpression_return relationalExpression74 = null;
 
-        CeriumAST string_literal69_tree=null;
-        CeriumAST string_literal70_tree=null;
+
+        CeriumAST string_literal72_tree=null;
+        CeriumAST string_literal73_tree=null;
 
         try {
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:133:2: ( relationalExpression ( ( '!=' | '==' ) relationalExpression )* )
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:134:3: relationalExpression ( ( '!=' | '==' ) relationalExpression )*
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:131:2: ( relationalExpression ( ( '!=' | '==' ) relationalExpression )* )
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:132:3: relationalExpression ( ( '!=' | '==' ) relationalExpression )*
             {
             root_0 = (CeriumAST)adaptor.nil();
 
-            pushFollow(FOLLOW_relationalExpression_in_equalityExpression992);
-            relationalExpression68=relationalExpression();
+            pushFollow(FOLLOW_relationalExpression_in_equalityExpression961);
+            relationalExpression71=relationalExpression();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, relationalExpression68.getTree());
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:134:24: ( ( '!=' | '==' ) relationalExpression )*
-            loop19:
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, relationalExpression71.getTree());
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:132:24: ( ( '!=' | '==' ) relationalExpression )*
+            loop18:
             do {
-                int alt19=2;
-                int LA19_0 = input.LA(1);
+                int alt18=2;
+                int LA18_0 = input.LA(1);
 
-                if ( ((LA19_0>=43 && LA19_0<=44)) ) {
-                    alt19=1;
+                if ( ((LA18_0>=44 && LA18_0<=45)) ) {
+                    alt18=1;
                 }
 
 
-                switch (alt19) {
+                switch (alt18) {
             	case 1 :
-            	    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:134:25: ( '!=' | '==' ) relationalExpression
+            	    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:132:25: ( '!=' | '==' ) relationalExpression
             	    {
-            	    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:134:25: ( '!=' | '==' )
-            	    int alt18=2;
-            	    int LA18_0 = input.LA(1);
+            	    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:132:25: ( '!=' | '==' )
+            	    int alt17=2;
+            	    int LA17_0 = input.LA(1);
 
-            	    if ( (LA18_0==43) ) {
-            	        alt18=1;
+            	    if ( (LA17_0==44) ) {
+            	        alt17=1;
             	    }
-            	    else if ( (LA18_0==44) ) {
-            	        alt18=2;
+            	    else if ( (LA17_0==45) ) {
+            	        alt17=2;
             	    }
             	    else {
             	        if (state.backtracking>0) {state.failed=true; return retval;}
             	        NoViableAltException nvae =
-            	            new NoViableAltException("", 18, 0, input);
+            	            new NoViableAltException("", 17, 0, input);
 
             	        throw nvae;
             	    }
-            	    switch (alt18) {
+            	    switch (alt17) {
             	        case 1 :
-            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:134:26: '!='
+            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:132:26: '!='
             	            {
-            	            string_literal69=(Token)match(input,43,FOLLOW_43_in_equalityExpression996); if (state.failed) return retval;
+            	            string_literal72=(Token)match(input,44,FOLLOW_44_in_equalityExpression965); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
-            	            string_literal69_tree = (CeriumAST)adaptor.create(string_literal69);
-            	            root_0 = (CeriumAST)adaptor.becomeRoot(string_literal69_tree, root_0);
+            	            string_literal72_tree = (CeriumAST)adaptor.create(string_literal72);
+            	            root_0 = (CeriumAST)adaptor.becomeRoot(string_literal72_tree, root_0);
             	            }
 
             	            }
             	            break;
             	        case 2 :
-            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:134:34: '=='
+            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:132:34: '=='
             	            {
-            	            string_literal70=(Token)match(input,44,FOLLOW_44_in_equalityExpression1001); if (state.failed) return retval;
+            	            string_literal73=(Token)match(input,45,FOLLOW_45_in_equalityExpression970); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
-            	            string_literal70_tree = (CeriumAST)adaptor.create(string_literal70);
-            	            root_0 = (CeriumAST)adaptor.becomeRoot(string_literal70_tree, root_0);
+            	            string_literal73_tree = (CeriumAST)adaptor.create(string_literal73);
+            	            root_0 = (CeriumAST)adaptor.becomeRoot(string_literal73_tree, root_0);
             	            }
 
             	            }
@@ -2407,18 +2399,18 @@ public class CeriumParser extends Parser {
 
             	    }
 
-            	    pushFollow(FOLLOW_relationalExpression_in_equalityExpression1005);
-            	    relationalExpression71=relationalExpression();
+            	    pushFollow(FOLLOW_relationalExpression_in_equalityExpression974);
+            	    relationalExpression74=relationalExpression();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, relationalExpression71.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, relationalExpression74.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop19;
+            	    break loop18;
                 }
             } while (true);
 
@@ -2451,129 +2443,126 @@ public class CeriumParser extends Parser {
     };
 
     // $ANTLR start "relationalExpression"
-    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:137:1: relationalExpression : additiveExpression ( ( ( '<' | '>' | '<=' | '>=' ) additiveExpression )* ) ;
+    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:135:1: relationalExpression : additiveExpression ( ( '<' | '>' | '<=' | '>=' ) additiveExpression )* ;
     public final CeriumParser.relationalExpression_return relationalExpression() throws RecognitionException {
         CeriumParser.relationalExpression_return retval = new CeriumParser.relationalExpression_return();
         retval.start = input.LT(1);
 
         CeriumAST root_0 = null;
 
-        Token char_literal73=null;
-        Token char_literal74=null;
-        Token string_literal75=null;
-        Token string_literal76=null;
-        CeriumParser.additiveExpression_return additiveExpression72 = null;
+        Token char_literal76=null;
+        Token char_literal77=null;
+        Token string_literal78=null;
+        Token string_literal79=null;
+        CeriumParser.additiveExpression_return additiveExpression75 = null;
 
-        CeriumParser.additiveExpression_return additiveExpression77 = null;
+        CeriumParser.additiveExpression_return additiveExpression80 = null;
 
 
-        CeriumAST char_literal73_tree=null;
-        CeriumAST char_literal74_tree=null;
-        CeriumAST string_literal75_tree=null;
-        CeriumAST string_literal76_tree=null;
+        CeriumAST char_literal76_tree=null;
+        CeriumAST char_literal77_tree=null;
+        CeriumAST string_literal78_tree=null;
+        CeriumAST string_literal79_tree=null;
 
         try {
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:138:2: ( additiveExpression ( ( ( '<' | '>' | '<=' | '>=' ) additiveExpression )* ) )
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:139:3: additiveExpression ( ( ( '<' | '>' | '<=' | '>=' ) additiveExpression )* )
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:136:2: ( additiveExpression ( ( '<' | '>' | '<=' | '>=' ) additiveExpression )* )
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:137:3: additiveExpression ( ( '<' | '>' | '<=' | '>=' ) additiveExpression )*
             {
             root_0 = (CeriumAST)adaptor.nil();
 
-            pushFollow(FOLLOW_additiveExpression_in_relationalExpression1021);
-            additiveExpression72=additiveExpression();
+            pushFollow(FOLLOW_additiveExpression_in_relationalExpression990);
+            additiveExpression75=additiveExpression();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, additiveExpression72.getTree());
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:140:3: ( ( ( '<' | '>' | '<=' | '>=' ) additiveExpression )* )
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:140:5: ( ( '<' | '>' | '<=' | '>=' ) additiveExpression )*
-            {
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:140:5: ( ( '<' | '>' | '<=' | '>=' ) additiveExpression )*
-            loop21:
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, additiveExpression75.getTree());
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:137:22: ( ( '<' | '>' | '<=' | '>=' ) additiveExpression )*
+            loop20:
             do {
-                int alt21=2;
-                int LA21_0 = input.LA(1);
+                int alt20=2;
+                int LA20_0 = input.LA(1);
 
-                if ( ((LA21_0>=45 && LA21_0<=48)) ) {
-                    alt21=1;
+                if ( ((LA20_0>=46 && LA20_0<=49)) ) {
+                    alt20=1;
                 }
 
 
-                switch (alt21) {
+                switch (alt20) {
             	case 1 :
-            	    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:140:7: ( '<' | '>' | '<=' | '>=' ) additiveExpression
+            	    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:137:24: ( '<' | '>' | '<=' | '>=' ) additiveExpression
             	    {
-            	    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:140:7: ( '<' | '>' | '<=' | '>=' )
-            	    int alt20=4;
+            	    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:137:24: ( '<' | '>' | '<=' | '>=' )
+            	    int alt19=4;
             	    switch ( input.LA(1) ) {
-            	    case 45:
-            	        {
-            	        alt20=1;
-            	        }
-            	        break;
             	    case 46:
             	        {
-            	        alt20=2;
+            	        alt19=1;
             	        }
             	        break;
             	    case 47:
             	        {
-            	        alt20=3;
+            	        alt19=2;
             	        }
             	        break;
             	    case 48:
             	        {
-            	        alt20=4;
+            	        alt19=3;
+            	        }
+            	        break;
+            	    case 49:
+            	        {
+            	        alt19=4;
             	        }
             	        break;
             	    default:
             	        if (state.backtracking>0) {state.failed=true; return retval;}
             	        NoViableAltException nvae =
-            	            new NoViableAltException("", 20, 0, input);
+            	            new NoViableAltException("", 19, 0, input);
 
             	        throw nvae;
             	    }
 
-            	    switch (alt20) {
+            	    switch (alt19) {
             	        case 1 :
-            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:140:9: '<'
+            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:137:25: '<'
             	            {
-            	            char_literal73=(Token)match(input,45,FOLLOW_45_in_relationalExpression1031); if (state.failed) return retval;
+            	            char_literal76=(Token)match(input,46,FOLLOW_46_in_relationalExpression995); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
-            	            char_literal73_tree = (CeriumAST)adaptor.create(char_literal73);
-            	            root_0 = (CeriumAST)adaptor.becomeRoot(char_literal73_tree, root_0);
+            	            char_literal76_tree = (CeriumAST)adaptor.create(char_literal76);
+            	            root_0 = (CeriumAST)adaptor.becomeRoot(char_literal76_tree, root_0);
             	            }
 
             	            }
             	            break;
             	        case 2 :
-            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:141:7: '>'
+            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:137:32: '>'
             	            {
-            	            char_literal74=(Token)match(input,46,FOLLOW_46_in_relationalExpression1040); if (state.failed) return retval;
+            	            char_literal77=(Token)match(input,47,FOLLOW_47_in_relationalExpression1000); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
-            	            char_literal74_tree = (CeriumAST)adaptor.create(char_literal74);
-            	            root_0 = (CeriumAST)adaptor.becomeRoot(char_literal74_tree, root_0);
+            	            char_literal77_tree = (CeriumAST)adaptor.create(char_literal77);
+            	            root_0 = (CeriumAST)adaptor.becomeRoot(char_literal77_tree, root_0);
             	            }
 
             	            }
             	            break;
             	        case 3 :
-            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:142:7: '<='
+            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:137:39: '<='
             	            {
-            	            string_literal75=(Token)match(input,47,FOLLOW_47_in_relationalExpression1049); if (state.failed) return retval;
+            	            string_literal78=(Token)match(input,48,FOLLOW_48_in_relationalExpression1005); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
-            	            string_literal75_tree = (CeriumAST)adaptor.create(string_literal75);
-            	            root_0 = (CeriumAST)adaptor.becomeRoot(string_literal75_tree, root_0);
+            	            string_literal78_tree = (CeriumAST)adaptor.create(string_literal78);
+            	            root_0 = (CeriumAST)adaptor.becomeRoot(string_literal78_tree, root_0);
             	            }
 
             	            }
             	            break;
             	        case 4 :
-            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:143:7: '>='
+            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:137:47: '>='
             	            {
-            	            string_literal76=(Token)match(input,48,FOLLOW_48_in_relationalExpression1058); if (state.failed) return retval;
+            	            string_literal79=(Token)match(input,49,FOLLOW_49_in_relationalExpression1010); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
-            	            string_literal76_tree = (CeriumAST)adaptor.create(string_literal76);
-            	            root_0 = (CeriumAST)adaptor.becomeRoot(string_literal76_tree, root_0);
+            	            string_literal79_tree = (CeriumAST)adaptor.create(string_literal79);
+            	            root_0 = (CeriumAST)adaptor.becomeRoot(string_literal79_tree, root_0);
             	            }
 
             	            }
@@ -2581,23 +2570,20 @@ public class CeriumParser extends Parser {
 
             	    }
 
-            	    pushFollow(FOLLOW_additiveExpression_in_relationalExpression1071);
-            	    additiveExpression77=additiveExpression();
+            	    pushFollow(FOLLOW_additiveExpression_in_relationalExpression1014);
+            	    additiveExpression80=additiveExpression();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, additiveExpression77.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, additiveExpression80.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop21;
+            	    break loop20;
                 }
             } while (true);
-
-
-            }
 
 
             }
@@ -2628,86 +2614,86 @@ public class CeriumParser extends Parser {
     };
 
     // $ANTLR start "additiveExpression"
-    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:150:1: additiveExpression : multiplicativeExpression ( ( '+' | '-' ) multiplicativeExpression )* ;
+    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:140:1: additiveExpression : multiplicativeExpression ( ( '+' | '-' ) multiplicativeExpression )* ;
     public final CeriumParser.additiveExpression_return additiveExpression() throws RecognitionException {
         CeriumParser.additiveExpression_return retval = new CeriumParser.additiveExpression_return();
         retval.start = input.LT(1);
 
         CeriumAST root_0 = null;
 
-        Token char_literal79=null;
-        Token char_literal80=null;
-        CeriumParser.multiplicativeExpression_return multiplicativeExpression78 = null;
-
+        Token char_literal82=null;
+        Token char_literal83=null;
         CeriumParser.multiplicativeExpression_return multiplicativeExpression81 = null;
 
+        CeriumParser.multiplicativeExpression_return multiplicativeExpression84 = null;
 
-        CeriumAST char_literal79_tree=null;
-        CeriumAST char_literal80_tree=null;
+
+        CeriumAST char_literal82_tree=null;
+        CeriumAST char_literal83_tree=null;
 
         try {
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:151:2: ( multiplicativeExpression ( ( '+' | '-' ) multiplicativeExpression )* )
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:152:3: multiplicativeExpression ( ( '+' | '-' ) multiplicativeExpression )*
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:141:2: ( multiplicativeExpression ( ( '+' | '-' ) multiplicativeExpression )* )
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:142:3: multiplicativeExpression ( ( '+' | '-' ) multiplicativeExpression )*
             {
             root_0 = (CeriumAST)adaptor.nil();
 
-            pushFollow(FOLLOW_multiplicativeExpression_in_additiveExpression1095);
-            multiplicativeExpression78=multiplicativeExpression();
+            pushFollow(FOLLOW_multiplicativeExpression_in_additiveExpression1031);
+            multiplicativeExpression81=multiplicativeExpression();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, multiplicativeExpression78.getTree());
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:152:28: ( ( '+' | '-' ) multiplicativeExpression )*
-            loop23:
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, multiplicativeExpression81.getTree());
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:142:28: ( ( '+' | '-' ) multiplicativeExpression )*
+            loop22:
             do {
-                int alt23=2;
-                int LA23_0 = input.LA(1);
+                int alt22=2;
+                int LA22_0 = input.LA(1);
 
-                if ( ((LA23_0>=49 && LA23_0<=50)) ) {
-                    alt23=1;
+                if ( ((LA22_0>=50 && LA22_0<=51)) ) {
+                    alt22=1;
                 }
 
 
-                switch (alt23) {
+                switch (alt22) {
             	case 1 :
-            	    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:152:29: ( '+' | '-' ) multiplicativeExpression
+            	    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:142:29: ( '+' | '-' ) multiplicativeExpression
             	    {
-            	    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:152:29: ( '+' | '-' )
-            	    int alt22=2;
-            	    int LA22_0 = input.LA(1);
+            	    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:142:29: ( '+' | '-' )
+            	    int alt21=2;
+            	    int LA21_0 = input.LA(1);
 
-            	    if ( (LA22_0==49) ) {
-            	        alt22=1;
+            	    if ( (LA21_0==50) ) {
+            	        alt21=1;
             	    }
-            	    else if ( (LA22_0==50) ) {
-            	        alt22=2;
+            	    else if ( (LA21_0==51) ) {
+            	        alt21=2;
             	    }
             	    else {
             	        if (state.backtracking>0) {state.failed=true; return retval;}
             	        NoViableAltException nvae =
-            	            new NoViableAltException("", 22, 0, input);
+            	            new NoViableAltException("", 21, 0, input);
 
             	        throw nvae;
             	    }
-            	    switch (alt22) {
+            	    switch (alt21) {
             	        case 1 :
-            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:152:30: '+'
+            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:142:30: '+'
             	            {
-            	            char_literal79=(Token)match(input,49,FOLLOW_49_in_additiveExpression1099); if (state.failed) return retval;
+            	            char_literal82=(Token)match(input,50,FOLLOW_50_in_additiveExpression1035); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
-            	            char_literal79_tree = (CeriumAST)adaptor.create(char_literal79);
-            	            root_0 = (CeriumAST)adaptor.becomeRoot(char_literal79_tree, root_0);
+            	            char_literal82_tree = (CeriumAST)adaptor.create(char_literal82);
+            	            root_0 = (CeriumAST)adaptor.becomeRoot(char_literal82_tree, root_0);
             	            }
 
             	            }
             	            break;
             	        case 2 :
-            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:152:37: '-'
+            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:142:37: '-'
             	            {
-            	            char_literal80=(Token)match(input,50,FOLLOW_50_in_additiveExpression1104); if (state.failed) return retval;
+            	            char_literal83=(Token)match(input,51,FOLLOW_51_in_additiveExpression1040); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
-            	            char_literal80_tree = (CeriumAST)adaptor.create(char_literal80);
-            	            root_0 = (CeriumAST)adaptor.becomeRoot(char_literal80_tree, root_0);
+            	            char_literal83_tree = (CeriumAST)adaptor.create(char_literal83);
+            	            root_0 = (CeriumAST)adaptor.becomeRoot(char_literal83_tree, root_0);
             	            }
 
             	            }
@@ -2715,18 +2701,18 @@ public class CeriumParser extends Parser {
 
             	    }
 
-            	    pushFollow(FOLLOW_multiplicativeExpression_in_additiveExpression1108);
-            	    multiplicativeExpression81=multiplicativeExpression();
+            	    pushFollow(FOLLOW_multiplicativeExpression_in_additiveExpression1044);
+            	    multiplicativeExpression84=multiplicativeExpression();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, multiplicativeExpression81.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, multiplicativeExpression84.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop23;
+            	    break loop22;
                 }
             } while (true);
 
@@ -2759,86 +2745,86 @@ public class CeriumParser extends Parser {
     };
 
     // $ANTLR start "multiplicativeExpression"
-    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:155:1: multiplicativeExpression : unaryExpression ( ( '*' | '/' ) unaryExpression )* ;
+    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:145:1: multiplicativeExpression : unaryExpression ( ( '*' | '/' ) unaryExpression )* ;
     public final CeriumParser.multiplicativeExpression_return multiplicativeExpression() throws RecognitionException {
         CeriumParser.multiplicativeExpression_return retval = new CeriumParser.multiplicativeExpression_return();
         retval.start = input.LT(1);
 
         CeriumAST root_0 = null;
 
-        Token char_literal83=null;
-        Token char_literal84=null;
-        CeriumParser.unaryExpression_return unaryExpression82 = null;
-
+        Token char_literal86=null;
+        Token char_literal87=null;
         CeriumParser.unaryExpression_return unaryExpression85 = null;
 
+        CeriumParser.unaryExpression_return unaryExpression88 = null;
 
-        CeriumAST char_literal83_tree=null;
-        CeriumAST char_literal84_tree=null;
+
+        CeriumAST char_literal86_tree=null;
+        CeriumAST char_literal87_tree=null;
 
         try {
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:156:2: ( unaryExpression ( ( '*' | '/' ) unaryExpression )* )
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:157:3: unaryExpression ( ( '*' | '/' ) unaryExpression )*
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:146:2: ( unaryExpression ( ( '*' | '/' ) unaryExpression )* )
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:147:3: unaryExpression ( ( '*' | '/' ) unaryExpression )*
             {
             root_0 = (CeriumAST)adaptor.nil();
 
-            pushFollow(FOLLOW_unaryExpression_in_multiplicativeExpression1124);
-            unaryExpression82=unaryExpression();
+            pushFollow(FOLLOW_unaryExpression_in_multiplicativeExpression1060);
+            unaryExpression85=unaryExpression();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpression82.getTree());
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:157:19: ( ( '*' | '/' ) unaryExpression )*
-            loop25:
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpression85.getTree());
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:147:19: ( ( '*' | '/' ) unaryExpression )*
+            loop24:
             do {
-                int alt25=2;
-                int LA25_0 = input.LA(1);
+                int alt24=2;
+                int LA24_0 = input.LA(1);
 
-                if ( ((LA25_0>=51 && LA25_0<=52)) ) {
-                    alt25=1;
+                if ( ((LA24_0>=52 && LA24_0<=53)) ) {
+                    alt24=1;
                 }
 
 
-                switch (alt25) {
+                switch (alt24) {
             	case 1 :
-            	    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:157:20: ( '*' | '/' ) unaryExpression
+            	    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:147:20: ( '*' | '/' ) unaryExpression
             	    {
-            	    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:157:20: ( '*' | '/' )
-            	    int alt24=2;
-            	    int LA24_0 = input.LA(1);
+            	    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:147:20: ( '*' | '/' )
+            	    int alt23=2;
+            	    int LA23_0 = input.LA(1);
 
-            	    if ( (LA24_0==51) ) {
-            	        alt24=1;
+            	    if ( (LA23_0==52) ) {
+            	        alt23=1;
             	    }
-            	    else if ( (LA24_0==52) ) {
-            	        alt24=2;
+            	    else if ( (LA23_0==53) ) {
+            	        alt23=2;
             	    }
             	    else {
             	        if (state.backtracking>0) {state.failed=true; return retval;}
             	        NoViableAltException nvae =
-            	            new NoViableAltException("", 24, 0, input);
+            	            new NoViableAltException("", 23, 0, input);
 
             	        throw nvae;
             	    }
-            	    switch (alt24) {
+            	    switch (alt23) {
             	        case 1 :
-            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:157:21: '*'
+            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:147:21: '*'
             	            {
-            	            char_literal83=(Token)match(input,51,FOLLOW_51_in_multiplicativeExpression1128); if (state.failed) return retval;
+            	            char_literal86=(Token)match(input,52,FOLLOW_52_in_multiplicativeExpression1064); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
-            	            char_literal83_tree = (CeriumAST)adaptor.create(char_literal83);
-            	            root_0 = (CeriumAST)adaptor.becomeRoot(char_literal83_tree, root_0);
+            	            char_literal86_tree = (CeriumAST)adaptor.create(char_literal86);
+            	            root_0 = (CeriumAST)adaptor.becomeRoot(char_literal86_tree, root_0);
             	            }
 
             	            }
             	            break;
             	        case 2 :
-            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:157:28: '/'
+            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:147:28: '/'
             	            {
-            	            char_literal84=(Token)match(input,52,FOLLOW_52_in_multiplicativeExpression1133); if (state.failed) return retval;
+            	            char_literal87=(Token)match(input,53,FOLLOW_53_in_multiplicativeExpression1069); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
-            	            char_literal84_tree = (CeriumAST)adaptor.create(char_literal84);
-            	            root_0 = (CeriumAST)adaptor.becomeRoot(char_literal84_tree, root_0);
+            	            char_literal87_tree = (CeriumAST)adaptor.create(char_literal87);
+            	            root_0 = (CeriumAST)adaptor.becomeRoot(char_literal87_tree, root_0);
             	            }
 
             	            }
@@ -2846,18 +2832,18 @@ public class CeriumParser extends Parser {
 
             	    }
 
-            	    pushFollow(FOLLOW_unaryExpression_in_multiplicativeExpression1137);
-            	    unaryExpression85=unaryExpression();
+            	    pushFollow(FOLLOW_unaryExpression_in_multiplicativeExpression1073);
+            	    unaryExpression88=unaryExpression();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpression85.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpression88.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop25;
+            	    break loop24;
                 }
             } while (true);
 
@@ -2890,7 +2876,7 @@ public class CeriumParser extends Parser {
     };
 
     // $ANTLR start "unaryExpression"
-    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:160:1: unaryExpression : (op= '-' unaryExpression -> ^( UNARY_MINUS[$op] unaryExpression ) | op= '!' unaryExpression -> ^( UNARY_NOT[$op] unaryExpression ) | postfixExpression );
+    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:150:1: unaryExpression : (op= '-' unaryExpression -> ^( UNARY_MINUS[$op] unaryExpression ) | op= '!' unaryExpression -> ^( UNARY_NOT[$op] unaryExpression ) | postfixExpression );
     public final CeriumParser.unaryExpression_return unaryExpression() throws RecognitionException {
         CeriumParser.unaryExpression_return retval = new CeriumParser.unaryExpression_return();
         retval.start = input.LT(1);
@@ -2898,29 +2884,29 @@ public class CeriumParser extends Parser {
         CeriumAST root_0 = null;
 
         Token op=null;
-        CeriumParser.unaryExpression_return unaryExpression86 = null;
+        CeriumParser.unaryExpression_return unaryExpression89 = null;
 
-        CeriumParser.unaryExpression_return unaryExpression87 = null;
+        CeriumParser.unaryExpression_return unaryExpression90 = null;
 
-        CeriumParser.postfixExpression_return postfixExpression88 = null;
+        CeriumParser.postfixExpression_return postfixExpression91 = null;
 
 
         CeriumAST op_tree=null;
-        RewriteRuleTokenStream stream_53=new RewriteRuleTokenStream(adaptor,"token 53");
-        RewriteRuleTokenStream stream_50=new RewriteRuleTokenStream(adaptor,"token 50");
+        RewriteRuleTokenStream stream_51=new RewriteRuleTokenStream(adaptor,"token 51");
+        RewriteRuleTokenStream stream_54=new RewriteRuleTokenStream(adaptor,"token 54");
         RewriteRuleSubtreeStream stream_unaryExpression=new RewriteRuleSubtreeStream(adaptor,"rule unaryExpression");
         try {
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:161:2: (op= '-' unaryExpression -> ^( UNARY_MINUS[$op] unaryExpression ) | op= '!' unaryExpression -> ^( UNARY_NOT[$op] unaryExpression ) | postfixExpression )
-            int alt26=3;
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:151:2: (op= '-' unaryExpression -> ^( UNARY_MINUS[$op] unaryExpression ) | op= '!' unaryExpression -> ^( UNARY_NOT[$op] unaryExpression ) | postfixExpression )
+            int alt25=3;
             switch ( input.LA(1) ) {
-            case 50:
+            case 51:
                 {
-                alt26=1;
+                alt25=1;
                 }
                 break;
-            case 53:
+            case 54:
                 {
-                alt26=2;
+                alt25=2;
                 }
                 break;
             case ID:
@@ -2928,35 +2914,33 @@ public class CeriumParser extends Parser {
             case FLOAT:
             case CHAR:
             case 31:
-            case 57:
             case 58:
             case 59:
-            case 60:
                 {
-                alt26=3;
+                alt25=3;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 26, 0, input);
+                    new NoViableAltException("", 25, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt26) {
+            switch (alt25) {
                 case 1 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:162:3: op= '-' unaryExpression
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:152:3: op= '-' unaryExpression
                     {
-                    op=(Token)match(input,50,FOLLOW_50_in_unaryExpression1155); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_50.add(op);
+                    op=(Token)match(input,51,FOLLOW_51_in_unaryExpression1091); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_51.add(op);
 
-                    pushFollow(FOLLOW_unaryExpression_in_unaryExpression1157);
-                    unaryExpression86=unaryExpression();
+                    pushFollow(FOLLOW_unaryExpression_in_unaryExpression1093);
+                    unaryExpression89=unaryExpression();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_unaryExpression.add(unaryExpression86.getTree());
+                    if ( state.backtracking==0 ) stream_unaryExpression.add(unaryExpression89.getTree());
 
 
                     // AST REWRITE
@@ -2971,9 +2955,9 @@ public class CeriumParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CeriumAST)adaptor.nil();
-                    // 162:26: -> ^( UNARY_MINUS[$op] unaryExpression )
+                    // 152:26: -> ^( UNARY_MINUS[$op] unaryExpression )
                     {
-                        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:162:29: ^( UNARY_MINUS[$op] unaryExpression )
+                        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:152:29: ^( UNARY_MINUS[$op] unaryExpression )
                         {
                         CeriumAST root_1 = (CeriumAST)adaptor.nil();
                         root_1 = (CeriumAST)adaptor.becomeRoot((CeriumAST)adaptor.create(UNARY_MINUS, op), root_1);
@@ -2989,17 +2973,17 @@ public class CeriumParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:163:4: op= '!' unaryExpression
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:153:4: op= '!' unaryExpression
                     {
-                    op=(Token)match(input,53,FOLLOW_53_in_unaryExpression1173); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_53.add(op);
+                    op=(Token)match(input,54,FOLLOW_54_in_unaryExpression1109); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_54.add(op);
 
-                    pushFollow(FOLLOW_unaryExpression_in_unaryExpression1175);
-                    unaryExpression87=unaryExpression();
+                    pushFollow(FOLLOW_unaryExpression_in_unaryExpression1111);
+                    unaryExpression90=unaryExpression();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_unaryExpression.add(unaryExpression87.getTree());
+                    if ( state.backtracking==0 ) stream_unaryExpression.add(unaryExpression90.getTree());
 
 
                     // AST REWRITE
@@ -3014,9 +2998,9 @@ public class CeriumParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CeriumAST)adaptor.nil();
-                    // 163:27: -> ^( UNARY_NOT[$op] unaryExpression )
+                    // 153:27: -> ^( UNARY_NOT[$op] unaryExpression )
                     {
-                        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:163:30: ^( UNARY_NOT[$op] unaryExpression )
+                        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:153:30: ^( UNARY_NOT[$op] unaryExpression )
                         {
                         CeriumAST root_1 = (CeriumAST)adaptor.nil();
                         root_1 = (CeriumAST)adaptor.becomeRoot((CeriumAST)adaptor.create(UNARY_NOT, op), root_1);
@@ -3032,16 +3016,16 @@ public class CeriumParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:164:4: postfixExpression
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:154:4: postfixExpression
                     {
                     root_0 = (CeriumAST)adaptor.nil();
 
-                    pushFollow(FOLLOW_postfixExpression_in_unaryExpression1189);
-                    postfixExpression88=postfixExpression();
+                    pushFollow(FOLLOW_postfixExpression_in_unaryExpression1125);
+                    postfixExpression91=postfixExpression();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, postfixExpression88.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, postfixExpression91.getTree());
 
                     }
                     break;
@@ -3073,7 +3057,7 @@ public class CeriumParser extends Parser {
     };
 
     // $ANTLR start "postfixExpression"
-    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:169:1: postfixExpression : primary ( (r= '(' expressionList ')' | r= '[' expr ']' | r= '.' ID ) )* ;
+    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:158:1: postfixExpression : primary ( (r= '(' expressionList ')' | r= '[' expr ']' | r= '.' ID ) )* ;
     public final CeriumParser.postfixExpression_return postfixExpression() throws RecognitionException {
         CeriumParser.postfixExpression_return retval = new CeriumParser.postfixExpression_return();
         retval.start = input.LT(1);
@@ -3081,90 +3065,90 @@ public class CeriumParser extends Parser {
         CeriumAST root_0 = null;
 
         Token r=null;
-        Token char_literal91=null;
-        Token char_literal93=null;
-        Token ID94=null;
-        CeriumParser.primary_return primary89 = null;
+        Token char_literal94=null;
+        Token char_literal96=null;
+        Token ID97=null;
+        CeriumParser.primary_return primary92 = null;
 
-        CeriumParser.expressionList_return expressionList90 = null;
+        CeriumParser.expressionList_return expressionList93 = null;
 
-        CeriumParser.expr_return expr92 = null;
+        CeriumParser.expr_return expr95 = null;
 
 
         CeriumAST r_tree=null;
-        CeriumAST char_literal91_tree=null;
-        CeriumAST char_literal93_tree=null;
-        CeriumAST ID94_tree=null;
+        CeriumAST char_literal94_tree=null;
+        CeriumAST char_literal96_tree=null;
+        CeriumAST ID97_tree=null;
 
         try {
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:170:5: ( primary ( (r= '(' expressionList ')' | r= '[' expr ']' | r= '.' ID ) )* )
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:170:9: primary ( (r= '(' expressionList ')' | r= '[' expr ']' | r= '.' ID ) )*
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:159:5: ( primary ( (r= '(' expressionList ')' | r= '[' expr ']' | r= '.' ID ) )* )
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:159:9: primary ( (r= '(' expressionList ')' | r= '[' expr ']' | r= '.' ID ) )*
             {
             root_0 = (CeriumAST)adaptor.nil();
 
-            pushFollow(FOLLOW_primary_in_postfixExpression1207);
-            primary89=primary();
+            pushFollow(FOLLOW_primary_in_postfixExpression1142);
+            primary92=primary();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, primary89.getTree());
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:171:6: ( (r= '(' expressionList ')' | r= '[' expr ']' | r= '.' ID ) )*
-            loop28:
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, primary92.getTree());
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:160:6: ( (r= '(' expressionList ')' | r= '[' expr ']' | r= '.' ID ) )*
+            loop27:
             do {
-                int alt28=2;
-                int LA28_0 = input.LA(1);
+                int alt27=2;
+                int LA27_0 = input.LA(1);
 
-                if ( (LA28_0==31||LA28_0==54||LA28_0==56) ) {
-                    alt28=1;
+                if ( (LA27_0==31||LA27_0==55||LA27_0==57) ) {
+                    alt27=1;
                 }
 
 
-                switch (alt28) {
+                switch (alt27) {
             	case 1 :
-            	    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:172:7: (r= '(' expressionList ')' | r= '[' expr ']' | r= '.' ID )
+            	    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:161:7: (r= '(' expressionList ')' | r= '[' expr ']' | r= '.' ID )
             	    {
-            	    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:172:7: (r= '(' expressionList ')' | r= '[' expr ']' | r= '.' ID )
-            	    int alt27=3;
+            	    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:161:7: (r= '(' expressionList ')' | r= '[' expr ']' | r= '.' ID )
+            	    int alt26=3;
             	    switch ( input.LA(1) ) {
             	    case 31:
             	        {
-            	        alt27=1;
+            	        alt26=1;
             	        }
             	        break;
-            	    case 54:
+            	    case 55:
             	        {
-            	        alt27=2;
+            	        alt26=2;
             	        }
             	        break;
-            	    case 56:
+            	    case 57:
             	        {
-            	        alt27=3;
+            	        alt26=3;
             	        }
             	        break;
             	    default:
             	        if (state.backtracking>0) {state.failed=true; return retval;}
             	        NoViableAltException nvae =
-            	            new NoViableAltException("", 27, 0, input);
+            	            new NoViableAltException("", 26, 0, input);
 
             	        throw nvae;
             	    }
 
-            	    switch (alt27) {
+            	    switch (alt26) {
             	        case 1 :
-            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:172:9: r= '(' expressionList ')'
+            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:161:9: r= '(' expressionList ')'
             	            {
-            	            r=(Token)match(input,31,FOLLOW_31_in_postfixExpression1226); if (state.failed) return retval;
+            	            r=(Token)match(input,31,FOLLOW_31_in_postfixExpression1161); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            r_tree = (CeriumAST)adaptor.create(r);
             	            root_0 = (CeriumAST)adaptor.becomeRoot(r_tree, root_0);
             	            }
-            	            pushFollow(FOLLOW_expressionList_in_postfixExpression1229);
-            	            expressionList90=expressionList();
+            	            pushFollow(FOLLOW_expressionList_in_postfixExpression1164);
+            	            expressionList93=expressionList();
 
             	            state._fsp--;
             	            if (state.failed) return retval;
-            	            if ( state.backtracking==0 ) adaptor.addChild(root_0, expressionList90.getTree());
-            	            char_literal91=(Token)match(input,32,FOLLOW_32_in_postfixExpression1231); if (state.failed) return retval;
+            	            if ( state.backtracking==0 ) adaptor.addChild(root_0, expressionList93.getTree());
+            	            char_literal94=(Token)match(input,32,FOLLOW_32_in_postfixExpression1166); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	              r.setType(CALL);
             	            }
@@ -3172,20 +3156,20 @@ public class CeriumParser extends Parser {
             	            }
             	            break;
             	        case 2 :
-            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:173:9: r= '[' expr ']'
+            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:162:9: r= '[' expr ']'
             	            {
-            	            r=(Token)match(input,54,FOLLOW_54_in_postfixExpression1246); if (state.failed) return retval;
+            	            r=(Token)match(input,55,FOLLOW_55_in_postfixExpression1181); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            r_tree = (CeriumAST)adaptor.create(r);
             	            root_0 = (CeriumAST)adaptor.becomeRoot(r_tree, root_0);
             	            }
-            	            pushFollow(FOLLOW_expr_in_postfixExpression1249);
-            	            expr92=expr();
+            	            pushFollow(FOLLOW_expr_in_postfixExpression1184);
+            	            expr95=expr();
 
             	            state._fsp--;
             	            if (state.failed) return retval;
-            	            if ( state.backtracking==0 ) adaptor.addChild(root_0, expr92.getTree());
-            	            char_literal93=(Token)match(input,55,FOLLOW_55_in_postfixExpression1251); if (state.failed) return retval;
+            	            if ( state.backtracking==0 ) adaptor.addChild(root_0, expr95.getTree());
+            	            char_literal96=(Token)match(input,56,FOLLOW_56_in_postfixExpression1186); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	              r.setType(INDEX);
             	            }
@@ -3193,17 +3177,17 @@ public class CeriumParser extends Parser {
             	            }
             	            break;
             	        case 3 :
-            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:174:9: r= '.' ID
+            	            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:163:9: r= '.' ID
             	            {
-            	            r=(Token)match(input,56,FOLLOW_56_in_postfixExpression1268); if (state.failed) return retval;
+            	            r=(Token)match(input,57,FOLLOW_57_in_postfixExpression1203); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            r_tree = (CeriumAST)adaptor.create(r);
             	            root_0 = (CeriumAST)adaptor.becomeRoot(r_tree, root_0);
             	            }
-            	            ID94=(Token)match(input,ID,FOLLOW_ID_in_postfixExpression1271); if (state.failed) return retval;
+            	            ID97=(Token)match(input,ID,FOLLOW_ID_in_postfixExpression1206); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
-            	            ID94_tree = (CeriumAST)adaptor.create(ID94);
-            	            adaptor.addChild(root_0, ID94_tree);
+            	            ID97_tree = (CeriumAST)adaptor.create(ID97);
+            	            adaptor.addChild(root_0, ID97_tree);
             	            }
 
             	            }
@@ -3216,7 +3200,7 @@ public class CeriumParser extends Parser {
             	    break;
 
             	default :
-            	    break loop28;
+            	    break loop27;
                 }
             } while (true);
 
@@ -3243,479 +3227,186 @@ public class CeriumParser extends Parser {
     }
     // $ANTLR end "postfixExpression"
 
-    public static class suffix_return extends ParserRuleReturnScope {
-        CeriumAST tree;
-        public Object getTree() { return tree; }
-    };
-
-    // $ANTLR start "suffix"
-    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:180:1: suffix[CommonTree expr] options {backtrack=true; } : ( '.' ID '(' expressionList ')' -> ^( CALL ^( '.' ID ) ) | '.' ID -> ^( '.' ID ) | '(' expressionList ')' -> ^( CALL ) );
-    public final CeriumParser.suffix_return suffix(CommonTree expr) throws RecognitionException {
-        CeriumParser.suffix_return retval = new CeriumParser.suffix_return();
-        retval.start = input.LT(1);
-
-        CeriumAST root_0 = null;
-
-        Token char_literal95=null;
-        Token ID96=null;
-        Token char_literal97=null;
-        Token char_literal99=null;
-        Token char_literal100=null;
-        Token ID101=null;
-        Token char_literal102=null;
-        Token char_literal104=null;
-        CeriumParser.expressionList_return expressionList98 = null;
-
-        CeriumParser.expressionList_return expressionList103 = null;
-
-
-        CeriumAST char_literal95_tree=null;
-        CeriumAST ID96_tree=null;
-        CeriumAST char_literal97_tree=null;
-        CeriumAST char_literal99_tree=null;
-        CeriumAST char_literal100_tree=null;
-        CeriumAST ID101_tree=null;
-        CeriumAST char_literal102_tree=null;
-        CeriumAST char_literal104_tree=null;
-        RewriteRuleTokenStream stream_56=new RewriteRuleTokenStream(adaptor,"token 56");
-        RewriteRuleTokenStream stream_32=new RewriteRuleTokenStream(adaptor,"token 32");
-        RewriteRuleTokenStream stream_31=new RewriteRuleTokenStream(adaptor,"token 31");
-        RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
-        RewriteRuleSubtreeStream stream_expressionList=new RewriteRuleSubtreeStream(adaptor,"rule expressionList");
-        try {
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:182:2: ( '.' ID '(' expressionList ')' -> ^( CALL ^( '.' ID ) ) | '.' ID -> ^( '.' ID ) | '(' expressionList ')' -> ^( CALL ) )
-            int alt29=3;
-            int LA29_0 = input.LA(1);
-
-            if ( (LA29_0==56) ) {
-                int LA29_1 = input.LA(2);
-
-                if ( (LA29_1==ID) ) {
-                    int LA29_3 = input.LA(3);
-
-                    if ( (LA29_3==31) ) {
-                        alt29=1;
-                    }
-                    else if ( (LA29_3==EOF) ) {
-                        alt29=2;
-                    }
-                    else {
-                        if (state.backtracking>0) {state.failed=true; return retval;}
-                        NoViableAltException nvae =
-                            new NoViableAltException("", 29, 3, input);
-
-                        throw nvae;
-                    }
-                }
-                else {
-                    if (state.backtracking>0) {state.failed=true; return retval;}
-                    NoViableAltException nvae =
-                        new NoViableAltException("", 29, 1, input);
-
-                    throw nvae;
-                }
-            }
-            else if ( (LA29_0==31) ) {
-                alt29=3;
-            }
-            else {
-                if (state.backtracking>0) {state.failed=true; return retval;}
-                NoViableAltException nvae =
-                    new NoViableAltException("", 29, 0, input);
-
-                throw nvae;
-            }
-            switch (alt29) {
-                case 1 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:182:4: '.' ID '(' expressionList ')'
-                    {
-                    char_literal95=(Token)match(input,56,FOLLOW_56_in_suffix1310); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_56.add(char_literal95);
-
-                    ID96=(Token)match(input,ID,FOLLOW_ID_in_suffix1312); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_ID.add(ID96);
-
-                    char_literal97=(Token)match(input,31,FOLLOW_31_in_suffix1314); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_31.add(char_literal97);
-
-                    pushFollow(FOLLOW_expressionList_in_suffix1316);
-                    expressionList98=expressionList();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_expressionList.add(expressionList98.getTree());
-                    char_literal99=(Token)match(input,32,FOLLOW_32_in_suffix1318); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_32.add(char_literal99);
-
-
-
-                    // AST REWRITE
-                    // elements: ID, 56
-                    // token labels: 
-                    // rule labels: retval
-                    // token list labels: 
-                    // rule list labels: 
-                    // wildcard labels: 
-                    if ( state.backtracking==0 ) {
-                    retval.tree = root_0;
-                    RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
-
-                    root_0 = (CeriumAST)adaptor.nil();
-                    // 182:34: -> ^( CALL ^( '.' ID ) )
-                    {
-                        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:182:37: ^( CALL ^( '.' ID ) )
-                        {
-                        CeriumAST root_1 = (CeriumAST)adaptor.nil();
-                        root_1 = (CeriumAST)adaptor.becomeRoot((CeriumAST)adaptor.create(CALL, "CALL"), root_1);
-
-                        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:182:44: ^( '.' ID )
-                        {
-                        CeriumAST root_2 = (CeriumAST)adaptor.nil();
-                        root_2 = (CeriumAST)adaptor.becomeRoot(stream_56.nextNode(), root_2);
-
-                        adaptor.addChild(root_2, expr);
-                        adaptor.addChild(root_2, stream_ID.nextNode());
-
-                        adaptor.addChild(root_1, root_2);
-                        }
-
-                        adaptor.addChild(root_0, root_1);
-                        }
-
-                    }
-
-                    retval.tree = root_0;}
-                    }
-                    break;
-                case 2 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:183:4: '.' ID
-                    {
-                    char_literal100=(Token)match(input,56,FOLLOW_56_in_suffix1337); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_56.add(char_literal100);
-
-                    ID101=(Token)match(input,ID,FOLLOW_ID_in_suffix1339); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_ID.add(ID101);
-
-
-
-                    // AST REWRITE
-                    // elements: 56, ID
-                    // token labels: 
-                    // rule labels: retval
-                    // token list labels: 
-                    // rule list labels: 
-                    // wildcard labels: 
-                    if ( state.backtracking==0 ) {
-                    retval.tree = root_0;
-                    RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
-
-                    root_0 = (CeriumAST)adaptor.nil();
-                    // 183:18: -> ^( '.' ID )
-                    {
-                        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:183:21: ^( '.' ID )
-                        {
-                        CeriumAST root_1 = (CeriumAST)adaptor.nil();
-                        root_1 = (CeriumAST)adaptor.becomeRoot(stream_56.nextNode(), root_1);
-
-                        adaptor.addChild(root_1, expr);
-                        adaptor.addChild(root_1, stream_ID.nextNode());
-
-                        adaptor.addChild(root_0, root_1);
-                        }
-
-                    }
-
-                    retval.tree = root_0;}
-                    }
-                    break;
-                case 3 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:184:4: '(' expressionList ')'
-                    {
-                    char_literal102=(Token)match(input,31,FOLLOW_31_in_suffix1361); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_31.add(char_literal102);
-
-                    pushFollow(FOLLOW_expressionList_in_suffix1363);
-                    expressionList103=expressionList();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_expressionList.add(expressionList103.getTree());
-                    char_literal104=(Token)match(input,32,FOLLOW_32_in_suffix1365); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_32.add(char_literal104);
-
-
-
-                    // AST REWRITE
-                    // elements: 
-                    // token labels: 
-                    // rule labels: retval
-                    // token list labels: 
-                    // rule list labels: 
-                    // wildcard labels: 
-                    if ( state.backtracking==0 ) {
-                    retval.tree = root_0;
-                    RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
-
-                    root_0 = (CeriumAST)adaptor.nil();
-                    // 184:34: -> ^( CALL )
-                    {
-                        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:184:37: ^( CALL )
-                        {
-                        CeriumAST root_1 = (CeriumAST)adaptor.nil();
-                        root_1 = (CeriumAST)adaptor.becomeRoot((CeriumAST)adaptor.create(CALL, "CALL"), root_1);
-
-                        adaptor.addChild(root_1, expr);
-
-                        adaptor.addChild(root_0, root_1);
-                        }
-
-                    }
-
-                    retval.tree = root_0;}
-                    }
-                    break;
-
-            }
-            retval.stop = input.LT(-1);
-
-            if ( state.backtracking==0 ) {
-
-            retval.tree = (CeriumAST)adaptor.rulePostProcessing(root_0);
-            adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-    	retval.tree = (CeriumAST)adaptor.errorNode(input, retval.start, input.LT(-1), re);
-
-        }
-        finally {
-        }
-        return retval;
-    }
-    // $ANTLR end "suffix"
-
     public static class primary_return extends ParserRuleReturnScope {
         CeriumAST tree;
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "primary"
-    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:187:1: primary : ( 'this' | 'super' | ID | INT | FLOAT | CHAR | 'true' | 'false' | '(' expression ')' -> expression );
+    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:169:1: primary : ( ID | INT | FLOAT | CHAR | 'true' | 'false' | '(' expr ')' -> expr );
     public final CeriumParser.primary_return primary() throws RecognitionException {
         CeriumParser.primary_return retval = new CeriumParser.primary_return();
         retval.start = input.LT(1);
 
         CeriumAST root_0 = null;
 
-        Token string_literal105=null;
-        Token string_literal106=null;
-        Token ID107=null;
-        Token INT108=null;
-        Token FLOAT109=null;
-        Token CHAR110=null;
-        Token string_literal111=null;
-        Token string_literal112=null;
-        Token char_literal113=null;
-        Token char_literal115=null;
-        CeriumParser.expression_return expression114 = null;
+        Token ID98=null;
+        Token INT99=null;
+        Token FLOAT100=null;
+        Token CHAR101=null;
+        Token string_literal102=null;
+        Token string_literal103=null;
+        Token char_literal104=null;
+        Token char_literal106=null;
+        CeriumParser.expr_return expr105 = null;
 
 
-        CeriumAST string_literal105_tree=null;
-        CeriumAST string_literal106_tree=null;
-        CeriumAST ID107_tree=null;
-        CeriumAST INT108_tree=null;
-        CeriumAST FLOAT109_tree=null;
-        CeriumAST CHAR110_tree=null;
-        CeriumAST string_literal111_tree=null;
-        CeriumAST string_literal112_tree=null;
-        CeriumAST char_literal113_tree=null;
-        CeriumAST char_literal115_tree=null;
+        CeriumAST ID98_tree=null;
+        CeriumAST INT99_tree=null;
+        CeriumAST FLOAT100_tree=null;
+        CeriumAST CHAR101_tree=null;
+        CeriumAST string_literal102_tree=null;
+        CeriumAST string_literal103_tree=null;
+        CeriumAST char_literal104_tree=null;
+        CeriumAST char_literal106_tree=null;
         RewriteRuleTokenStream stream_32=new RewriteRuleTokenStream(adaptor,"token 32");
         RewriteRuleTokenStream stream_31=new RewriteRuleTokenStream(adaptor,"token 31");
-        RewriteRuleSubtreeStream stream_expression=new RewriteRuleSubtreeStream(adaptor,"rule expression");
+        RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:188:5: ( 'this' | 'super' | ID | INT | FLOAT | CHAR | 'true' | 'false' | '(' expression ')' -> expression )
-            int alt30=9;
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:170:5: ( ID | INT | FLOAT | CHAR | 'true' | 'false' | '(' expr ')' -> expr )
+            int alt28=7;
             switch ( input.LA(1) ) {
-            case 57:
-                {
-                alt30=1;
-                }
-                break;
-            case 58:
-                {
-                alt30=2;
-                }
-                break;
             case ID:
                 {
-                alt30=3;
+                alt28=1;
                 }
                 break;
             case INT:
                 {
-                alt30=4;
+                alt28=2;
                 }
                 break;
             case FLOAT:
                 {
-                alt30=5;
+                alt28=3;
                 }
                 break;
             case CHAR:
                 {
-                alt30=6;
+                alt28=4;
+                }
+                break;
+            case 58:
+                {
+                alt28=5;
                 }
                 break;
             case 59:
                 {
-                alt30=7;
-                }
-                break;
-            case 60:
-                {
-                alt30=8;
+                alt28=6;
                 }
                 break;
             case 31:
                 {
-                alt30=9;
+                alt28=7;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 30, 0, input);
+                    new NoViableAltException("", 28, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt30) {
+            switch (alt28) {
                 case 1 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:189:6: 'this'
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:170:7: ID
                     {
                     root_0 = (CeriumAST)adaptor.nil();
 
-                    string_literal105=(Token)match(input,57,FOLLOW_57_in_primary1403); if (state.failed) return retval;
+                    ID98=(Token)match(input,ID,FOLLOW_ID_in_primary1240); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal105_tree = (CeriumAST)adaptor.create(string_literal105);
-                    adaptor.addChild(root_0, string_literal105_tree);
+                    ID98_tree = (CeriumAST)adaptor.create(ID98);
+                    adaptor.addChild(root_0, ID98_tree);
                     }
 
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:190:7: 'super'
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:171:9: INT
                     {
                     root_0 = (CeriumAST)adaptor.nil();
 
-                    string_literal106=(Token)match(input,58,FOLLOW_58_in_primary1411); if (state.failed) return retval;
+                    INT99=(Token)match(input,INT,FOLLOW_INT_in_primary1250); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal106_tree = (CeriumAST)adaptor.create(string_literal106);
-                    adaptor.addChild(root_0, string_literal106_tree);
+                    INT99_tree = (CeriumAST)adaptor.create(INT99);
+                    adaptor.addChild(root_0, INT99_tree);
                     }
 
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:191:7: ID
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:172:7: FLOAT
                     {
                     root_0 = (CeriumAST)adaptor.nil();
 
-                    ID107=(Token)match(input,ID,FOLLOW_ID_in_primary1419); if (state.failed) return retval;
+                    FLOAT100=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_primary1258); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ID107_tree = (CeriumAST)adaptor.create(ID107);
-                    adaptor.addChild(root_0, ID107_tree);
+                    FLOAT100_tree = (CeriumAST)adaptor.create(FLOAT100);
+                    adaptor.addChild(root_0, FLOAT100_tree);
                     }
 
                     }
                     break;
                 case 4 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:192:9: INT
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:173:7: CHAR
                     {
                     root_0 = (CeriumAST)adaptor.nil();
 
-                    INT108=(Token)match(input,INT,FOLLOW_INT_in_primary1429); if (state.failed) return retval;
+                    CHAR101=(Token)match(input,CHAR,FOLLOW_CHAR_in_primary1266); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    INT108_tree = (CeriumAST)adaptor.create(INT108);
-                    adaptor.addChild(root_0, INT108_tree);
+                    CHAR101_tree = (CeriumAST)adaptor.create(CHAR101);
+                    adaptor.addChild(root_0, CHAR101_tree);
                     }
 
                     }
                     break;
                 case 5 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:193:7: FLOAT
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:174:7: 'true'
                     {
                     root_0 = (CeriumAST)adaptor.nil();
 
-                    FLOAT109=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_primary1437); if (state.failed) return retval;
+                    string_literal102=(Token)match(input,58,FOLLOW_58_in_primary1274); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    FLOAT109_tree = (CeriumAST)adaptor.create(FLOAT109);
-                    adaptor.addChild(root_0, FLOAT109_tree);
+                    string_literal102_tree = (CeriumAST)adaptor.create(string_literal102);
+                    adaptor.addChild(root_0, string_literal102_tree);
                     }
 
                     }
                     break;
                 case 6 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:194:7: CHAR
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:175:7: 'false'
                     {
                     root_0 = (CeriumAST)adaptor.nil();
 
-                    CHAR110=(Token)match(input,CHAR,FOLLOW_CHAR_in_primary1445); if (state.failed) return retval;
+                    string_literal103=(Token)match(input,59,FOLLOW_59_in_primary1282); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CHAR110_tree = (CeriumAST)adaptor.create(CHAR110);
-                    adaptor.addChild(root_0, CHAR110_tree);
+                    string_literal103_tree = (CeriumAST)adaptor.create(string_literal103);
+                    adaptor.addChild(root_0, string_literal103_tree);
                     }
 
                     }
                     break;
                 case 7 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:195:7: 'true'
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:176:8: '(' expr ')'
                     {
-                    root_0 = (CeriumAST)adaptor.nil();
+                    char_literal104=(Token)match(input,31,FOLLOW_31_in_primary1291); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_31.add(char_literal104);
 
-                    string_literal111=(Token)match(input,59,FOLLOW_59_in_primary1453); if (state.failed) return retval;
-                    if ( state.backtracking==0 ) {
-                    string_literal111_tree = (CeriumAST)adaptor.create(string_literal111);
-                    adaptor.addChild(root_0, string_literal111_tree);
-                    }
-
-                    }
-                    break;
-                case 8 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:196:7: 'false'
-                    {
-                    root_0 = (CeriumAST)adaptor.nil();
-
-                    string_literal112=(Token)match(input,60,FOLLOW_60_in_primary1461); if (state.failed) return retval;
-                    if ( state.backtracking==0 ) {
-                    string_literal112_tree = (CeriumAST)adaptor.create(string_literal112);
-                    adaptor.addChild(root_0, string_literal112_tree);
-                    }
-
-                    }
-                    break;
-                case 9 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:197:9: '(' expression ')'
-                    {
-                    char_literal113=(Token)match(input,31,FOLLOW_31_in_primary1471); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_31.add(char_literal113);
-
-                    pushFollow(FOLLOW_expression_in_primary1473);
-                    expression114=expression();
+                    pushFollow(FOLLOW_expr_in_primary1293);
+                    expr105=expr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_expression.add(expression114.getTree());
-                    char_literal115=(Token)match(input,32,FOLLOW_32_in_primary1475); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_32.add(char_literal115);
+                    if ( state.backtracking==0 ) stream_expr.add(expr105.getTree());
+                    char_literal106=(Token)match(input,32,FOLLOW_32_in_primary1295); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_32.add(char_literal106);
 
 
 
                     // AST REWRITE
-                    // elements: expression
+                    // elements: expr
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -3726,9 +3417,9 @@ public class CeriumParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CeriumAST)adaptor.nil();
-                    // 197:28: -> expression
+                    // 176:21: -> expr
                     {
-                        adaptor.addChild(root_0, stream_expression.nextTree());
+                        adaptor.addChild(root_0, stream_expr.nextTree());
 
                     }
 
@@ -3762,7 +3453,7 @@ public class CeriumParser extends Parser {
         // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:100:7: ( varDeclaration )
         // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:100:7: varDeclaration
         {
-        pushFollow(FOLLOW_varDeclaration_in_synpred2_Cerium662);
+        pushFollow(FOLLOW_varDeclaration_in_synpred2_Cerium661);
         varDeclaration();
 
         state._fsp--;
@@ -3772,92 +3463,54 @@ public class CeriumParser extends Parser {
     }
     // $ANTLR end synpred2_Cerium
 
-    // $ANTLR start synpred5_Cerium
-    public final void synpred5_Cerium_fragment() throws RecognitionException {   
-        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:104:7: ( lhs '=' expression ';' )
-        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:104:7: lhs '=' expression ';'
+    // $ANTLR start synpred6_Cerium
+    public final void synpred6_Cerium_fragment() throws RecognitionException {   
+        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:106:7: ( lhs '=' expression ';' )
+        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:106:7: lhs '=' expression ';'
         {
-        pushFollow(FOLLOW_lhs_in_synpred5_Cerium741);
+        pushFollow(FOLLOW_lhs_in_synpred6_Cerium771);
         lhs();
 
         state._fsp--;
         if (state.failed) return ;
-        match(input,ASSIGN,FOLLOW_ASSIGN_in_synpred5_Cerium743); if (state.failed) return ;
-        pushFollow(FOLLOW_expression_in_synpred5_Cerium745);
+        match(input,ASSIGN,FOLLOW_ASSIGN_in_synpred6_Cerium773); if (state.failed) return ;
+        pushFollow(FOLLOW_expression_in_synpred6_Cerium775);
         expression();
 
         state._fsp--;
         if (state.failed) return ;
-        match(input,28,FOLLOW_28_in_synpred5_Cerium747); if (state.failed) return ;
-
-        }
-    }
-    // $ANTLR end synpred5_Cerium
-
-    // $ANTLR start synpred6_Cerium
-    public final void synpred6_Cerium_fragment() throws RecognitionException {   
-        CeriumParser.postfixExpression_return a = null;
-
-
-        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:105:9: (a= postfixExpression ( '=' expression | ) ';' )
-        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:105:9: a= postfixExpression ( '=' expression | ) ';'
-        {
-        pushFollow(FOLLOW_postfixExpression_in_synpred6_Cerium769);
-        a=postfixExpression();
-
-        state._fsp--;
-        if (state.failed) return ;
-        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:106:9: ( '=' expression | )
-        int alt33=2;
-        int LA33_0 = input.LA(1);
-
-        if ( (LA33_0==ASSIGN) ) {
-            alt33=1;
-        }
-        else if ( (LA33_0==28) ) {
-            alt33=2;
-        }
-        else {
-            if (state.backtracking>0) {state.failed=true; return ;}
-            NoViableAltException nvae =
-                new NoViableAltException("", 33, 0, input);
-
-            throw nvae;
-        }
-        switch (alt33) {
-            case 1 :
-                // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:106:13: '=' expression
-                {
-                match(input,ASSIGN,FOLLOW_ASSIGN_in_synpred6_Cerium784); if (state.failed) return ;
-                pushFollow(FOLLOW_expression_in_synpred6_Cerium786);
-                expression();
-
-                state._fsp--;
-                if (state.failed) return ;
-
-                }
-                break;
-            case 2 :
-                // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:107:13: 
-                {
-                }
-                break;
-
-        }
-
-        match(input,28,FOLLOW_28_in_synpred6_Cerium836); if (state.failed) return ;
+        match(input,28,FOLLOW_28_in_synpred6_Cerium777); if (state.failed) return ;
 
         }
     }
     // $ANTLR end synpred6_Cerium
 
+    // $ANTLR start synpred7_Cerium
+    public final void synpred7_Cerium_fragment() throws RecognitionException {   
+        CeriumParser.postfixExpression_return a = null;
+
+
+        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:107:9: (a= postfixExpression ';' )
+        // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Cerium.g:107:9: a= postfixExpression ';'
+        {
+        pushFollow(FOLLOW_postfixExpression_in_synpred7_Cerium799);
+        a=postfixExpression();
+
+        state._fsp--;
+        if (state.failed) return ;
+        match(input,28,FOLLOW_28_in_synpred7_Cerium801); if (state.failed) return ;
+
+        }
+    }
+    // $ANTLR end synpred7_Cerium
+
     // Delegated rules
 
-    public final boolean synpred5_Cerium() {
+    public final boolean synpred7_Cerium() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred5_Cerium_fragment(); // can never throw exception
+            synpred7_Cerium_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -3897,29 +3550,27 @@ public class CeriumParser extends Parser {
     }
 
 
-    protected DFA15 dfa15 = new DFA15(this);
-    static final String DFA15_eotS =
-        "\21\uffff";
-    static final String DFA15_eofS =
-        "\21\uffff";
-    static final String DFA15_minS =
-        "\1\22\1\uffff\1\0\2\uffff\2\0\1\uffff\6\0\3\uffff";
-    static final String DFA15_maxS =
-        "\1\74\1\uffff\1\0\2\uffff\2\0\1\uffff\6\0\3\uffff";
-    static final String DFA15_acceptS =
-        "\1\uffff\1\1\1\uffff\1\3\1\4\2\uffff\1\2\6\uffff\1\7\1\5\1\6";
-    static final String DFA15_specialS =
-        "\2\uffff\1\0\2\uffff\1\1\1\2\1\uffff\1\3\1\4\1\5\1\6\1\7\1\10\3"+
-        "\uffff}>";
-    static final String[] DFA15_transitionS = {
-            "\1\2\1\10\1\11\1\12\4\uffff\1\1\1\uffff\1\16\2\uffff\1\15\3"+
-            "\uffff\5\7\1\3\1\uffff\1\4\16\uffff\1\5\1\6\1\13\1\14",
+    protected DFA14 dfa14 = new DFA14(this);
+    static final String DFA14_eotS =
+        "\20\uffff";
+    static final String DFA14_eofS =
+        "\20\uffff";
+    static final String DFA14_minS =
+        "\1\22\1\uffff\1\0\4\uffff\6\0\3\uffff";
+    static final String DFA14_maxS =
+        "\1\73\1\uffff\1\0\4\uffff\6\0\3\uffff";
+    static final String DFA14_acceptS =
+        "\1\uffff\1\1\1\uffff\1\3\1\4\1\5\1\2\6\uffff\1\10\1\6\1\7";
+    static final String DFA14_specialS =
+        "\2\uffff\1\0\4\uffff\1\1\1\2\1\3\1\4\1\5\1\6\3\uffff}>";
+    static final String[] DFA14_transitionS = {
+            "\1\2\1\7\1\10\1\11\4\uffff\1\1\1\uffff\1\15\2\uffff\1\14\3"+
+            "\uffff\5\6\1\3\1\uffff\1\4\1\5\16\uffff\1\12\1\13",
             "",
             "\1\uffff",
             "",
             "",
-            "\1\uffff",
-            "\1\uffff",
+            "",
             "",
             "\1\uffff",
             "\1\uffff",
@@ -3932,183 +3583,153 @@ public class CeriumParser extends Parser {
             ""
     };
 
-    static final short[] DFA15_eot = DFA.unpackEncodedString(DFA15_eotS);
-    static final short[] DFA15_eof = DFA.unpackEncodedString(DFA15_eofS);
-    static final char[] DFA15_min = DFA.unpackEncodedStringToUnsignedChars(DFA15_minS);
-    static final char[] DFA15_max = DFA.unpackEncodedStringToUnsignedChars(DFA15_maxS);
-    static final short[] DFA15_accept = DFA.unpackEncodedString(DFA15_acceptS);
-    static final short[] DFA15_special = DFA.unpackEncodedString(DFA15_specialS);
-    static final short[][] DFA15_transition;
+    static final short[] DFA14_eot = DFA.unpackEncodedString(DFA14_eotS);
+    static final short[] DFA14_eof = DFA.unpackEncodedString(DFA14_eofS);
+    static final char[] DFA14_min = DFA.unpackEncodedStringToUnsignedChars(DFA14_minS);
+    static final char[] DFA14_max = DFA.unpackEncodedStringToUnsignedChars(DFA14_maxS);
+    static final short[] DFA14_accept = DFA.unpackEncodedString(DFA14_acceptS);
+    static final short[] DFA14_special = DFA.unpackEncodedString(DFA14_specialS);
+    static final short[][] DFA14_transition;
 
     static {
-        int numStates = DFA15_transitionS.length;
-        DFA15_transition = new short[numStates][];
+        int numStates = DFA14_transitionS.length;
+        DFA14_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA15_transition[i] = DFA.unpackEncodedString(DFA15_transitionS[i]);
+            DFA14_transition[i] = DFA.unpackEncodedString(DFA14_transitionS[i]);
         }
     }
 
-    class DFA15 extends DFA {
+    class DFA14 extends DFA {
 
-        public DFA15(BaseRecognizer recognizer) {
+        public DFA14(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 15;
-            this.eot = DFA15_eot;
-            this.eof = DFA15_eof;
-            this.min = DFA15_min;
-            this.max = DFA15_max;
-            this.accept = DFA15_accept;
-            this.special = DFA15_special;
-            this.transition = DFA15_transition;
+            this.decisionNumber = 14;
+            this.eot = DFA14_eot;
+            this.eof = DFA14_eof;
+            this.min = DFA14_min;
+            this.max = DFA14_max;
+            this.accept = DFA14_accept;
+            this.special = DFA14_special;
+            this.transition = DFA14_transition;
         }
         public String getDescription() {
-            return "96:1: statement options {backtrack=true; } : ( block | varDeclaration | 'if' '(' expression ')' s= statement ( 'else' e= statement )? -> ^( 'if' expression $s ( $e)? ) | 'return' ( expression )? ';' -> ^( 'return' ( expression )? ) | lhs '=' expression ';' -> ^( '=' lhs expression ) | a= postfixExpression ( '=' expression -> ^( '=' postfixExpression expression ) | -> ^( EXPR postfixExpression ) ) ';' | ';' ->);";
+            return "96:1: statement options {backtrack=true; } : ( block | varDeclaration | 'if' '(' expression ')' t= block ( 'else' f= block )? -> ^( 'if' expression $t ( $f)? ) | 'while' '(' expression ')' block -> ^( 'while' expression block ) | 'return' ( expression )? ';' -> ^( 'return' ( expression )? ) | lhs '=' expression ';' -> ^( '=' lhs expression ) | a= postfixExpression ';' -> ^( EXPR postfixExpression ) | ';' ->);";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA15_2 = input.LA(1);
+                        int LA14_2 = input.LA(1);
 
                          
-                        int index15_2 = input.index();
+                        int index14_2 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred2_Cerium()) ) {s = 7;}
+                        if ( (synpred2_Cerium()) ) {s = 6;}
 
-                        else if ( (synpred5_Cerium()) ) {s = 15;}
+                        else if ( (synpred6_Cerium()) ) {s = 14;}
 
-                        else if ( (synpred6_Cerium()) ) {s = 16;}
+                        else if ( (synpred7_Cerium()) ) {s = 15;}
 
                          
-                        input.seek(index15_2);
+                        input.seek(index14_2);
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA15_5 = input.LA(1);
+                        int LA14_7 = input.LA(1);
 
                          
-                        int index15_5 = input.index();
+                        int index14_7 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred5_Cerium()) ) {s = 15;}
+                        if ( (synpred6_Cerium()) ) {s = 14;}
 
-                        else if ( (synpred6_Cerium()) ) {s = 16;}
+                        else if ( (synpred7_Cerium()) ) {s = 15;}
 
                          
-                        input.seek(index15_5);
+                        input.seek(index14_7);
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA15_6 = input.LA(1);
+                        int LA14_8 = input.LA(1);
 
                          
-                        int index15_6 = input.index();
+                        int index14_8 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred5_Cerium()) ) {s = 15;}
+                        if ( (synpred6_Cerium()) ) {s = 14;}
 
-                        else if ( (synpred6_Cerium()) ) {s = 16;}
+                        else if ( (synpred7_Cerium()) ) {s = 15;}
 
                          
-                        input.seek(index15_6);
+                        input.seek(index14_8);
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
-                        int LA15_8 = input.LA(1);
+                        int LA14_9 = input.LA(1);
 
                          
-                        int index15_8 = input.index();
+                        int index14_9 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred5_Cerium()) ) {s = 15;}
+                        if ( (synpred6_Cerium()) ) {s = 14;}
 
-                        else if ( (synpred6_Cerium()) ) {s = 16;}
+                        else if ( (synpred7_Cerium()) ) {s = 15;}
 
                          
-                        input.seek(index15_8);
+                        input.seek(index14_9);
                         if ( s>=0 ) return s;
                         break;
                     case 4 : 
-                        int LA15_9 = input.LA(1);
+                        int LA14_10 = input.LA(1);
 
                          
-                        int index15_9 = input.index();
+                        int index14_10 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred5_Cerium()) ) {s = 15;}
+                        if ( (synpred6_Cerium()) ) {s = 14;}
 
-                        else if ( (synpred6_Cerium()) ) {s = 16;}
+                        else if ( (synpred7_Cerium()) ) {s = 15;}
 
                          
-                        input.seek(index15_9);
+                        input.seek(index14_10);
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
-                        int LA15_10 = input.LA(1);
+                        int LA14_11 = input.LA(1);
 
                          
-                        int index15_10 = input.index();
+                        int index14_11 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred5_Cerium()) ) {s = 15;}
+                        if ( (synpred6_Cerium()) ) {s = 14;}
 
-                        else if ( (synpred6_Cerium()) ) {s = 16;}
+                        else if ( (synpred7_Cerium()) ) {s = 15;}
 
                          
-                        input.seek(index15_10);
+                        input.seek(index14_11);
                         if ( s>=0 ) return s;
                         break;
                     case 6 : 
-                        int LA15_11 = input.LA(1);
+                        int LA14_12 = input.LA(1);
 
                          
-                        int index15_11 = input.index();
+                        int index14_12 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred5_Cerium()) ) {s = 15;}
+                        if ( (synpred6_Cerium()) ) {s = 14;}
 
-                        else if ( (synpred6_Cerium()) ) {s = 16;}
-
-                         
-                        input.seek(index15_11);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 7 : 
-                        int LA15_12 = input.LA(1);
+                        else if ( (synpred7_Cerium()) ) {s = 15;}
 
                          
-                        int index15_12 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred5_Cerium()) ) {s = 15;}
-
-                        else if ( (synpred6_Cerium()) ) {s = 16;}
-
-                         
-                        input.seek(index15_12);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 8 : 
-                        int LA15_13 = input.LA(1);
-
-                         
-                        int index15_13 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred5_Cerium()) ) {s = 15;}
-
-                        else if ( (synpred6_Cerium()) ) {s = 16;}
-
-                         
-                        input.seek(index15_13);
+                        input.seek(index14_12);
                         if ( s>=0 ) return s;
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 15, _s, input);
+                new NoViableAltException(getDescription(), 14, _s, input);
             error(nvae);
             throw nvae;
         }
@@ -4144,108 +3765,97 @@ public class CeriumParser extends Parser {
     public static final BitSet FOLLOW_ID_in_parameter414 = new BitSet(new long[]{0x0000000400000000L});
     public static final BitSet FOLLOW_34_in_parameter416 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_type0 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_26_in_block517 = new BitSet(new long[]{0x1E0005F89C3C0000L});
-    public static final BitSet FOLLOW_statement_in_block519 = new BitSet(new long[]{0x1E0005F89C3C0000L});
+    public static final BitSet FOLLOW_26_in_block517 = new BitSet(new long[]{0x0C000DF89C3C0000L});
+    public static final BitSet FOLLOW_statement_in_block519 = new BitSet(new long[]{0x0C000DF89C3C0000L});
     public static final BitSet FOLLOW_27_in_block522 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_type_in_varDeclaration555 = new BitSet(new long[]{0x0000000000040000L});
     public static final BitSet FOLLOW_ID_in_varDeclaration557 = new BitSet(new long[]{0x0000000010002000L});
-    public static final BitSet FOLLOW_ASSIGN_in_varDeclaration560 = new BitSet(new long[]{0x1E240000803C0000L});
+    public static final BitSet FOLLOW_ASSIGN_in_varDeclaration560 = new BitSet(new long[]{0x0C480000803C0000L});
     public static final BitSet FOLLOW_expression_in_varDeclaration562 = new BitSet(new long[]{0x0000000010000000L});
     public static final BitSet FOLLOW_28_in_varDeclaration566 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_type_in_varDeclaration589 = new BitSet(new long[]{0x0000000000040000L});
     public static final BitSet FOLLOW_ID_in_varDeclaration591 = new BitSet(new long[]{0x0000000400000000L});
     public static final BitSet FOLLOW_34_in_varDeclaration593 = new BitSet(new long[]{0x0000000010002000L});
-    public static final BitSet FOLLOW_ASSIGN_in_varDeclaration596 = new BitSet(new long[]{0x1E240000803C0000L});
+    public static final BitSet FOLLOW_ASSIGN_in_varDeclaration596 = new BitSet(new long[]{0x0C480000803C0000L});
     public static final BitSet FOLLOW_expression_in_varDeclaration598 = new BitSet(new long[]{0x0000000010000000L});
     public static final BitSet FOLLOW_28_in_varDeclaration602 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_block_in_statement654 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_varDeclaration_in_statement662 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_statement670 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_statement672 = new BitSet(new long[]{0x1E240000803C0000L});
-    public static final BitSet FOLLOW_expression_in_statement674 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_statement676 = new BitSet(new long[]{0x1E0005F8943C0000L});
-    public static final BitSet FOLLOW_statement_in_statement680 = new BitSet(new long[]{0x0000020000000002L});
-    public static final BitSet FOLLOW_41_in_statement683 = new BitSet(new long[]{0x1E0005F8943C0000L});
-    public static final BitSet FOLLOW_statement_in_statement687 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_42_in_statement719 = new BitSet(new long[]{0x1E240000903C0000L});
-    public static final BitSet FOLLOW_expression_in_statement721 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_statement724 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_lhs_in_statement741 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_ASSIGN_in_statement743 = new BitSet(new long[]{0x1E240000803C0000L});
-    public static final BitSet FOLLOW_expression_in_statement745 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_statement747 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_postfixExpression_in_statement769 = new BitSet(new long[]{0x0000000010002000L});
-    public static final BitSet FOLLOW_ASSIGN_in_statement784 = new BitSet(new long[]{0x1E240000803C0000L});
-    public static final BitSet FOLLOW_expression_in_statement786 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_statement836 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_statement845 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_postfixExpression_in_lhs864 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expr_in_expressionList891 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_33_in_expressionList894 = new BitSet(new long[]{0x1E240000803C0000L});
-    public static final BitSet FOLLOW_expr_in_expressionList896 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_expr_in_expression944 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_equalityExpression_in_expr970 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_relationalExpression_in_equalityExpression992 = new BitSet(new long[]{0x0000180000000002L});
-    public static final BitSet FOLLOW_43_in_equalityExpression996 = new BitSet(new long[]{0x1E240000803C0000L});
-    public static final BitSet FOLLOW_44_in_equalityExpression1001 = new BitSet(new long[]{0x1E240000803C0000L});
-    public static final BitSet FOLLOW_relationalExpression_in_equalityExpression1005 = new BitSet(new long[]{0x0000180000000002L});
-    public static final BitSet FOLLOW_additiveExpression_in_relationalExpression1021 = new BitSet(new long[]{0x0001E00000000002L});
-    public static final BitSet FOLLOW_45_in_relationalExpression1031 = new BitSet(new long[]{0x1E240000803C0000L});
-    public static final BitSet FOLLOW_46_in_relationalExpression1040 = new BitSet(new long[]{0x1E240000803C0000L});
-    public static final BitSet FOLLOW_47_in_relationalExpression1049 = new BitSet(new long[]{0x1E240000803C0000L});
-    public static final BitSet FOLLOW_48_in_relationalExpression1058 = new BitSet(new long[]{0x1E240000803C0000L});
-    public static final BitSet FOLLOW_additiveExpression_in_relationalExpression1071 = new BitSet(new long[]{0x0001E00000000002L});
-    public static final BitSet FOLLOW_multiplicativeExpression_in_additiveExpression1095 = new BitSet(new long[]{0x0006000000000002L});
-    public static final BitSet FOLLOW_49_in_additiveExpression1099 = new BitSet(new long[]{0x1E240000803C0000L});
-    public static final BitSet FOLLOW_50_in_additiveExpression1104 = new BitSet(new long[]{0x1E240000803C0000L});
-    public static final BitSet FOLLOW_multiplicativeExpression_in_additiveExpression1108 = new BitSet(new long[]{0x0006000000000002L});
-    public static final BitSet FOLLOW_unaryExpression_in_multiplicativeExpression1124 = new BitSet(new long[]{0x0018000000000002L});
-    public static final BitSet FOLLOW_51_in_multiplicativeExpression1128 = new BitSet(new long[]{0x1E240000803C0000L});
-    public static final BitSet FOLLOW_52_in_multiplicativeExpression1133 = new BitSet(new long[]{0x1E240000803C0000L});
-    public static final BitSet FOLLOW_unaryExpression_in_multiplicativeExpression1137 = new BitSet(new long[]{0x0018000000000002L});
-    public static final BitSet FOLLOW_50_in_unaryExpression1155 = new BitSet(new long[]{0x1E240000803C0000L});
-    public static final BitSet FOLLOW_unaryExpression_in_unaryExpression1157 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_53_in_unaryExpression1173 = new BitSet(new long[]{0x1E240000803C0000L});
-    public static final BitSet FOLLOW_unaryExpression_in_unaryExpression1175 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_postfixExpression_in_unaryExpression1189 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_primary_in_postfixExpression1207 = new BitSet(new long[]{0x0140000080000002L});
-    public static final BitSet FOLLOW_31_in_postfixExpression1226 = new BitSet(new long[]{0x1E240001803C0000L});
-    public static final BitSet FOLLOW_expressionList_in_postfixExpression1229 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_postfixExpression1231 = new BitSet(new long[]{0x0140000080000002L});
-    public static final BitSet FOLLOW_54_in_postfixExpression1246 = new BitSet(new long[]{0x1E240000803C0000L});
-    public static final BitSet FOLLOW_expr_in_postfixExpression1249 = new BitSet(new long[]{0x0080000000000000L});
-    public static final BitSet FOLLOW_55_in_postfixExpression1251 = new BitSet(new long[]{0x0140000080000002L});
-    public static final BitSet FOLLOW_56_in_postfixExpression1268 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_ID_in_postfixExpression1271 = new BitSet(new long[]{0x0140000080000002L});
-    public static final BitSet FOLLOW_56_in_suffix1310 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_ID_in_suffix1312 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_suffix1314 = new BitSet(new long[]{0x1E240001803C0000L});
-    public static final BitSet FOLLOW_expressionList_in_suffix1316 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_suffix1318 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_suffix1337 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_ID_in_suffix1339 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_suffix1361 = new BitSet(new long[]{0x1E240001803C0000L});
-    public static final BitSet FOLLOW_expressionList_in_suffix1363 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_suffix1365 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_primary1403 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_58_in_primary1411 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_primary1419 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INT_in_primary1429 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_FLOAT_in_primary1437 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CHAR_in_primary1445 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_59_in_primary1453 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_60_in_primary1461 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_primary1471 = new BitSet(new long[]{0x1E240000803C0000L});
-    public static final BitSet FOLLOW_expression_in_primary1473 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_primary1475 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_varDeclaration_in_synpred2_Cerium662 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_lhs_in_synpred5_Cerium741 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_ASSIGN_in_synpred5_Cerium743 = new BitSet(new long[]{0x1E240000803C0000L});
-    public static final BitSet FOLLOW_expression_in_synpred5_Cerium745 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_synpred5_Cerium747 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_postfixExpression_in_synpred6_Cerium769 = new BitSet(new long[]{0x0000000010002000L});
-    public static final BitSet FOLLOW_ASSIGN_in_synpred6_Cerium784 = new BitSet(new long[]{0x1E240000803C0000L});
-    public static final BitSet FOLLOW_expression_in_synpred6_Cerium786 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_synpred6_Cerium836 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_block_in_statement653 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_varDeclaration_in_statement661 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_statement669 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_statement671 = new BitSet(new long[]{0x0C480000803C0000L});
+    public static final BitSet FOLLOW_expression_in_statement673 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_statement675 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_block_in_statement679 = new BitSet(new long[]{0x0000020000000002L});
+    public static final BitSet FOLLOW_41_in_statement682 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_block_in_statement686 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_42_in_statement716 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_statement718 = new BitSet(new long[]{0x0C480000803C0000L});
+    public static final BitSet FOLLOW_expression_in_statement720 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_statement722 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_block_in_statement724 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_43_in_statement749 = new BitSet(new long[]{0x0C480000903C0000L});
+    public static final BitSet FOLLOW_expression_in_statement751 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_statement754 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_lhs_in_statement771 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_ASSIGN_in_statement773 = new BitSet(new long[]{0x0C480000803C0000L});
+    public static final BitSet FOLLOW_expression_in_statement775 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_statement777 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_postfixExpression_in_statement799 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_statement801 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_statement818 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_postfixExpression_in_lhs836 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expr_in_expressionList863 = new BitSet(new long[]{0x0000000200000002L});
+    public static final BitSet FOLLOW_33_in_expressionList866 = new BitSet(new long[]{0x0C480000803C0000L});
+    public static final BitSet FOLLOW_expr_in_expressionList868 = new BitSet(new long[]{0x0000000200000002L});
+    public static final BitSet FOLLOW_expr_in_expression913 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_equalityExpression_in_expr939 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_relationalExpression_in_equalityExpression961 = new BitSet(new long[]{0x0000300000000002L});
+    public static final BitSet FOLLOW_44_in_equalityExpression965 = new BitSet(new long[]{0x0C480000803C0000L});
+    public static final BitSet FOLLOW_45_in_equalityExpression970 = new BitSet(new long[]{0x0C480000803C0000L});
+    public static final BitSet FOLLOW_relationalExpression_in_equalityExpression974 = new BitSet(new long[]{0x0000300000000002L});
+    public static final BitSet FOLLOW_additiveExpression_in_relationalExpression990 = new BitSet(new long[]{0x0003C00000000002L});
+    public static final BitSet FOLLOW_46_in_relationalExpression995 = new BitSet(new long[]{0x0C480000803C0000L});
+    public static final BitSet FOLLOW_47_in_relationalExpression1000 = new BitSet(new long[]{0x0C480000803C0000L});
+    public static final BitSet FOLLOW_48_in_relationalExpression1005 = new BitSet(new long[]{0x0C480000803C0000L});
+    public static final BitSet FOLLOW_49_in_relationalExpression1010 = new BitSet(new long[]{0x0C480000803C0000L});
+    public static final BitSet FOLLOW_additiveExpression_in_relationalExpression1014 = new BitSet(new long[]{0x0003C00000000002L});
+    public static final BitSet FOLLOW_multiplicativeExpression_in_additiveExpression1031 = new BitSet(new long[]{0x000C000000000002L});
+    public static final BitSet FOLLOW_50_in_additiveExpression1035 = new BitSet(new long[]{0x0C480000803C0000L});
+    public static final BitSet FOLLOW_51_in_additiveExpression1040 = new BitSet(new long[]{0x0C480000803C0000L});
+    public static final BitSet FOLLOW_multiplicativeExpression_in_additiveExpression1044 = new BitSet(new long[]{0x000C000000000002L});
+    public static final BitSet FOLLOW_unaryExpression_in_multiplicativeExpression1060 = new BitSet(new long[]{0x0030000000000002L});
+    public static final BitSet FOLLOW_52_in_multiplicativeExpression1064 = new BitSet(new long[]{0x0C480000803C0000L});
+    public static final BitSet FOLLOW_53_in_multiplicativeExpression1069 = new BitSet(new long[]{0x0C480000803C0000L});
+    public static final BitSet FOLLOW_unaryExpression_in_multiplicativeExpression1073 = new BitSet(new long[]{0x0030000000000002L});
+    public static final BitSet FOLLOW_51_in_unaryExpression1091 = new BitSet(new long[]{0x0C480000803C0000L});
+    public static final BitSet FOLLOW_unaryExpression_in_unaryExpression1093 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_54_in_unaryExpression1109 = new BitSet(new long[]{0x0C480000803C0000L});
+    public static final BitSet FOLLOW_unaryExpression_in_unaryExpression1111 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_postfixExpression_in_unaryExpression1125 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_primary_in_postfixExpression1142 = new BitSet(new long[]{0x0280000080000002L});
+    public static final BitSet FOLLOW_31_in_postfixExpression1161 = new BitSet(new long[]{0x0C480001803C0000L});
+    public static final BitSet FOLLOW_expressionList_in_postfixExpression1164 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_postfixExpression1166 = new BitSet(new long[]{0x0280000080000002L});
+    public static final BitSet FOLLOW_55_in_postfixExpression1181 = new BitSet(new long[]{0x0C480000803C0000L});
+    public static final BitSet FOLLOW_expr_in_postfixExpression1184 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_56_in_postfixExpression1186 = new BitSet(new long[]{0x0280000080000002L});
+    public static final BitSet FOLLOW_57_in_postfixExpression1203 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_ID_in_postfixExpression1206 = new BitSet(new long[]{0x0280000080000002L});
+    public static final BitSet FOLLOW_ID_in_primary1240 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INT_in_primary1250 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FLOAT_in_primary1258 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CHAR_in_primary1266 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_58_in_primary1274 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_59_in_primary1282 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_primary1291 = new BitSet(new long[]{0x0C480000803C0000L});
+    public static final BitSet FOLLOW_expr_in_primary1293 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_primary1295 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_varDeclaration_in_synpred2_Cerium661 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_lhs_in_synpred6_Cerium771 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_ASSIGN_in_synpred6_Cerium773 = new BitSet(new long[]{0x0C480000803C0000L});
+    public static final BitSet FOLLOW_expression_in_synpred6_Cerium775 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_synpred6_Cerium777 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_postfixExpression_in_synpred7_Cerium799 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_synpred7_Cerium801 = new BitSet(new long[]{0x0000000000000002L});
 
 }
