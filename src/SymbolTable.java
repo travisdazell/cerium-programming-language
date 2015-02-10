@@ -10,11 +10,12 @@ public class SymbolTable {
     // these type indexes are used for automatic type promotion
     // for example, (1 + 2.5) would yield a float and ('a' + 6) would yield an int
     // the types are defined in order from the narrowest type to the widest type
-    public static final int tBOOLEAN = 0;
-    public static final int tCHAR = 1;
-    public static final int tINT = 2;
-    public static final int tFLOAT = 3;
-    public static final int tVOID = 4;
+    public static final int tUSER = 0; // user-defined type
+    public static final int tBOOLEAN = 1;
+    public static final int tCHAR = 2;
+    public static final int tINT = 3;
+    public static final int tFLOAT = 4;
+    public static final int tVOID = 5;
 
     public static final BuiltInTypeSymbol _boolean = new BuiltInTypeSymbol("boolean", tBOOLEAN);
     public static final BuiltInTypeSymbol _char = new BuiltInTypeSymbol("char", tCHAR);
@@ -31,48 +32,52 @@ public class SymbolTable {
     // _void means that it's an illegal operation
     // to get the result of an arithmetic operation on an integer and a float, just evaluate [tInt][tFloat]
     public static final Type[][] arithmeticResultType = new Type[][] {
-    	// boolean, char, int, float, void
-    	{_void, _void, _void, _void, _void},	// boolean
-    	{_void, _char, _int, _float, _void},	// char
-    	{_void, _void, _int, _float, _void},	// int
-    	{_void, _float, _float, _float, _void},	// float
-    	{_void, _void, _void, _void, _void}		// void
+    	// user-defined, boolean, char, int, float, void
+    	{_void, _void, _void, _void, _void, _void},	// user-defined
+    	{_void, _void, _void, _void, _void, _void},	// boolean
+    	{_void, _void, _char, _int, _float, _void},	// char
+    	{_void, _void, _void, _int, _float, _void},	// int
+    	{_void, _void, _float, _float, _float, _void},	// float
+    	{_void, _void, _void, _void, _void, _void}		// void
     };
     
     // map of (type1 comparison type2) to a result type
     // _void means that it's an illegal operation
     // to get the result of a comparison operation of an int and a float, just evaluate [tInt][tFloat]
     public static final Type[][] comparisonResultType = new Type[][] {
-    	// boolean, char, int, float, void
-        {_void,  _void,    _void,    _void,    _void},	// boolean
-        {_void,  _boolean, _boolean, _boolean, _void},	// char
-        {_void,  _boolean, _boolean, _boolean, _void},	// int
-        {_void,  _boolean, _boolean, _boolean, _void},	// float
-        {_void,  _void,    _void,    _void,    _void}	// void
+    	// user-defined, boolean, char, int, float, void
+    	{_void, _void, _void, _void, _void, _void},	// user-defined
+        {_void, _void, _void, _void, _void, _void},	// boolean
+        {_void, _void, _boolean, _boolean, _boolean, _void},	// char
+        {_void, _void, _boolean, _boolean, _boolean, _void},	// int
+        {_void, _void, _boolean, _boolean, _boolean, _void},	// float
+        {_void, _void, _void, _void, _void, _void}	// void
     };
 
     // map of (type1 == type2) to a result type
     // _void means that it's an illegal operation
     // to get the result of 1 == 2.5, just evaluate [1][2.5]
     public static final Type[][] equalityResultType = new Type[][] {
-    	// boolean, char, int, float, void
-        {_boolean, _void, _void, _void, _void},			//boolean
-        {_void, _boolean, _boolean, _boolean, _void},	// char
-        {_void, _boolean, _boolean, _boolean, _void},	// int
-        {_void, _boolean, _boolean, _boolean, _void},	// float
-        {_void, _void, _void, _void, _void}				// void
+    	// user-defined, boolean, char, int, float, void
+    	{_void, _void, _void, _void, _void, _void},	// user-defined
+        {_void, _boolean, _void, _void, _void, _void},			//boolean
+        {_void, _void, _boolean, _boolean, _boolean, _void},	// char
+        {_void, _void, _boolean, _boolean, _boolean, _void},	// int
+        {_void, _void, _boolean, _boolean, _boolean, _void},	// float
+        {_void, _void, _void, _void, _void, _void}				// void
     };
     
     // indicates if a type needs to a promotion to a wider type
     // if the result is not null, then there's a promotion that's needed
     // note that NULL does not mean an error, it means that there is no promotion needed
     public static final Type[][] promoteFromTo = new Type[][] {
-    	// boolean, char, int, float, void
-    	{null, null, null, null, null},			// boolean
-    	{null, null, _int, _float, null},		// char
-    	{null, null, null, _float, null},		// int
-    	{null, null, null, null, null},			// float
-    	{null, null, null, null, null}			// void
+    	// user-defined, boolean, char, int, float, void
+    	{null, null, null, null, null, null},			// user-defined
+    	{null, null, null, null, null, null},			// boolean
+    	{null, null, null, _int, _float, null},		// char
+    	{null, null, null, null, _float, null},		// int
+    	{null, null, null, null, null, null},			// float
+    	{null, null, null, null, null, null}			// void
     };
     
     TokenStream tokens;
@@ -165,6 +170,12 @@ public class SymbolTable {
     public void whilestat(CeriumAST cond) {
     	if (cond.evalType != _boolean) {
     		System.err.println("while loop condition " + text(cond) + " must have boolean type in " + text((CeriumAST)cond.getParent()));
+    	}
+    }
+
+    public void loopstat(CeriumAST cond) {
+    	if (cond.evalType != _boolean) {
+    		System.err.println("loop condition " + text(cond) + " must have boolean type in " + text((CeriumAST)cond.getParent()));
     	}
     }
 

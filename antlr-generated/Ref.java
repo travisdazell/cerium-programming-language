@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g 2015-02-08 00:08:11
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g 2015-02-09 21:14:18
 
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.*;import java.util.Stack;
@@ -8,12 +8,14 @@ import java.util.Map;
 import java.util.HashMap;
 public class Ref extends TreeFilter {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "METHOD_DECL", "ARG_DECL", "BLOCK", "MEMBERS", "VAR_DECL", "FIELD_DECL", "CALL", "ELIST", "EXPR", "ASSIGN", "EXTENDS", "UNARY_MINUS", "UNARY_NOT", "INDEX", "ID", "INT", "FLOAT", "CHAR", "LETTER", "WS", "SL_COMMENT", "'class'", "'{'", "'}'", "';'", "':'", "'public'", "'('", "')'", "','", "'[]'", "'float'", "'int'", "'void'", "'char'", "'boolean'", "'if'", "'else'", "'loop'", "'times'", "'while'", "'return'", "'!='", "'=='", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'*'", "'/'", "'!'", "'['", "']'", "'.'", "'this'", "'super'", "'true'", "'false'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "METHOD_DECL", "ARG_DECL", "BLOCK", "MEMBERS", "VAR_DECL", "FIELD_DECL", "CALL", "ELIST", "EXPR", "ASSIGN", "EXTENDS", "UNARY_MINUS", "UNARY_NOT", "INDEX", "ID", "INT", "FLOAT", "CHAR", "LETTER", "WS", "SL_COMMENT", "'class'", "'{'", "'}'", "'extends'", "'def'", "'('", "')'", "':'", "'private'", "'protected'", "','", "'[]'", "'float'", "'int'", "'void'", "'char'", "'boolean'", "'if'", "'else'", "'while'", "'loop'", "'times'", "'return'", "';'", "'!='", "'=='", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'*'", "'/'", "'!'", "'['", "']'", "'.'", "'true'", "'false'", "'this'"
     };
     public static final int T__29=29;
+    public static final int T__64=64;
+    public static final int T__65=65;
     public static final int T__28=28;
-    public static final int T__27=27;
     public static final int T__62=62;
+    public static final int T__27=27;
     public static final int T__63=63;
     public static final int T__26=26;
     public static final int T__25=25;
@@ -25,8 +27,8 @@ public class Ref extends TreeFilter {
     public static final int FLOAT=20;
     public static final int T__61=61;
     public static final int ID=18;
-    public static final int T__60=60;
     public static final int EOF=-1;
+    public static final int T__60=60;
     public static final int T__55=55;
     public static final int INDEX=17;
     public static final int T__56=56;
@@ -257,7 +259,7 @@ public class Ref extends TreeFilter {
                     int alt3=2;
                     int LA3_0 = input.LA(1);
 
-                    if ( ((LA3_0>=METHOD_DECL && LA3_0<=63)) ) {
+                    if ( ((LA3_0>=METHOD_DECL && LA3_0<=65)) ) {
                         alt3=1;
                     }
                     else if ( (LA3_0==UP) ) {
@@ -340,7 +342,7 @@ public class Ref extends TreeFilter {
                 int alt4=2;
                 int LA4_0 = input.LA(1);
 
-                if ( ((LA4_0>=METHOD_DECL && LA4_0<=63)) ) {
+                if ( ((LA4_0>=METHOD_DECL && LA4_0<=65)) ) {
                     alt4=1;
                 }
                 else if ( (LA4_0==UP) ) {
@@ -418,7 +420,7 @@ public class Ref extends TreeFilter {
             int alt5=2;
             int LA5_0 = input.LA(1);
 
-            if ( ((LA5_0>=METHOD_DECL && LA5_0<=63)) ) {
+            if ( ((LA5_0>=METHOD_DECL && LA5_0<=65)) ) {
                 alt5=1;
             }
             switch (alt5) {
@@ -459,7 +461,7 @@ public class Ref extends TreeFilter {
     };
 
     // $ANTLR start "type"
-    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:72:1: type returns [Type tsym] : ( 'float' | 'int' | 'void' | ID );
+    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:72:1: type returns [Type tsym] : ( 'float' | 'int' | 'void' | 'char' | 'boolean' | ID );
     public final Ref.type_return type() throws RecognitionException {
         Ref.type_return retval = new Ref.type_return();
         retval.start = input.LT(1);
@@ -470,10 +472,10 @@ public class Ref extends TreeFilter {
             retval.tsym = (Type)((CeriumAST)retval.start).symbol; // return Type from this rule
 
         try {
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:79:5: ( 'float' | 'int' | 'void' | ID )
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:79:5: ( 'float' | 'int' | 'void' | 'char' | 'boolean' | ID )
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:
             {
-            if ( input.LA(1)==ID||(input.LA(1)>=35 && input.LA(1)<=37) ) {
+            if ( input.LA(1)==ID||(input.LA(1)>=37 && input.LA(1)<=41) ) {
                 input.consume();
                 state.errorRecovery=false;state.failed=false;
             }
@@ -499,21 +501,21 @@ public class Ref extends TreeFilter {
 
 
     // $ANTLR start "assignment"
-    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:86:1: assignment : ^( '=' expr expr ) ;
+    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:88:1: assignment : ^( '=' expr expr ) ;
     public final void assignment() throws RecognitionException {
         try {
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:86:13: ( ^( '=' expr expr ) )
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:86:15: ^( '=' expr expr )
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:88:13: ( ^( '=' expr expr ) )
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:88:15: ^( '=' expr expr )
             {
-            match(input,ASSIGN,FOLLOW_ASSIGN_in_assignment323); if (state.failed) return ;
+            match(input,ASSIGN,FOLLOW_ASSIGN_in_assignment339); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
-            pushFollow(FOLLOW_expr_in_assignment325);
+            pushFollow(FOLLOW_expr_in_assignment341);
             expr();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_expr_in_assignment327);
+            pushFollow(FOLLOW_expr_in_assignment343);
             expr();
 
             state._fsp--;
@@ -536,16 +538,16 @@ public class Ref extends TreeFilter {
 
 
     // $ANTLR start "resolveExpr"
-    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:87:1: resolveExpr : ^( EXPR expr ) ;
+    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:89:1: resolveExpr : ^( EXPR expr ) ;
     public final void resolveExpr() throws RecognitionException {
         try {
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:87:13: ( ^( EXPR expr ) )
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:87:15: ^( EXPR expr )
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:89:13: ( ^( EXPR expr ) )
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:89:15: ^( EXPR expr )
             {
-            match(input,EXPR,FOLLOW_EXPR_in_resolveExpr339); if (state.failed) return ;
+            match(input,EXPR,FOLLOW_EXPR_in_resolveExpr355); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
-            pushFollow(FOLLOW_expr_in_resolveExpr341);
+            pushFollow(FOLLOW_expr_in_resolveExpr357);
             expr();
 
             state._fsp--;
@@ -571,7 +573,7 @@ public class Ref extends TreeFilter {
     };
 
     // $ANTLR start "expr"
-    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:91:1: expr returns [Type type] : ( member | ^( CALL expr ) | ^( '+' expr expr ) | id | INT );
+    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:93:1: expr returns [Type type] : ( member | ^( CALL expr ) | ^( '+' expr expr ) | id | INT );
     public final Ref.expr_return expr() throws RecognitionException {
         Ref.expr_return retval = new Ref.expr_return();
         retval.start = input.LT(1);
@@ -582,10 +584,10 @@ public class Ref extends TreeFilter {
 
 
         try {
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:95:5: ( member | ^( CALL expr ) | ^( '+' expr expr ) | id | INT )
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:97:5: ( member | ^( CALL expr ) | ^( '+' expr expr ) | id | INT )
             int alt6=5;
             switch ( input.LA(1) ) {
-            case 59:
+            case 62:
                 {
                 alt6=1;
                 }
@@ -595,13 +597,13 @@ public class Ref extends TreeFilter {
                 alt6=2;
                 }
                 break;
-            case 52:
+            case 55:
                 {
                 alt6=3;
                 }
                 break;
             case ID:
-            case 60:
+            case 65:
                 {
                 alt6=4;
                 }
@@ -621,9 +623,9 @@ public class Ref extends TreeFilter {
 
             switch (alt6) {
                 case 1 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:95:9: member
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:97:9: member
                     {
-                    pushFollow(FOLLOW_member_in_expr366);
+                    pushFollow(FOLLOW_member_in_expr382);
                     member5=member();
 
                     state._fsp--;
@@ -635,32 +637,11 @@ public class Ref extends TreeFilter {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:96:9: ^( CALL expr )
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:98:9: ^( CALL expr )
                     {
-                    match(input,CALL,FOLLOW_CALL_in_expr380); if (state.failed) return retval;
+                    match(input,CALL,FOLLOW_CALL_in_expr396); if (state.failed) return retval;
 
                     match(input, Token.DOWN, null); if (state.failed) return retval;
-                    pushFollow(FOLLOW_expr_in_expr382);
-                    expr();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-
-                    match(input, Token.UP, null); if (state.failed) return retval;
-
-                    }
-                    break;
-                case 3 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:97:9: ^( '+' expr expr )
-                    {
-                    match(input,52,FOLLOW_52_in_expr394); if (state.failed) return retval;
-
-                    match(input, Token.DOWN, null); if (state.failed) return retval;
-                    pushFollow(FOLLOW_expr_in_expr396);
-                    expr();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
                     pushFollow(FOLLOW_expr_in_expr398);
                     expr();
 
@@ -671,10 +652,31 @@ public class Ref extends TreeFilter {
 
                     }
                     break;
-                case 4 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:98:9: id
+                case 3 :
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:99:9: ^( '+' expr expr )
                     {
-                    pushFollow(FOLLOW_id_in_expr409);
+                    match(input,55,FOLLOW_55_in_expr410); if (state.failed) return retval;
+
+                    match(input, Token.DOWN, null); if (state.failed) return retval;
+                    pushFollow(FOLLOW_expr_in_expr412);
+                    expr();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    pushFollow(FOLLOW_expr_in_expr414);
+                    expr();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+
+                    match(input, Token.UP, null); if (state.failed) return retval;
+
+                    }
+                    break;
+                case 4 :
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:100:9: id
+                    {
+                    pushFollow(FOLLOW_id_in_expr425);
                     id6=id();
 
                     state._fsp--;
@@ -686,9 +688,9 @@ public class Ref extends TreeFilter {
                     }
                     break;
                 case 5 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:99:9: INT
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:101:9: INT
                     {
-                    match(input,INT,FOLLOW_INT_in_expr430); if (state.failed) return retval;
+                    match(input,INT,FOLLOW_INT_in_expr446); if (state.failed) return retval;
 
                     }
                     break;
@@ -707,7 +709,7 @@ public class Ref extends TreeFilter {
 
 
     // $ANTLR start "id"
-    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:104:1: id returns [Type type] : ( ID | t= 'this' );
+    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:106:1: id returns [Type type] : ( ID | t= 'this' );
     public final Type id() throws RecognitionException {
         Type type = null;
 
@@ -715,14 +717,14 @@ public class Ref extends TreeFilter {
         CeriumAST ID7=null;
 
         try {
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:105:5: ( ID | t= 'this' )
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:107:5: ( ID | t= 'this' )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
             if ( (LA7_0==ID) ) {
                 alt7=1;
             }
-            else if ( (LA7_0==60) ) {
+            else if ( (LA7_0==65) ) {
                 alt7=2;
             }
             else {
@@ -734,9 +736,9 @@ public class Ref extends TreeFilter {
             }
             switch (alt7) {
                 case 1 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:105:9: ID
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:107:9: ID
                     {
-                    ID7=(CeriumAST)match(input,ID,FOLLOW_ID_in_id455); if (state.failed) return type;
+                    ID7=(CeriumAST)match(input,ID,FOLLOW_ID_in_id471); if (state.failed) return type;
                     if ( state.backtracking==1 ) {
 
                               // do usual resolve(ID) then check for illegal forward references
@@ -748,9 +750,9 @@ public class Ref extends TreeFilter {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:111:9: t= 'this'
+                    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:113:9: t= 'this'
                     {
-                    t=(CeriumAST)match(input,60,FOLLOW_60_in_id477); if (state.failed) return type;
+                    t=(CeriumAST)match(input,65,FOLLOW_65_in_id493); if (state.failed) return type;
                     if ( state.backtracking==1 ) {
                       type = SymbolTable.getEnclosingClass(t.scope);
                     }
@@ -772,7 +774,7 @@ public class Ref extends TreeFilter {
 
 
     // $ANTLR start "member"
-    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:116:1: member returns [Type type] : ^( '.' m= expr ID ) ;
+    // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:118:1: member returns [Type type] : ^( '.' m= expr ID ) ;
     public final Type member() throws RecognitionException {
         Type type = null;
 
@@ -781,30 +783,37 @@ public class Ref extends TreeFilter {
 
 
         try {
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:117:5: ( ^( '.' m= expr ID ) )
-            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:117:9: ^( '.' m= expr ID )
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:119:5: ( ^( '.' m= expr ID ) )
+            // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Ref.g:119:9: ^( '.' m= expr ID )
             {
-            match(input,59,FOLLOW_59_in_member506); if (state.failed) return type;
+            match(input,62,FOLLOW_62_in_member522); if (state.failed) return type;
 
             match(input, Token.DOWN, null); if (state.failed) return type;
-            pushFollow(FOLLOW_expr_in_member510);
+            pushFollow(FOLLOW_expr_in_member526);
             m=expr();
 
             state._fsp--;
             if (state.failed) return type;
-            ID8=(CeriumAST)match(input,ID,FOLLOW_ID_in_member512); if (state.failed) return type;
+            ID8=(CeriumAST)match(input,ID,FOLLOW_ID_in_member528); if (state.failed) return type;
 
             match(input, Token.UP, null); if (state.failed) return type;
             if ( state.backtracking==1 ) {
 
-                      ClassSymbol scope = (ClassSymbol)(m!=null?m.type:null);
-                      Symbol s = scope.resolveMember((ID8!=null?ID8.getText():null));
-                      ID8.symbol = s;
-                      System.out.println("line "+ID8.getLine()+
-                          ": resolve "+(m!=null?(input.getTokenStream().toString(
+              	        ClassSymbol scope = (ClassSymbol)(m!=null?m.type:null);
+              	        Symbol s = scope.resolveMember((ID8!=null?ID8.getText():null));
+              	        ID8.symbol = s;
+              	        if (s!=null) {
+              		        System.out.println("line "+ID8.getLine()+
+              		            ": resolve "+(m!=null?(input.getTokenStream().toString(
                 input.getTreeAdaptor().getTokenStartIndex(m.start),
                 input.getTreeAdaptor().getTokenStopIndex(m.start))):null)+"."+(ID8!=null?ID8.getText():null)+" to "+s);
-                      if ( s!=null ) type = s.type;
+              	        	type = s.type;
+              	        }
+              	        else {
+              	        	System.err.println("method name " + (ID8!=null?ID8.getText():null) + " does not exist in object " + (m!=null?(input.getTokenStream().toString(
+                input.getTreeAdaptor().getTokenStartIndex(m.start),
+                input.getTreeAdaptor().getTokenStopIndex(m.start))):null));
+              	        }
                       
             }
 
@@ -838,28 +847,28 @@ public class Ref extends TreeFilter {
     public static final BitSet FOLLOW_MEMBERS_in_enterClass141 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_METHOD_DECL_in_enterMethod177 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_type_in_enterMethod179 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_ID_in_enterMethod181 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF8L});
+    public static final BitSet FOLLOW_ID_in_enterMethod181 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF8L,0x0000000000000003L});
     public static final BitSet FOLLOW_set_in_varDeclaration220 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_type_in_varDeclaration228 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_ID_in_varDeclaration230 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF8L});
+    public static final BitSet FOLLOW_ID_in_varDeclaration230 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF8L,0x0000000000000003L});
     public static final BitSet FOLLOW_set_in_type0 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ASSIGN_in_assignment323 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_assignment325 = new BitSet(new long[]{0x18100000000C0400L});
-    public static final BitSet FOLLOW_expr_in_assignment327 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_EXPR_in_resolveExpr339 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_resolveExpr341 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_member_in_expr366 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CALL_in_expr380 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr382 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_52_in_expr394 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr396 = new BitSet(new long[]{0x18100000000C0400L});
+    public static final BitSet FOLLOW_ASSIGN_in_assignment339 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_assignment341 = new BitSet(new long[]{0x40800000000C0400L,0x0000000000000002L});
+    public static final BitSet FOLLOW_expr_in_assignment343 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_EXPR_in_resolveExpr355 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_resolveExpr357 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_member_in_expr382 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CALL_in_expr396 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_expr_in_expr398 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_id_in_expr409 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INT_in_expr430 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_id455 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_60_in_id477 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_59_in_member506 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_member510 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_ID_in_member512 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_55_in_expr410 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr412 = new BitSet(new long[]{0x40800000000C0400L,0x0000000000000002L});
+    public static final BitSet FOLLOW_expr_in_expr414 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_id_in_expr425 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INT_in_expr446 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_id471 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_65_in_id493 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_62_in_member522 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_member526 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_ID_in_member528 = new BitSet(new long[]{0x0000000000000008L});
 
 }

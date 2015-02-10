@@ -2,7 +2,7 @@ TODO list:
 
 Bugs:
 	- arrays don't work. i never really did anything with them, so i need to go back starting from Cerium.g and make sure it's all defined correctly
-	- when calling a method on an object "a.foo()" i'm not checking that foo() exists
+	- when not supplying the correct values to a method, i need a friendlier error message
 
 Documentation:
 - Finish the CeriumReferenceManual.pdf
@@ -11,19 +11,29 @@ Documentation:
 	- JavaDoc is one step
 	- Adding a Developer Manual is another important piece, so that we can quickly see which class is responsible for what (lexing, parsing, semantics, etc.)
 
-Semantic Analysis:
-- more testing
-
 Code Generation:
 - Build the code generator
   - I'll use StringTemplate and Jasmin to generate JVM bytecodes
   
 Additional Language Features:
-- add strings as a type
+- add semantic analysis to check that when you call methods or attributes outside of the current class, that they are not marked as private
+- ** after basic compiler features, i'll need to write some library methods to handle string to int conversions and other basic features
+     ** i think these would end up in a cerium.lang.<something> package
 - add a for loop
+- make ": void" optional on methods, so that void is just the default return type on methods
+- add strings as a type
+
+- how hard would it be to make the semicolon optional at the end of statements?
+- how hard would it be to make the parentheses optional on a method declaration if there are no parameters? 
+
+- add a 'final' or 'val/var' feature for constants
+- main method... maybe just call it "do" and it takes an array of strings as input and has void return type
+
 - do we need a "this" and "super" ?
-- add access modifiers (private, protected, public)
-- add ability to reference/include classes defined in other files
+- interfaces (maybe even require it? ... that might be interesting)
+
+- import funcionality
+	- add ability to reference/include classes defined in other files
 - console I/O and file I/O
 	- need to decide if I'm going to have a runtime library for things like file I/O and console I/O or if I'll just generate bytecodes for all of it (so we won't need to carry around a runtime library)
  

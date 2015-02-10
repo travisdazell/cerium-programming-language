@@ -1,26 +1,31 @@
-// start of global scope    // <callout id="co.class-symtab-AB-globals"/>
-class A {					// <callout id="co.class-symtab-AB-A"/>
- int x;
- void foo()					// <callout id="co.class-symtab-AB-A-foo"/>
- { ; }						// <callout id="co.class-symtab-AB-A-foo1"/>
-};
+class A {
+	x : int;
+    z : float;
+	
+	def foo() : void {
+		x = ((5+3) * 3) * 3 + 1;
+		z = 30.9;
+	}
+}
 
-class B : public A {		// <callout id="co.class-symtab-AB-B"/>
- int y;
- void foo()					// <callout id="co.class-symtab-AB-B-foo"/>
- {                          // <callout id="co.class-symtab-AB-B-foo1"/>
-   int z[];
- }
- 
- void bar() {
- 	foo();
- }
-};
+class B extends A {
+	y : int;
+	
+	def foo() : void {
+		y = 15;
+	}
+
+	def bar() : void {
+		foo();
+	}
+}
 
 class C {
-	B b;
-	
-	void do() {
-		e.bar();
+	private b : B;
+
+	def main() : void {
+		loop 7 times {
+			b.bar();
+		}
 	}
-};
+}

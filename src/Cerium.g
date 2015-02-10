@@ -32,30 +32,34 @@ compilationUnit
 // START: class
 classDefinition
     :   
-    	'class' ID superClass? '{' classMember+ '}' ';'			// a class without a defined super class
-        -> ^('class' ID superClass? ^(MEMBERS classMember+))	// a class with a super class
+    	'class' ID superClass? '{' classMember* '}'			// a class without a defined super class
+        -> ^('class' ID superClass? ^(MEMBERS classMember*))	// a class with a super class
     ;
 
 superClass
 	:	
-		':' 'public' ID -> ^(EXTENDS ID)
+		'extends' ID -> ^(EXTENDS ID)
 	;
 // END: class
 
 // a class member can be either a variable or method that's declared
 classMember
-	:	
+	:
 		varDeclaration
-	|	methodDeclaration
+	|   methodDeclaration
 	;
-	
+
 // START: method
 methodDeclaration
-    :   
-    	type ID '(' formalParameters? ')' block
+    :
+    	accessModifier? 'def' ID '(' formalParameters? ')' ':' type block
         -> ^(METHOD_DECL type ID formalParameters? block)
     ;
 // END: method
+
+accessModifier	:
+					'private' | 'protected'
+				;
 
 formalParameters
     :   
@@ -64,8 +68,8 @@ formalParameters
     
 parameter
 	:	
-		type ID		 -> ^(ARG_DECL type ID)
-	|	type ID '[]' -> ^(ARG_DECL ^('[]' type) ID)		// array type parameter
+		ID ':' type -> ^(ARG_DECL type ID)
+	|	ID ':' type '[]' -> ^(ARG_DECL ^('[]' type) ID)		// array type parameter
 	;    
 
 // a type can be any primitive type or a user-defined class type
@@ -88,8 +92,8 @@ block
 // START: var
 varDeclaration
     :
-    	type ID ('=' expression)? ';' -> ^(VAR_DECL type ID expression?)		// a variable declaration, optionally followed by an initial value
-   	|	type ID '[]' ('=' expression)? ';' -> ^(VAR_DECL ^('[]' type) ID expression?)	// an array type with optional initial values
+    	accessModifier? ID ':' type ('=' expression)? ';' -> ^(VAR_DECL type ID expression?)		// a variable declaration, optionally followed by an initial value
+   	|	accessModifier? ID ':' type '[]' ('=' expression)? ';' -> ^(VAR_DECL ^('[]' type) ID expression?)	// an array type with optional initial values
     ;
 // END: var
 
@@ -102,10 +106,11 @@ options {backtrack=true;}
     	-> ^('if' expression $t $f?)
     |	'while' '(' expression ')' block
     	-> ^('while' expression block)
+    |	'loop' expression 'times' block
+    	-> ^('loop' expression block)
     |   'return' expression? ';' -> ^('return' expression?)
     |	lhs '=' expression ';' -> ^('=' lhs expression)
     |   a=postfixExpression ';' -> ^(EXPR postfixExpression) // handles function calls like f(i);
-    |	';' -> // empty statement
     ;
 
 lhs :

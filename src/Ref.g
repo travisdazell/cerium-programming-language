@@ -79,6 +79,8 @@ type returns [Type tsym]
     :   'float'
     |   'int'
     |   'void'
+    |	'char'
+    |	'boolean'
     |   ID // struct name
     ;
 
@@ -116,12 +118,17 @@ id returns [Type type]
 member returns [Type type]
     :   ^('.' m=expr ID) // E.g., "a", "a.b", "a.b.c", ...
         {
-        ClassSymbol scope = (ClassSymbol)$m.type;
-        Symbol s = scope.resolveMember($ID.text);
-        $ID.symbol = s;
-        System.out.println("line "+$ID.getLine()+
-            ": resolve "+$m.text+"."+$ID.text+" to "+s);
-        if ( s!=null ) $type = s.type;
+	        ClassSymbol scope = (ClassSymbol)$m.type;
+	        Symbol s = scope.resolveMember($ID.text);
+	        $ID.symbol = s;
+	        if (s!=null) {
+		        System.out.println("line "+$ID.getLine()+
+		            ": resolve "+$m.text+"."+$ID.text+" to "+s);
+	        	$type = s.type;
+	        }
+	        else {
+	        	System.err.println("method name " + $ID.text + " does not exist in object " + $m.text);
+	        }
         }
     ;
 // END: member

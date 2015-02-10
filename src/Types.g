@@ -130,6 +130,10 @@ ifstat	:
 whilestat	:
 				^('while' cond=. b=.) {symtab.whilestat($cond);}
 			;
+			
+loopstat	:
+				^('loop' cond=. b=.) {symtab.loopstat($cond);}
+			;
 
 bop :   '+' | '-' | '*' | '/' ;
 
