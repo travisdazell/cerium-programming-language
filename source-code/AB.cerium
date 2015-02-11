@@ -1,9 +1,13 @@
+package com.ceriumlang;
+
+import net.otherpackage.*;
+
 class A {
-	x : int;
+	private _x : int;
     z : float;
 	
 	def foo() : void {
-		x = ((5+3) * 3) * 3 + 1;
+		_x = ((5+3) * 3) * 3 + 1;
 		z = 30.9;
 	}
 }

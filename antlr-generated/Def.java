@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Def.g 2015-02-09 21:14:23
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Def.g 2015-02-10 15:00:42
 
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.*;import java.util.Stack;
@@ -8,12 +8,15 @@ import java.util.Map;
 import java.util.HashMap;
 public class Def extends TreeFilter {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "METHOD_DECL", "ARG_DECL", "BLOCK", "MEMBERS", "VAR_DECL", "FIELD_DECL", "CALL", "ELIST", "EXPR", "ASSIGN", "EXTENDS", "UNARY_MINUS", "UNARY_NOT", "INDEX", "ID", "INT", "FLOAT", "CHAR", "LETTER", "WS", "SL_COMMENT", "'class'", "'{'", "'}'", "'extends'", "'def'", "'('", "')'", "':'", "'private'", "'protected'", "','", "'[]'", "'float'", "'int'", "'void'", "'char'", "'boolean'", "'if'", "'else'", "'while'", "'loop'", "'times'", "'return'", "';'", "'!='", "'=='", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'*'", "'/'", "'!'", "'['", "']'", "'.'", "'true'", "'false'", "'this'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "METHOD_DECL", "ARG_DECL", "BLOCK", "MEMBERS", "VAR_DECL", "FIELD_DECL", "CALL", "ELIST", "EXPR", "ASSIGN", "EXTENDS", "UNARY_MINUS", "UNARY_NOT", "INDEX", "ID", "INT", "FLOAT", "CHAR", "LETTER", "WS", "SL_COMMENT", "'import'", "'.'", "'.*'", "';'", "'package'", "'class'", "'{'", "'}'", "'extends'", "'def'", "'('", "')'", "':'", "'private'", "'protected'", "','", "'[]'", "'float'", "'int'", "'void'", "'char'", "'boolean'", "'if'", "'else'", "'while'", "'loop'", "'times'", "'return'", "'!='", "'=='", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'*'", "'/'", "'!'", "'['", "']'", "'true'", "'false'", "'this'"
     };
+    public static final int T__68=68;
+    public static final int T__66=66;
+    public static final int T__67=67;
     public static final int T__29=29;
     public static final int T__64=64;
-    public static final int T__65=65;
     public static final int T__28=28;
+    public static final int T__65=65;
     public static final int T__62=62;
     public static final int T__27=27;
     public static final int T__63=63;
@@ -25,8 +28,8 @@ public class Def extends TreeFilter {
     public static final int METHOD_DECL=4;
     public static final int VAR_DECL=8;
     public static final int FLOAT=20;
-    public static final int T__61=61;
     public static final int ID=18;
+    public static final int T__61=61;
     public static final int EOF=-1;
     public static final int T__60=60;
     public static final int T__55=55;
@@ -119,7 +122,7 @@ public class Def extends TreeFilter {
                 alt1=2;
                 }
                 break;
-            case 25:
+            case 30:
                 {
                 alt1=3;
                 }
@@ -131,13 +134,13 @@ public class Def extends TreeFilter {
                 alt1=4;
                 }
                 break;
-            case 47:
+            case 52:
                 {
                 alt1=5;
                 }
                 break;
             case ID:
-            case 65:
+            case 68:
                 {
                 alt1=6;
                 }
@@ -248,7 +251,7 @@ public class Def extends TreeFilter {
                 alt2=2;
                 }
                 break;
-            case 25:
+            case 30:
                 {
                 alt2=3;
                 }
@@ -374,7 +377,7 @@ public class Def extends TreeFilter {
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Def.g:54:5: ( ^( 'class' name= ID ( ^( EXTENDS sup= ID ) )? . ) )
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Def.g:55:6: ^( 'class' name= ID ( ^( EXTENDS sup= ID ) )? . )
             {
-            match(input,25,FOLLOW_25_in_enterClass233); if (state.failed) return ;
+            match(input,30,FOLLOW_30_in_enterClass233); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             name=(CeriumAST)match(input,ID,FOLLOW_ID_in_enterClass237); if (state.failed) return ;
@@ -394,7 +397,7 @@ public class Def extends TreeFilter {
                         if ( (LA3_4==UP) ) {
                             int LA3_5 = input.LA(5);
 
-                            if ( ((LA3_5>=METHOD_DECL && LA3_5<=65)) ) {
+                            if ( ((LA3_5>=METHOD_DECL && LA3_5<=68)) ) {
                                 alt3=1;
                             }
                         }
@@ -455,7 +458,7 @@ public class Def extends TreeFilter {
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Def.g:71:5: ( 'class' )
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Def.g:71:9: 'class'
             {
-            match(input,25,FOLLOW_25_in_exitClass281); if (state.failed) return ;
+            match(input,30,FOLLOW_30_in_exitClass281); if (state.failed) return ;
             if ( state.backtracking==1 ) {
 
                       System.out.println("members: "+currentScope);
@@ -501,7 +504,7 @@ public class Def extends TreeFilter {
                 int alt4=2;
                 int LA4_0 = input.LA(1);
 
-                if ( ((LA4_0>=METHOD_DECL && LA4_0<=65)) ) {
+                if ( ((LA4_0>=METHOD_DECL && LA4_0<=68)) ) {
                     alt4=1;
                 }
                 else if ( (LA4_0==UP) ) {
@@ -591,7 +594,7 @@ public class Def extends TreeFilter {
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Def.g:99:5: ( ^( 'return' . ) )
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Def.g:100:3: ^( 'return' . )
             {
-            match(input,47,FOLLOW_47_in_ret382); if (state.failed) return retval;
+            match(input,52,FOLLOW_52_in_ret382); if (state.failed) return retval;
 
             match(input, Token.DOWN, null); if (state.failed) return retval;
             matchAny(input); if (state.failed) return retval;
@@ -627,7 +630,7 @@ public class Def extends TreeFilter {
                 if (state.backtracking>0) {state.failed=true; return ;}
                 throw new FailedPredicateException(input, "atoms", "t.hasAncestor(EXPR)||t.hasAncestor(ASSIGN)");
             }
-            if ( input.LA(1)==ID||input.LA(1)==65 ) {
+            if ( input.LA(1)==ID||input.LA(1)==68 ) {
                 input.consume();
                 state.errorRecovery=false;state.failed=false;
             }
@@ -686,7 +689,7 @@ public class Def extends TreeFilter {
             int alt5=2;
             int LA5_0 = input.LA(1);
 
-            if ( ((LA5_0>=METHOD_DECL && LA5_0<=65)) ) {
+            if ( ((LA5_0>=METHOD_DECL && LA5_0<=68)) ) {
                 alt5=1;
             }
             switch (alt5) {
@@ -741,10 +744,10 @@ public class Def extends TreeFilter {
             int alt6=2;
             int LA6_0 = input.LA(1);
 
-            if ( (LA6_0==36) ) {
+            if ( (LA6_0==41) ) {
                 alt6=1;
             }
-            else if ( (LA6_0==ID||(LA6_0>=37 && LA6_0<=41)) ) {
+            else if ( (LA6_0==ID||(LA6_0>=42 && LA6_0<=46)) ) {
                 alt6=2;
             }
             else {
@@ -758,7 +761,7 @@ public class Def extends TreeFilter {
                 case 1 :
                     // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Def.g:127:4: ^( '[]' typeElement )
                     {
-                    match(input,36,FOLLOW_36_in_type494); if (state.failed) return type;
+                    match(input,41,FOLLOW_41_in_type494); if (state.failed) return type;
 
                     match(input, Token.DOWN, null); if (state.failed) return type;
                     pushFollow(FOLLOW_typeElement_in_type496);
@@ -812,7 +815,7 @@ public class Def extends TreeFilter {
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Def.g:138:5: ( 'float' | 'int' | 'char' | 'boolean' | 'void' | ID )
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Def.g:
             {
-            if ( input.LA(1)==ID||(input.LA(1)>=37 && input.LA(1)<=41) ) {
+            if ( input.LA(1)==ID||(input.LA(1)>=42 && input.LA(1)<=46) ) {
                 input.consume();
                 state.errorRecovery=false;state.failed=false;
             }
@@ -859,21 +862,21 @@ public class Def extends TreeFilter {
     public static final BitSet FOLLOW_exitClass_in_bottomup144 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_BLOCK_in_enterBlock168 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_BLOCK_in_exitBlock196 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_25_in_enterClass233 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_enterClass237 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x0000000000000003L});
+    public static final BitSet FOLLOW_30_in_enterClass233 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_enterClass237 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x000000000000001FL});
     public static final BitSet FOLLOW_EXTENDS_in_enterClass241 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_ID_in_enterClass245 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_25_in_exitClass281 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_exitClass281 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_METHOD_DECL_in_enterMethod311 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_type_in_enterMethod313 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_ID_in_enterMethod315 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF8L,0x0000000000000003L});
+    public static final BitSet FOLLOW_ID_in_enterMethod315 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF8L,0x000000000000001FL});
     public static final BitSet FOLLOW_METHOD_DECL_in_exitMethod353 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_ret382 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_52_in_ret382 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_set_in_atoms412 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_varDeclaration448 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_type_in_varDeclaration456 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_ID_in_varDeclaration458 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF8L,0x0000000000000003L});
-    public static final BitSet FOLLOW_36_in_type494 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_varDeclaration458 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF8L,0x000000000000001FL});
+    public static final BitSet FOLLOW_41_in_type494 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_typeElement_in_type496 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_typeElement_in_type504 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_typeElement0 = new BitSet(new long[]{0x0000000000000002L});

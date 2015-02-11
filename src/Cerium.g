@@ -26,8 +26,20 @@ tokens {
 // each source file consists of one or more class definitions
 compilationUnit
     :
+    	packageDefinition?
+    	importDefinition*
     	(classDefinition)+ EOF
     ;
+    
+importDefinition
+	:
+		'import' ID ('.' ID)* '.*'? ';'
+	;
+    
+packageDefinition
+	:
+		'package' ID ('.' ID)* ';'
+	;
 
 // START: class
 classDefinition
@@ -111,6 +123,7 @@ options {backtrack=true;}
     |   'return' expression? ';' -> ^('return' expression?)
     |	lhs '=' expression ';' -> ^('=' lhs expression)
     |   a=postfixExpression ';' -> ^(EXPR postfixExpression) // handles function calls like f(i);
+    |   ';'
     ;
 
 lhs :
@@ -184,7 +197,7 @@ primary
 // LEXER RULES
 
 ID  :   
-		LETTER (LETTER | '0'..'9')*
+		(LETTER | '_') (LETTER | '0'..'9' | '_')*
     ;
 
 fragment

@@ -1,7 +1,6 @@
 class A { 
-  void foo() {
-  	x = 5+2;
-  } // forward reference to field x
+  def foo() : void {
+  }
   
-  int x; 
-};
+  x : int;
+}

@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Types.g 2015-02-09 21:14:16
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Types.g 2015-02-09 22:02:15
 
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.*;import java.util.Stack;
@@ -8,11 +8,14 @@ import java.util.Map;
 import java.util.HashMap;
 public class Types extends TreeFilter {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "METHOD_DECL", "ARG_DECL", "BLOCK", "MEMBERS", "VAR_DECL", "FIELD_DECL", "CALL", "ELIST", "EXPR", "ASSIGN", "EXTENDS", "UNARY_MINUS", "UNARY_NOT", "INDEX", "ID", "INT", "FLOAT", "CHAR", "LETTER", "WS", "SL_COMMENT", "'class'", "'{'", "'}'", "'extends'", "'def'", "'('", "')'", "':'", "'private'", "'protected'", "','", "'[]'", "'float'", "'int'", "'void'", "'char'", "'boolean'", "'if'", "'else'", "'while'", "'loop'", "'times'", "'return'", "';'", "'!='", "'=='", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'*'", "'/'", "'!'", "'['", "']'", "'.'", "'true'", "'false'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "METHOD_DECL", "ARG_DECL", "BLOCK", "MEMBERS", "VAR_DECL", "FIELD_DECL", "CALL", "ELIST", "EXPR", "ASSIGN", "EXTENDS", "UNARY_MINUS", "UNARY_NOT", "INDEX", "ID", "INT", "FLOAT", "CHAR", "LETTER", "WS", "SL_COMMENT", "'import'", "'.'", "'.*'", "';'", "'package'", "'class'", "'{'", "'}'", "'extends'", "'def'", "'('", "')'", "':'", "'private'", "'protected'", "','", "'[]'", "'float'", "'int'", "'void'", "'char'", "'boolean'", "'if'", "'else'", "'while'", "'loop'", "'times'", "'return'", "'!='", "'=='", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'*'", "'/'", "'!'", "'['", "']'", "'true'", "'false'"
     };
+    public static final int T__66=66;
+    public static final int T__67=67;
     public static final int T__29=29;
     public static final int T__64=64;
     public static final int T__28=28;
+    public static final int T__65=65;
     public static final int T__62=62;
     public static final int T__27=27;
     public static final int T__63=63;
@@ -24,8 +27,8 @@ public class Types extends TreeFilter {
     public static final int METHOD_DECL=4;
     public static final int VAR_DECL=8;
     public static final int FLOAT=20;
-    public static final int T__61=61;
     public static final int ID=18;
+    public static final int T__61=61;
     public static final int EOF=-1;
     public static final int T__60=60;
     public static final int T__55=55;
@@ -115,7 +118,7 @@ public class Types extends TreeFilter {
                 alt1=2;
                 }
                 break;
-            case 47:
+            case 52:
                 {
                 alt1=3;
                 }
@@ -125,12 +128,12 @@ public class Types extends TreeFilter {
                 alt1=4;
                 }
                 break;
-            case 44:
+            case 49:
                 {
                 alt1=5;
                 }
                 break;
-            case 42:
+            case 47:
                 {
                 alt1=6;
                 }
@@ -243,7 +246,7 @@ public class Types extends TreeFilter {
             int alt2=2;
             int LA2_0 = input.LA(1);
 
-            if ( ((LA2_0>=METHOD_DECL && LA2_0<=64)) ) {
+            if ( ((LA2_0>=METHOD_DECL && LA2_0<=67)) ) {
                 alt2=1;
             }
             switch (alt2) {
@@ -295,7 +298,7 @@ public class Types extends TreeFilter {
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Types.g:41:2: ( ^( 'return' v= . ) )
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Types.g:42:3: ^( 'return' v= . )
             {
-            match(input,47,FOLLOW_47_in_ret182); if (state.failed) return retval;
+            match(input,52,FOLLOW_52_in_ret182); if (state.failed) return retval;
 
             match(input, Token.DOWN, null); if (state.failed) return retval;
             v=(CeriumAST)input.LT(1);
@@ -425,12 +428,12 @@ public class Types extends TreeFilter {
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Types.g:65:5: ( 'true' | 'false' | CHAR | INT | FLOAT | ID | ^( UNARY_MINUS a= expr ) | ^( UNARY_NOT a= expr ) | member | arrayRef | call | binaryOps )
             int alt3=12;
             switch ( input.LA(1) ) {
-            case 63:
+            case 66:
                 {
                 alt3=1;
                 }
                 break;
-            case 64:
+            case 67:
                 {
                 alt3=2;
                 }
@@ -465,7 +468,7 @@ public class Types extends TreeFilter {
                 alt3=8;
                 }
                 break;
-            case 62:
+            case 26:
                 {
                 alt3=9;
                 }
@@ -480,16 +483,16 @@ public class Types extends TreeFilter {
                 alt3=11;
                 }
                 break;
-            case 49:
-            case 50:
-            case 51:
-            case 52:
             case 53:
             case 54:
             case 55:
             case 56:
             case 57:
             case 58:
+            case 59:
+            case 60:
+            case 61:
+            case 62:
                 {
                 alt3=12;
                 }
@@ -506,7 +509,7 @@ public class Types extends TreeFilter {
                 case 1 :
                     // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Types.g:66:6: 'true'
                     {
-                    match(input,63,FOLLOW_63_in_expr302); if (state.failed) return retval;
+                    match(input,66,FOLLOW_66_in_expr302); if (state.failed) return retval;
                     if ( state.backtracking==1 ) {
                       retval.type = SymbolTable._boolean;
                     }
@@ -516,7 +519,7 @@ public class Types extends TreeFilter {
                 case 2 :
                     // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Types.g:67:9: 'false'
                     {
-                    match(input,64,FOLLOW_64_in_expr319); if (state.failed) return retval;
+                    match(input,67,FOLLOW_67_in_expr319); if (state.failed) return retval;
                     if ( state.backtracking==1 ) {
                       retval.type = SymbolTable._boolean;
                     }
@@ -693,24 +696,24 @@ public class Types extends TreeFilter {
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Types.g:85:5: ( ^( bop a= expr b= expr ) | ^( relop a= expr b= expr ) | ^( eqop a= expr b= expr ) )
             int alt4=3;
             switch ( input.LA(1) ) {
+            case 59:
+            case 60:
+            case 61:
+            case 62:
+                {
+                alt4=1;
+                }
+                break;
             case 55:
             case 56:
             case 57:
             case 58:
                 {
-                alt4=1;
-                }
-                break;
-            case 51:
-            case 52:
-            case 53:
-            case 54:
-                {
                 alt4=2;
                 }
                 break;
-            case 49:
-            case 50:
+            case 53:
+            case 54:
                 {
                 alt4=3;
                 }
@@ -906,7 +909,7 @@ public class Types extends TreeFilter {
                     int alt5=2;
                     int LA5_0 = input.LA(1);
 
-                    if ( (LA5_0==CALL||(LA5_0>=UNARY_MINUS && LA5_0<=CHAR)||(LA5_0>=49 && LA5_0<=58)||(LA5_0>=62 && LA5_0<=64)) ) {
+                    if ( (LA5_0==CALL||(LA5_0>=UNARY_MINUS && LA5_0<=CHAR)||LA5_0==26||(LA5_0>=53 && LA5_0<=62)||(LA5_0>=66 && LA5_0<=67)) ) {
                         alt5=1;
                     }
 
@@ -975,7 +978,7 @@ public class Types extends TreeFilter {
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Types.g:117:5: ( ^( '.' expr ID ) )
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Types.g:118:6: ^( '.' expr ID )
             {
-            match(input,62,FOLLOW_62_in_member730); if (state.failed) return retval;
+            match(input,26,FOLLOW_26_in_member730); if (state.failed) return retval;
 
             match(input, Token.DOWN, null); if (state.failed) return retval;
             pushFollow(FOLLOW_expr_in_member732);
@@ -1018,7 +1021,7 @@ public class Types extends TreeFilter {
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Types.g:126:8: ( ^( 'if' cond= . s= . (e= . )? ) )
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Types.g:127:4: ^( 'if' cond= . s= . (e= . )? )
             {
-            match(input,42,FOLLOW_42_in_ifstat774); if (state.failed) return ;
+            match(input,47,FOLLOW_47_in_ifstat774); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             cond=(CeriumAST)input.LT(1);
@@ -1029,7 +1032,7 @@ public class Types extends TreeFilter {
             int alt6=2;
             int LA6_0 = input.LA(1);
 
-            if ( ((LA6_0>=METHOD_DECL && LA6_0<=64)) ) {
+            if ( ((LA6_0>=METHOD_DECL && LA6_0<=67)) ) {
                 alt6=1;
             }
             switch (alt6) {
@@ -1074,7 +1077,7 @@ public class Types extends TreeFilter {
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Types.g:130:11: ( ^( 'while' cond= . b= . ) )
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Types.g:131:5: ^( 'while' cond= . b= . )
             {
-            match(input,44,FOLLOW_44_in_whilestat806); if (state.failed) return ;
+            match(input,49,FOLLOW_49_in_whilestat806); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             cond=(CeriumAST)input.LT(1);
@@ -1111,7 +1114,7 @@ public class Types extends TreeFilter {
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Types.g:134:10: ( ^( 'loop' cond= . b= . ) )
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Types.g:135:5: ^( 'loop' cond= . b= . )
             {
-            match(input,45,FOLLOW_45_in_loopstat837); if (state.failed) return ;
+            match(input,50,FOLLOW_50_in_loopstat837); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             cond=(CeriumAST)input.LT(1);
@@ -1145,7 +1148,7 @@ public class Types extends TreeFilter {
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Types.g:138:5: ( '+' | '-' | '*' | '/' )
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Types.g:
             {
-            if ( (input.LA(1)>=55 && input.LA(1)<=58) ) {
+            if ( (input.LA(1)>=59 && input.LA(1)<=62) ) {
                 input.consume();
                 state.errorRecovery=false;state.failed=false;
             }
@@ -1177,7 +1180,7 @@ public class Types extends TreeFilter {
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Types.g:140:6: ( '<' | '>' | '<=' | '>=' )
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Types.g:
             {
-            if ( (input.LA(1)>=51 && input.LA(1)<=54) ) {
+            if ( (input.LA(1)>=55 && input.LA(1)<=58) ) {
                 input.consume();
                 state.errorRecovery=false;state.failed=false;
             }
@@ -1209,7 +1212,7 @@ public class Types extends TreeFilter {
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Types.g:142:5: ( '!=' | '==' )
             // C:\\Users\\Travis_Dazell\\workspace\\Cerium\\src\\Types.g:
             {
-            if ( (input.LA(1)>=49 && input.LA(1)<=50) ) {
+            if ( (input.LA(1)>=53 && input.LA(1)<=54) ) {
                 input.consume();
                 state.errorRecovery=false;state.failed=false;
             }
@@ -1245,13 +1248,13 @@ public class Types extends TreeFilter {
     public static final BitSet FOLLOW_whilestat_in_bottomup107 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ifstat_in_bottomup115 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_VAR_DECL_in_decl140 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_decl144 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF8L,0x0000000000000001L});
-    public static final BitSet FOLLOW_47_in_ret182 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_decl144 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF8L,0x000000000000000FL});
+    public static final BitSet FOLLOW_52_in_ret182 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_ASSIGN_in_assignment212 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_EXPR_in_exprRoot259 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_expr_in_exprRoot261 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_63_in_expr302 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_64_in_expr319 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_66_in_expr302 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_67_in_expr319 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_CHAR_in_expr335 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_INT_in_expr354 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_FLOAT_in_expr374 = new BitSet(new long[]{0x0000000000000002L});
@@ -1265,27 +1268,27 @@ public class Types extends TreeFilter {
     public static final BitSet FOLLOW_call_in_expr478 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_binaryOps_in_expr497 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_bop_in_binaryOps535 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_binaryOps539 = new BitSet(new long[]{0xC7FE0000003F8400L,0x0000000000000001L});
+    public static final BitSet FOLLOW_expr_in_binaryOps539 = new BitSet(new long[]{0x7FE00000043F8400L,0x000000000000000CL});
     public static final BitSet FOLLOW_expr_in_binaryOps543 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_relop_in_binaryOps559 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_binaryOps563 = new BitSet(new long[]{0xC7FE0000003F8400L,0x0000000000000001L});
+    public static final BitSet FOLLOW_expr_in_binaryOps563 = new BitSet(new long[]{0x7FE00000043F8400L,0x000000000000000CL});
     public static final BitSet FOLLOW_expr_in_binaryOps567 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_eqop_in_binaryOps581 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_binaryOps585 = new BitSet(new long[]{0xC7FE0000003F8400L,0x0000000000000001L});
+    public static final BitSet FOLLOW_expr_in_binaryOps585 = new BitSet(new long[]{0x7FE00000043F8400L,0x000000000000000CL});
     public static final BitSet FOLLOW_expr_in_binaryOps589 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_INDEX_in_arrayRef625 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_arrayRef627 = new BitSet(new long[]{0xC7FE0000003F8400L,0x0000000000000001L});
+    public static final BitSet FOLLOW_ID_in_arrayRef627 = new BitSet(new long[]{0x7FE00000043F8400L,0x000000000000000CL});
     public static final BitSet FOLLOW_expr_in_arrayRef629 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_CALL_in_call674 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_ID_in_call676 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_ELIST_in_call679 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_call682 = new BitSet(new long[]{0xC7FE0000003F8408L,0x0000000000000001L});
-    public static final BitSet FOLLOW_62_in_member730 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_call682 = new BitSet(new long[]{0x7FE00000043F8408L,0x000000000000000CL});
+    public static final BitSet FOLLOW_26_in_member730 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_expr_in_member732 = new BitSet(new long[]{0x0000000000040000L});
     public static final BitSet FOLLOW_ID_in_member734 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_42_in_ifstat774 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_44_in_whilestat806 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_45_in_loopstat837 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_47_in_ifstat774 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_49_in_whilestat806 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_50_in_loopstat837 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_set_in_bop0 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_relop0 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_eqop0 = new BitSet(new long[]{0x0000000000000002L});

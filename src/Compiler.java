@@ -1,9 +1,22 @@
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.Reader;
 
-import org.antlr.runtime.*;
-import org.antlr.runtime.tree.*;
+import org.antlr.runtime.ANTLRReaderStream;
+import org.antlr.runtime.CharStream;
+import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.RuleReturnScope;
+import org.antlr.runtime.Token;
+import org.antlr.runtime.TokenRewriteStream;
+import org.antlr.runtime.TokenStream;
+import org.antlr.runtime.tree.CommonTree;
+import org.antlr.runtime.tree.CommonTreeAdaptor;
+import org.antlr.runtime.tree.CommonTreeNodeStream;
+import org.antlr.runtime.tree.TreeAdaptor;
+import org.antlr.runtime.tree.TreeVisitor;
+import org.antlr.runtime.tree.TreeVisitorAction;
+import org.antlr.stringtemplate.StringTemplateGroup;
 
 public class Compiler {
     /** An adaptor that tells ANTLR to build CeriumAST nodes */
@@ -59,9 +72,26 @@ public class Compiler {
             tokens.replace(left, right, cast+"("+original+")");
         }
     }
+    
+    private static void runCodeGenerator(CommonTreeNodeStream nodes) throws IOException, RecognitionException {
+    	// TODO: handle exceptions instead of just throwing them
+    	
+    	// load templates
+    	FileReader fr = new FileReader("code-generator-templates\\Cerium.stg");
+    	
+    	StringTemplateGroup templates = new StringTemplateGroup(fr);
+    	
+    	fr.close();
+    	
+    	// create tree node stream for tree parsers
+    	Gen gen = new Gen(nodes);
+    	gen.setTemplateLib(templates);
+    	Gen.compilationUnit_return ret = gen.compilationUnit();
+    	System.out.println(ret.getTemplate());
+    }
 
     public static void main(String[] args) throws Exception {
-		String filePath = new String("source-code\\AB.cerium");
+		String filePath = new String("source-code\\forward.cerium");
 		Reader reader = null;
 
 		try {
@@ -128,7 +158,7 @@ public class Compiler {
          * right now, i'm just writing information about the AST to the console, as i add features to the language
          * *******************************************************************************************************
          */
-        final boolean disableCodeGeneratorAndRunTreeVisitor = true;
+        final boolean disableCodeGeneratorAndRunTreeVisitor = false;
         
         if (disableCodeGeneratorAndRunTreeVisitor) {
 	        TreeVisitor visitor = new TreeVisitor(new CommonTreeAdaptor());
@@ -147,6 +177,7 @@ public class Compiler {
         }
         else {
         	// run the code generator using StringTemplate(s) to output the code to a Jasmin file
+        	runCodeGenerator(nodes);
         }
     }
 }
