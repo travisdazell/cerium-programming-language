@@ -1,0 +1,53 @@
+group Cerium;
+
+// START: file
+file(defs) ::= <<
+<defs; separator="\n">
+>>
+// END: file
+
+// START: class
+class(name, superClass, members) ::= <<
+public class <name> <if(superClass)> extends <superClass><endif> {
+  <members>
+}
+>>
+// END: class
+
+// START: methods
+method(name, retType, args, block) ::= <<
+  public <retType> <name>(<args; separator=", ">) <block>
+>>
+// END: methods
+
+// START: attributes
+var(name, type, init) ::= <<
+  <type> <name>;
+>>
+// END: attributes
+
+// START: block
+block(stats) ::= <<
+  {
+    <stats; separator="\n">
+  }
+>>
+// END: block
+
+// START: if statements
+if(cond, stat1, stat2) ::= <<
+ if (<cond>) <stat1>
+ <if(stat2)>else<stat2><endif>
+>>
+// END: if statements
+
+// START: calling methods
+call(name, args) ::= <<
+<name>(<args; separator=", ">)
+>>
+// END: calling methods
+
+arg(name, type, init, ptr) ::= "<decl(...)>"
+
+// START:
+// END :
