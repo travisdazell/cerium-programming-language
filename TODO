@@ -1,7 +1,9 @@
 TODO list:
 
 Bugs:
-	- arrays don't work. i never really did anything with them, so i need to go back starting from Cerium.g and make sure it's all defined correctly
+	- the type of an array in Ref.g is just a single item of the type itself, so x : int[] just makes x a single int variable
+		- i need to make it an actual array type
+		- only supporting a one-dimensional array right now
 	- when not supplying the correct values to a method, i need a friendlier error message
 
 Documentation:
@@ -17,6 +19,7 @@ Code Generation:
 	- maybe need a "-addJavaSupport" option to the compiler
   
 Additional Language Features:
+- need an "else if" branch on if statements (we only have if else right now)
 - support for classes defined in other files
 	- Cerium.g allows for package declarations, but we'll need to pass that along or carry it along for code generation
 	- same goes for the import statements
@@ -24,6 +27,7 @@ Additional Language Features:
 - ** after basic compiler features, i'll need to write some library methods to handle string to int conversions and other basic features
      ** i think these would end up in a cerium.lang.<something> package
 - add a for loop
+- add a symbol class for handling the main method, which will be "func main(args : String[])"
 - make ": void" optional on methods, so that void is just the default return type on methods
 
 - how hard would it be to make the semicolon optional at the end of statements?

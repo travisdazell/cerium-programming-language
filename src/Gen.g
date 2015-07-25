@@ -28,7 +28,7 @@ methodDeclaration
     :   ^(METHOD_DECL type ID a+=parameter* block)
         -> method(name={$ID.text}, retType={$type.st}, args={$a}, block={$block.st})
     ;
-    
+
 parameter
     :   ^(ARG_DECL (^(p='*' t=type)|t=type) ID)
         -> arg(name={$ID.text}, type={$t.st}, ptr={p!=null?"*":null})

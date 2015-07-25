@@ -84,9 +84,10 @@ enterMethod
         $ID.symbol = ms;         // track in AST
         currentScope.define(ms); // def method in globals
         currentScope = ms;       // set current scope to method scope
+        currentMethod = ms;
         }
     ;
-    
+
 exitMethod
     :   METHOD_DECL
         {

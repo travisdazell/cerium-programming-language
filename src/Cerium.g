@@ -21,6 +21,8 @@ tokens {
   UNARY_MINUS;
   UNARY_NOT;
   INDEX;
+  OUT_STAT;
+  OUTLN_STAT;
 }
 
 // each source file consists of one or more class definitions
@@ -64,7 +66,7 @@ classMember
 // START: method
 methodDeclaration
     :
-    	accessModifier? 'def' ID '(' formalParameters? ')' ':' type block
+    	accessModifier? ID '(' formalParameters? ')' ':' type block
         -> ^(METHOD_DECL type ID formalParameters? block)
     ;
 // END: method
@@ -123,6 +125,10 @@ options {backtrack=true;}
     |   'return' expression? ';' -> ^('return' expression?)
     |	lhs '=' expression ';' -> ^('=' lhs expression)
     |   a=postfixExpression ';' -> ^(EXPR postfixExpression) // handles function calls like f(i);
+    |	'print' '(' s=STRING ')' ';' -> ^(OUT_STAT $s)
+    |	'print' '(' e=expression')' ';' -> ^(OUT_STAT $e)
+    |	'println' '(' s=STRING ')' ';' -> ^(OUTLN_STAT $s)
+    |   'println' '(' e=expression ')' ';' -> ^(OUTLN_STAT $e)
     |   ';'
     ;
 
@@ -206,6 +212,10 @@ LETTER  :
     	;
 
 CHAR:	'\'' . '\'' ;
+
+STRING	:
+			'"' .* '"'
+		;
 
 INT :   
 		'0'..'9'+

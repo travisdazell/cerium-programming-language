@@ -61,7 +61,13 @@ enterMethod
 
 // START: var
 varDeclaration // global, parameter, or local variable
-    :   ^((FIELD_DECL|VAR_DECL|ARG_DECL) type ID .?)
+    :   ^((FIELD_DECL|VAR_DECL|ARG_DECL) type ID .?)		// non-array variable
+        {
+        $ID.symbol.type = $type.tsym; // set return type of variable
+        System.out.println("line "+$ID.getLine()+": set var type "+$ID.symbol);
+        }
+        |
+        ^((FIELD_DECL|VAR_DECL|ARG_DECL) ^(type '[]') ID .?)	// array variable
         {
         $ID.symbol.type = $type.tsym; // set return type of variable
         System.out.println("line "+$ID.getLine()+": set var type "+$ID.symbol);
@@ -106,9 +112,14 @@ expr returns [Type type]
 id returns [Type type]
     :   ID
         {
-        // do usual resolve(ID) then check for illegal forward references
-        $ID.symbol = SymbolTable.resolveID($ID);
-        if ( $ID.symbol!=null ) $type = $ID.symbol.type;
+	        // do usual resolve(ID) then check for illegal forward references
+	        $ID.symbol = SymbolTable.resolveID($ID);
+	
+	        if ($ID.symbol == null) { // undefined variable
+	        	System.err.println("line " + $ID.getLine() + " : undefined variable " + $ID.text);
+	        }
+	
+	        if ( $ID.symbol!=null ) $type = $ID.symbol.type;
         }
     |   t='this'  {$type = SymbolTable.getEnclosingClass($t.scope);}
     ;

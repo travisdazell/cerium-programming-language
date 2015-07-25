@@ -49,5 +49,20 @@ call(name, args) ::= <<
 
 arg(name, type, init, ptr) ::= "<decl(...)>"
 
-// START:
+return(v) ::= <<
+return <v>;
+>>
+
+operation(op, x, y) ::= <<
+<x> <operator(op)> <y>
+>>
+
+operator(o) ::= <<
+<o>
+>>
+
+// START: assignment statements
+assign(a, b) ::= <<
+<a> = <b>;
+>>
 // END :
